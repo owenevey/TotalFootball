@@ -12,18 +12,14 @@
         </div>
       </div>
       <div class="homeGames">
-        <h3>Games</h3>
+        <h3>Today</h3>
         <div
           class="homeGameItemsContainer"
           v-for="(fixtures, league) in gameData"
         >
           <div class="homeLeagueTitle">
             <img
-              :src="
-                '../src/assets/leagues/' +
-                league.toLowerCase().replace(' ', '_') +
-                '_logo.png'
-              "
+              :src="fixtures[0].league.flag"
             />
             <h4>{{ league }}</h4>
           </div>
@@ -34,7 +30,7 @@
               selectGame(
                 game.teams.home,
                 game.teams.away,
-                game.fixture.date.split('T')[0]
+                game.fixture.id
               )
             "
           />
@@ -87,17 +83,17 @@ const fetchGames = async () => {
       `https://v3.football.api-sports.io/fixtures?season=2023&league=${id}&from=2023-11-26&to=2023-11-26`,
       { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
     );
-
+    console.log(result);
     fixtures[name] = result.data.response;
   }
   gameData.value = fixtures;
 };
 
-const selectGame = (homeTeam, awayTeam, date) => {
+const selectGame = (homeTeam, awayTeam, id) => {
   router.push({
     name: "game",
     params: { homeTeam: homeTeam.name, awayTeam: awayTeam.name },
-    query: { date: date, homeID: homeTeam.id, awayID: awayTeam.id },
+    query: { gameID: id, homeID: homeTeam.id, awayID: awayTeam.id },
   });
 };
 
@@ -122,10 +118,9 @@ h3 {
   margin: 0px;
 }
 
-/* h4 {
-  text-align: left;
-  width: 100%;
-} */
+h4 {
+  font-weight: 400;
+}
 
 img {
   object-fit: contain;
@@ -148,6 +143,7 @@ img {
   background-color: #ffffff;
   height: fit-content;
 }
+
 
 .homeLeagueItemsContainer {
   display: flex;
