@@ -18,20 +18,14 @@
           v-for="(fixtures, league) in gameData"
         >
           <div class="homeLeagueTitle">
-            <img
-              :src="fixtures[0].league.flag"
-            />
+            <img :src="fixtures[0].league.flag" />
             <h4>{{ league }}</h4>
           </div>
           <GameItem
             v-for="game in fixtures"
             :game="game"
             @click="
-              selectGame(
-                game.teams.home,
-                game.teams.away,
-                game.fixture.id
-              )
+              selectGame(game.teams.home, game.teams.away, game.fixture.id)
             "
           />
         </div>
@@ -39,7 +33,11 @@
       <div class="homeNews">
         <h3>News</h3>
         <div class="homeNewsItemsContainer">
-          <NewsItem v-for="(file, title) in articles" :title="title" :imageName="file"/>
+          <NewsItem
+            v-for="(file, title) in articles"
+            :title="title"
+            :imageName="file"
+          />
         </div>
       </div>
     </div>
@@ -63,7 +61,7 @@ const league = ref(route.query.league ?? "Premier League");
 const leagues = {
   "Premier League": 39,
   "La Liga": 140,
-  "Bundesliga": 78,
+  Bundesliga: 78,
   "Serie A": 135,
   "Ligue 1": 61,
 };
@@ -73,7 +71,7 @@ const articles = {
   "Pochettino has Chelsea in top form": "poch.jpg",
   "Real madrid 2 - Barcelona 1: Highlights": "el_clasico.jpg",
   "Newcastle thumps PSG in Group of Death Matchup": "newcastle.jpg",
-}
+};
 
 const fetchGames = async () => {
   const fixtures = {};
@@ -93,7 +91,7 @@ const selectGame = (homeTeam, awayTeam, id) => {
   router.push({
     name: "game",
     params: { homeTeam: homeTeam.name, awayTeam: awayTeam.name },
-    query: { gameID: id, homeID: homeTeam.id, awayID: awayTeam.id },
+    query: { gameID: id },
   });
 };
 
@@ -143,7 +141,6 @@ img {
   background-color: #ffffff;
   height: fit-content;
 }
-
 
 .homeLeagueItemsContainer {
   display: flex;
