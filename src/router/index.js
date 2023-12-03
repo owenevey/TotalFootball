@@ -6,15 +6,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/home/',
+      path: '/home/:date?',
       name: 'home',
       component: HomeView
     },
     {
-      path: '/game/:homeTeam/:awayTeam/',
+      path: '/game/',
       name: 'game',
       component: GameView,
-      props: true,
     },
   ]
 })

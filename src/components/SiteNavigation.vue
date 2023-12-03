@@ -34,7 +34,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #34a853;
   padding: 0 40px;
   margin-bottom: 0rem;
 }
@@ -48,7 +48,7 @@ nav {
 p {
   display: inline;
   padding: 10px;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -57,17 +57,19 @@ body {
 }
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 h1 {
-  font-weight: 400;
   padding-left: 0.5rem;
+  color: white;
 }
 
 img {
+  display: none;
   object-fit: contain;
   width: 2rem;
   height: 2rem;
+  color: white;
 }
 </style>

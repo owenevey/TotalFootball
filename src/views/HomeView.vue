@@ -12,21 +12,27 @@
         </div>
       </div>
       <div class="homeGames">
-        <h3>Today</h3>
+        <div class="dateRow">
+          <div class="previousDay" @click="fetchPreviousDay()">
+            <img src="../assets/ChevronLeft.svg" class="chevron" />
+          </div>
+          <h3>{{ currentDateString }}</h3>
+          <div class="nextDay" @click="fetchNextDay()">
+            <img src="../assets/ChevronRight.svg" class="chevron" />
+          </div>
+        </div>
         <div
           class="homeGameItemsContainer"
           v-for="(fixtures, league) in gameData"
         >
           <div class="homeLeagueTitle">
-            <img :src="fixtures[0].league.flag" />
+            <img :src="fixtures[0].league.flag" class="flag" />
             <h4>{{ league }}</h4>
           </div>
           <GameItem
             v-for="game in fixtures"
             :game="game"
-            @click="
-              selectGame(game.teams.home, game.teams.away, game.fixture.id)
-            "
+            @click="selectGame(game.fixture.id)"
           />
         </div>
       </div>
@@ -45,7 +51,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import GameItem from "../components/GameItem.vue";
 import LeagueItem from "../components/LeagueItem.vue";
@@ -54,6 +60,17 @@ import axios from "axios";
 
 const router = useRouter();
 const route = useRoute();
+
+watch(route, (newValue, oldValue) => {
+  router.go();
+});
+
+var currentDay = "asdf";
+if (route.params.date) {
+  currentDay = route.params.date;
+} else {
+  currentDay = getTodaysDate();
+}
 
 const gameData = ref(null);
 const league = ref(route.query.league ?? "Premier League");
@@ -73,29 +90,101 @@ const articles = {
   "Newcastle thumps PSG in Group of Death Matchup": "newcastle.jpg",
 };
 
-const fetchGames = async () => {
-  const fixtures = {};
+const currentDate = ref(currentDay);
+const currentDateString = ref(getCurrentDayString(currentDay));
 
+function getTodaysDate() {
+  var date = new Date();
+
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
+
+  var formattedDate = year + "-" + month + "-" + day;
+  return formattedDate;
+}
+
+function getCurrentDayString() {
+  var currentYear = currentDate.value.substring(0, 4);
+  var currentMonth = currentDate.value.substring(5, 7);
+  var currentDay = currentDate.value.substring(8);
+
+  let date = new Date(currentYear, currentMonth - 1, currentDay);
+
+  return date.toLocaleString("en-US", { dateStyle: "full" }).slice(0, -6);
+}
+
+function getPreviousDate() {
+  var currentYear = currentDate.value.substring(0, 4);
+  var currentMonth = currentDate.value.substring(5, 7);
+  var currentDay = currentDate.value.substring(8);
+
+  let date = new Date(currentYear, currentMonth - 1, currentDay);
+  date.setDate(date.getDate() - 1);
+
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
+
+  var formattedDate = year + "-" + month + "-" + day;
+  console.log(formattedDate);
+  return formattedDate;
+}
+
+function getNextDate() {
+  var currentYear = currentDate.value.substring(0, 4);
+  var currentMonth = currentDate.value.substring(5, 7);
+  var currentDay = currentDate.value.substring(8);
+
+  let date = new Date(currentYear, currentMonth - 1, currentDay);
+  date.setDate(date.getDate() + 1);
+
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
+
+  var formattedDate = year + "-" + month + "-" + day;
+  console.log(formattedDate);
+  return formattedDate;
+}
+
+const fetchGames = async (date) => {
+  const fixtures = {};
   for (const [name, id] of Object.entries(leagues)) {
     const result = await axios.get(
-      `https://v3.football.api-sports.io/fixtures?season=2023&league=${id}&from=2023-11-26&to=2023-11-26`,
+      `https://v3.football.api-sports.io/fixtures?season=2023&league=${id}&from=${date}&to=${date}`,
       { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
     );
-    console.log(result);
-    fixtures[name] = result.data.response;
+    console.log("result", result);
+    if (result.data.response.length > 0) {
+      fixtures[name] = result.data.response;
+    }
   }
   gameData.value = fixtures;
 };
 
-const selectGame = (homeTeam, awayTeam, id) => {
+const fetchPreviousDay = () => {
   router.push({
-    name: "game",
-    params: { homeTeam: homeTeam.name, awayTeam: awayTeam.name },
-    query: { gameID: id },
+    name: "home",
+    params: { date: getPreviousDate() },
   });
 };
 
-fetchGames();
+const fetchNextDay = () => {
+  router.push({
+    name: "home",
+    params: { date: getNextDate() },
+  });
+};
+
+const selectGame = (id) => {
+  router.push({
+    name: "game",
+    query: { id: id },
+  });
+};
+
+fetchGames(currentDate.value);
 </script>
 
 <style scoped>
@@ -108,6 +197,29 @@ main {
   column-gap: 2rem;
   margin: auto;
   max-width: 83rem;
+}
+
+.dateRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.previousDay,
+.nextDay {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  margin: 1rem;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chevron {
+  height: 1rem;
 }
 
 h3 {
@@ -124,7 +236,12 @@ img {
   object-fit: contain;
   width: 2rem;
   height: 2rem;
-  padding-right: 1rem;
+}
+
+.flag {
+  margin-right: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .homeLeagueTitle {
@@ -191,6 +308,6 @@ img {
 }
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 </style>

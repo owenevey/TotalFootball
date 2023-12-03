@@ -24,7 +24,7 @@ defineProps({
   justify-content: center;
   cursor: pointer;
   border: 2px solid #f3f3f3;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -40,6 +40,7 @@ h3 {
 p {
   color: gray;
   margin: 0rem;
+  font-size: small;
 }
 
 img {

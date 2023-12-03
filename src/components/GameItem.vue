@@ -64,11 +64,11 @@ defineProps({
 
 .scoreboard {
   background-color: #f3f3f3;
-  color: #3f66ec;
   border-radius: 10px;
   margin: 0px;
   padding: 0.5rem;
   flex-grow: 0;
+  font-weight: 500;
 }
 
 .gameContainer > * {
