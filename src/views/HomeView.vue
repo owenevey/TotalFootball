@@ -21,6 +21,7 @@
             <img src="../assets/ChevronRight.svg" class="chevron" />
           </div>
         </div>
+        <div class="divider"></div>
         <div
           class="homeGameItemsContainer"
           v-for="(fixtures, league) in gameData"
@@ -287,6 +288,12 @@ img {
 .homeLeagueItemsContainer > *,
 .homeNewsItemsContainer > * {
   margin: 0.5rem;
+}
+
+.divider {
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 2px;
 }
 
 @media (max-width: 1300px) {

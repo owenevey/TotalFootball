@@ -3,7 +3,13 @@
     <p class="leftItem">{{ game.teams.home.name }}</p>
     <div class="centerItem">
       <img :src="game.teams.home.logo" />
-      <p class="scoreboard">{{ game.goals.home }} - {{ game.goals.away }}</p>
+      <div class="scoreboard" v-if="game.fixture.status.short !== 'NS'">
+        <p>{{ game.goals.home }} - {{ game.goals.away }}</p>
+        <p class="status">{{ game.fixture.status.short }}</p>
+      </div>
+      <div class="scoreboard" v-else>
+        <p class="time">{{ new Date(game.fixture.date).toLocaleTimeString('en-US', {timeStyle: 'short'}) }}</p>
+      </div>
       <img :src="game.teams.away.logo" />
     </div>
     <p class="rightItem">{{ game.teams.away.name }}</p>
@@ -62,11 +68,24 @@ defineProps({
   text-align: left;
 }
 
+.scoreboard > p {
+  margin: 0;
+  text-align: center;
+}
+
+.status {
+  font-size: small;
+  font-weight: 400;
+}
+
+
 .scoreboard {
+  display: flex;
+  flex-direction: column;
   background-color: #f3f3f3;
   border-radius: 10px;
   margin: 0px;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   flex-grow: 0;
   font-weight: 500;
 }
