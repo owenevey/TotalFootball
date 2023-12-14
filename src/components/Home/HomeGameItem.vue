@@ -1,8 +1,8 @@
 <template>
-  <div class="gameContainer">
-    <p class="leftItem">{{ game.teams.home.name }}</p>
+  <div class="gameItemContainer">
+    <p class="homeTeamName">{{ game.teams.home.name }}</p>
     <div class="centerItem">
-      <img :src="game.teams.home.logo" />
+      <img class="teamLogo" :src="game.teams.home.logo" />
       <div class="scoreboard" v-if="game.fixture.status.short !== 'NS'">
         <p>{{ game.goals.home }} - {{ game.goals.away }}</p>
         <p class="status">{{ game.fixture.status.short }}</p>
@@ -10,9 +10,9 @@
       <div class="scoreboard" v-else>
         <p class="time">{{ new Date(game.fixture.date).toLocaleTimeString('en-US', {timeStyle: 'short'}) }}</p>
       </div>
-      <img :src="game.teams.away.logo" />
+      <img class="teamLogo" :src="game.teams.away.logo" />
     </div>
-    <p class="rightItem">{{ game.teams.away.name }}</p>
+    <p class="awayTeamName">{{ game.teams.away.name }}</p>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ defineProps({
 </script>
 
 <style scoped>
-.gameContainer {
+.gameItemContainer {
   height: 4rem;
   width: 100%;
   background-color: #ffffff;
@@ -51,19 +51,19 @@ defineProps({
   white-space: nowrap;
 }
 
-.leftItem,
-.rightItem {
+.homeTeamName,
+.awayTeamName {
   flex: 1;
   display: flex;
   text-align: center;
 }
 
-.leftItem {
+.homeTeamName {
   justify-content: flex-end;
   text-align: right;
 }
 
-.rightItem {
+.awayTeamName {
   justify-content: flex-start;
   text-align: left;
 }
@@ -78,7 +78,6 @@ defineProps({
   font-weight: 400;
 }
 
-
 .scoreboard {
   display: flex;
   flex-direction: column;
@@ -90,11 +89,11 @@ defineProps({
   font-weight: 500;
 }
 
-.gameContainer > * {
-  padding: 0 1rem;
+.gameItemContainer > * {
+  padding: 0 0.5rem;
 }
 
-img {
+.teamLogo {
   object-fit: contain;
   width: 2rem;
   height: 2rem;

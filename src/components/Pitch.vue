@@ -69,7 +69,7 @@ defineProps({
 });
 </script>
 
-<style>
+<style scoped>
 .pitch {
   position: relative;
   display: flex;

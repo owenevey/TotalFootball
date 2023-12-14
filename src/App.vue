@@ -14,4 +14,8 @@ body {
   margin: 0px;
   background-color: #f5f5f5;
 }
+
+* {
+  font-family: "Rubik", sans-serif;
+}
 </style>
