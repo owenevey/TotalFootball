@@ -75,37 +75,19 @@ function getCurrentDayString() {
   return date.toLocaleString("en-US", { dateStyle: "full" }).slice(0, -6);
 }
 
-function getPreviousDate() {
+function getDifferentDate(dayOffset) {
   var currentYear = currentDate.value.substring(0, 4);
   var currentMonth = currentDate.value.substring(5, 7);
   var currentDay = currentDate.value.substring(8);
 
   let date = new Date(currentYear, currentMonth - 1, currentDay);
-  date.setDate(date.getDate() - 1);
+  date.setDate(date.getDate() + dayOffset);
 
   var year = date.toLocaleString("default", { year: "numeric" });
   var month = date.toLocaleString("default", { month: "2-digit" });
   var day = date.toLocaleString("default", { day: "2-digit" });
 
   var formattedDate = year + "-" + month + "-" + day;
-  console.log(formattedDate);
-  return formattedDate;
-}
-
-function getNextDate() {
-  var currentYear = currentDate.value.substring(0, 4);
-  var currentMonth = currentDate.value.substring(5, 7);
-  var currentDay = currentDate.value.substring(8);
-
-  let date = new Date(currentYear, currentMonth - 1, currentDay);
-  date.setDate(date.getDate() + 1);
-
-  var year = date.toLocaleString("default", { year: "numeric" });
-  var month = date.toLocaleString("default", { month: "2-digit" });
-  var day = date.toLocaleString("default", { day: "2-digit" });
-
-  var formattedDate = year + "-" + month + "-" + day;
-  console.log(formattedDate);
   return formattedDate;
 }
 
@@ -127,14 +109,14 @@ const fetchGames = async (date) => {
 const fetchPreviousDay = () => {
   router.push({
     name: "home",
-    params: { date: getPreviousDate() },
+    params: { date: getDifferentDate(-1) },
   });
 };
 
 const fetchNextDay = () => {
   router.push({
     name: "home",
-    params: { date: getNextDate() },
+    params: { date: getDifferentDate(+1) },
   });
 };
 

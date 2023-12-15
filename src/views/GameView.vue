@@ -3,8 +3,8 @@
     <div id="gameContainer">
       <div id="mainColumn">
         <GameScoreBoard :game="game"/>
-        <GameLineups :game="game" :hasLineups="hasLineups" />
-        <GameMatchStatsVue :game="game" />
+        <GameLineups :game="game" />
+        <GameMatchStats :game="game" />
       </div>
       <GamePlayerStats :game="game" />
     </div>
@@ -17,7 +17,7 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 import GameScoreBoard from "../components/Game/GameScoreboard.vue";
 import GameLineups from "../components/Game/GameLineups.vue";
-import GameMatchStatsVue from "../components/Game/GameMatchStats.vue";
+import GameMatchStats from "../components/Game/GameMatchStats.vue";
 import GamePlayerStats from "../components/Game/GamePlayerStats.vue";
 
 const route = useRoute();

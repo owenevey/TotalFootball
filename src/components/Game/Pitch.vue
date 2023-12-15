@@ -1,19 +1,16 @@
 <template>
-  <div class="pitch">
-    <div v-if="hasLineups" class="leftPitch">
+  <div id="pitch">
+    <div v-if="hasLineups" id="leftPitch">
       <div
         class="pitchColumn"
-        v-for="(players, key) of Object.entries(homeLineup)"
+        v-for="(players, _) of Object.entries(homeLineup)"
       >
         <div class="player" v-for="player in players[1].reverse()">
           <div
             class="playerCircle"
-            :style="{
-              'background-color': player.kitColor,
-              fontWeight: 500,
-            }"
+            :style="{ 'background-color': player.kitColor }"
           >
-            <p :style="{ color: player.numberColor }">
+            <p :style="{ color: player.numberColor, fontWeight: 500 }">
               {{ player.number }}
             </p>
           </div>
@@ -28,27 +25,24 @@
     <div class="leftCropper">
       <div class="pitchMark leftSemiCircle"></div>
     </div>
-    <div class="pitchMark pitchHalfMark"></div>
-    <div class="pitchMark pitchCircle"></div>
+    <div class="pitchMark halfLine"></div>
+    <div class="pitchMark middleCircle"></div>
     <div class="pitchMark rightInnerBox"></div>
     <div class="pitchMark rightOuterBox"></div>
     <div class="rightCropper">
       <div class="pitchMark rightSemiCircle"></div>
     </div>
-    <div v-if="hasLineups" class="rightPitch">
+    <div v-if="hasLineups" id="rightPitch">
       <div
         class="pitchColumn"
-        v-for="(players, key) of Object.entries(awayLineup).reverse()"
+        v-for="(players, _) of Object.entries(awayLineup).reverse()"
       >
         <div class="player" v-for="player in players[1]">
           <div
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"
           >
-            <p
-              class="playerNumber"
-              :style="{ color: player.numberColor, fontWeight: 500 }"
-            >
+            <p :style="{ color: player.numberColor, fontWeight: 500 }">
               {{ player.number }}
             </p>
           </div>
@@ -58,7 +52,7 @@
         </div>
       </div>
     </div>
-    <p v-else class="noLineup">No lineup information yet</p>
+    <h4 v-if="!hasLineups" id="noLineupText">No lineup information yet</h4>
   </div>
 </template>
 <script setup>
@@ -70,7 +64,7 @@ defineProps({
 </script>
 
 <style scoped>
-.pitch {
+#pitch {
   position: relative;
   display: flex;
   align-items: center;
@@ -80,19 +74,8 @@ defineProps({
   z-index: 1;
 }
 
-.noLineup {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  font-size: large;
-  color: black;
-  text-align: center;
-}
-
-.leftPitch,
-.rightPitch {
+#leftPitch,
+#rightPitch {
   flex: 1;
   display: flex;
   height: 100%;
@@ -109,20 +92,21 @@ defineProps({
 }
 
 .pitchMark {
-  border: #0c9f67 5px solid;
+  border: #0c9f67 6px solid;
   z-index: -1;
   position: absolute;
 }
 
-.pitchHalfMark {
+.halfLine {
   border-top: 0;
   border-bottom: 0;
   border-left: 0;
   height: 100%;
   left: 50%;
+  margin-left: -3px;
 }
 
-.pitchCircle {
+.middleCircle {
   position: absolute;
   height: 8rem;
   width: 8rem;
@@ -228,14 +212,27 @@ defineProps({
   text-align: center;
 }
 
+#noLineupText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #0c9f67;
+  padding: 1rem;
+  margin: 0;
+  border-radius: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
 @media (max-width: 50rem) {
-  .pitch {
+  #pitch {
     flex-direction: column;
     height: 50rem;
   }
 
-  .leftPitch,
-  .rightPitch {
+  #leftPitch,
+  #rightPitch {
     height: 50%;
     width: 100%;
     flex-direction: column;
@@ -246,33 +243,33 @@ defineProps({
     flex-direction: row;
   }
 
-  .pitchHalfMark {
+  .halfLine {
     border-right: 0;
     border-left: 0;
     border-bottom: 0;
-    border-top: #0c9f67 5px solid;
+    border-top: #0c9f67 6px solid;
     width: 100%;
     top: 50%;
     left: 0;
+    margin-left: unset;
   }
 
   .leftInnerBox {
     height: 3rem;
     width: 7rem;
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
-    border-left: #0c9f67 5px solid;
     border-top: 0;
+    border-left: #0c9f67 6px solid;
   }
 
   .rightInnerBox {
     height: 3rem;
     width: 7rem;
-    border-top-right-radius: 0.75rem;
     border-bottom-left-radius: 0;
-    border-right: #0c9f67 5px solid;
+    border-top-right-radius: 0.75rem;
     border-bottom: 0;
+    border-right: #0c9f67 6px solid;
     bottom: 0;
     right: unset;
   }
@@ -283,7 +280,7 @@ defineProps({
     border-top-right-radius: 0;
     border-bottom-left-radius: 0.75rem;
     border-top: 0;
-    border-left: #0c9f67 5px solid;
+    border-left: #0c9f67 6px solid;
   }
 
   .rightOuterBox {
@@ -293,44 +290,38 @@ defineProps({
     border-top-right-radius: 0.75rem;
     border-bottom: 0;
     bottom: 0;
-    right: unset;
     border-right: #0c9f67 5px solid;
+    right: unset;
   }
 
   .leftCropper {
-    position: absolute;
-    overflow: hidden;
-    left: unset;
     top: 7rem;
+    left: unset;
   }
 
   .rightCropper {
-    position: absolute;
-    overflow: hidden;
-    right: unset;
     bottom: 7rem;
+    right: unset;
   }
 
   .leftSemiCircle {
-    position: relative;
     height: 3rem;
     width: 6rem;
     border-top-right-radius: unset;
     border-bottom-left-radius: 8rem;
     border-top: 0;
-    border-left: #0c9f67 5px solid;
+    border-left: #0c9f67 6px solid;
     left: unset;
     transform: translate(0, -50%);
   }
 
   .rightSemiCircle {
-    position: relative;
     height: 3rem;
     width: 6rem;
     border-bottom-left-radius: unset;
     border-top-right-radius: 8rem;
     border-bottom: 0;
-    border-right: #0c9f67 5px solid;
+    border-right: #0c9f67 6px solid;
     right: unset;
     transform: translate(0, 50%);
   }

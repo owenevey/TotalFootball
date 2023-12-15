@@ -1,30 +1,29 @@
 <template>
-  <div class="matchStats">
-    <h3 style="font-weight: 500">Match Stats</h3>
+  <div id="matchStatsContainer">
+    <h3 id="matchStatsTitle">Match Stats</h3>
     <div class="divider"></div>
-    <div class="statRow" v-for="(stat, key) of Object.entries(stats)">
-      <h4>{{ stat[0] }}</h4>
-      <div class="statsBar">
-        <p class="stat">{{ stat[1][0] }}</p>
+    <div class="statRow" v-for="(stat, _) of Object.entries(stats)">
+      <h4 class="statName">{{ stat[0] }}</h4>
+      <div class="statBar">
+        <p class="statNumber">{{ stat[1][0] }}</p>
         <div class="leftBar">
           <div
             class="leftBarInside"
             :style="{
               width: (stat[1][0] / stat[1][2]) * 100 + '%',
-              backgroundColor: '#' + game.lineups[0].team.colors.player.primary,
             }"
           ></div>
         </div>
+        <div class="spacer"></div>
         <div class="rightBar">
           <div
             class="rightBarInside"
             :style="{
               width: (stat[1][1] / stat[1][2]) * 100 + '%',
-              backgroundColor: '#' + game.lineups[1].team.colors.player.primary,
             }"
           ></div>
         </div>
-        <p class="stat">{{ stat[1][1] }}</p>
+        <p class="statNumber">{{ stat[1][1] }}</p>
       </div>
     </div>
   </div>
@@ -40,7 +39,7 @@ const { game } = toRefs(props);
 const hasLineups = ref(null);
 const stats = ref({});
 
-function parseStat(stat) {
+function parseStatNumber(stat) {
   if (typeof stat === "string") {
     if (stat.slice(-1) === "%") {
       stat = Number(stat.slice(0, -1));
@@ -74,11 +73,15 @@ hasLineups.value = game.value.lineups.length > 0;
 if (hasLineups.value) {
   const matchStats = {};
   for (const statsObj of game.value.statistics[0].statistics) {
-    matchStats[parseStatName(statsObj.type)] = [parseStat(statsObj.value)];
+    matchStats[parseStatName(statsObj.type)] = [
+      parseStatNumber(statsObj.value),
+    ];
   }
 
   for (const statsObj of game.value.statistics[1].statistics) {
-    matchStats[parseStatName(statsObj.type)].push(parseStat(statsObj.value));
+    matchStats[parseStatName(statsObj.type)].push(
+      parseStatNumber(statsObj.value)
+    );
     matchStats[parseStatName(statsObj.type)].push(
       matchStats[parseStatName(statsObj.type)][0] +
         matchStats[parseStatName(statsObj.type)][1]
@@ -89,7 +92,7 @@ if (hasLineups.value) {
 </script>
 
 <style scoped>
-.matchStats {
+#matchStatsContainer {
   margin-top: 1rem;
   margin-bottom: 2rem;
   background-color: #ffffff;
@@ -99,14 +102,29 @@ if (hasLineups.value) {
   align-items: center;
 }
 
-.statsBar {
+#matchStatsTitle {
+  font-weight: 500;
+}
+
+.statRow {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.statName {
+  font-weight: 400;
+}
+.statBar {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .leftBar {
@@ -119,6 +137,10 @@ if (hasLineups.value) {
   justify-content: flex-end;
 }
 
+.spacer {
+  height: 1rem;
+  width: 1rem;
+}
 .rightBar {
   height: 0.5rem;
   width: 42%;
@@ -133,6 +155,7 @@ if (hasLineups.value) {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   border-right: 0;
+  background-color: #1a1a1a;
 }
 
 .rightBarInside {
@@ -140,19 +163,19 @@ if (hasLineups.value) {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   border-left: 0;
+  background-color: #1a1a1a;
 }
 
-.statRow {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.stat {
+.statNumber {
   width: 2rem;
   padding: 2rem;
   color: black;
   text-align: center;
+}
+
+.divider {
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 2px;
 }
 </style>

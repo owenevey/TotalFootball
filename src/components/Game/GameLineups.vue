@@ -1,32 +1,34 @@
 <template>
   <div id="lineupsContainer">
-    <div class="lineupsRow">
-      <div class="lineupsRowLeft" v-if="hasLineups">
+    <div class="lineupsEdgeRow">
+      <div class="lineupsRowLeft">
         <img class="lineupsTeamLogo" :src="game.teams.home.logo" />
-        <p class="lineupsFormation">{{ game.lineups[0].formation }}</p>
+        <p v-if="hasLineups" class="lineupsFormation">
+          {{ game.lineups[0].formation }}
+        </p>
         <h3 id="lineupsHomeTeamName">{{ game.teams.home.name }}</h3>
       </div>
       <h3 id="lineupsTitle">Lineups</h3>
-      <div class="lineupsRowRight" v-if="hasLineups">
+      <div class="lineupsRowRight">
         <h3 id="lineupsAwayTeamName">{{ game.teams.away.name }}</h3>
-        <p class="lineupsFormation">{{ game.lineups[1].formation }}</p>
+        <p v-if="hasLineups" class="lineupsFormation">
+          {{ game.lineups[1].formation }}
+        </p>
         <img class="lineupsTeamLogo" :src="game.teams.away.logo" />
       </div>
     </div>
-    <div class="divider"></div>
     <Pitch
       :home-lineup="homeLineup"
       :away-lineup="awayLineup"
       :hasLineups="hasLineups"
     />
-    <div class="divider"></div>
-    <div class="lineupsRow">
-      <div class="lineupsRowLeft" v-if="hasLineups">
+    <div class="lineupsEdgeRow">
+      <div v-if="hasLineups" class="lineupsRowLeft">
         <img class="lineupsCoachImage" :src="game.lineups[0].coach.photo" />
         <h3 class="lineupsCoachName">{{ game.lineups[0].coach.name }}</h3>
       </div>
-      <h3 id="lineupsCoachTitle">Coach</h3>
-      <div class="lineupsRowRight" v-if="hasLineups">
+      <h3 v-if="hasLineups" id="lineupsCoachTitle">Coach</h3>
+      <div v-if="hasLineups" class="lineupsRowRight">
         <h4 class="lineupsCoachName">{{ game.lineups[1].coach.name }}</h4>
         <img class="lineupsCoachImage" :src="game.lineups[1].coach.photo" />
       </div>
@@ -36,7 +38,6 @@
 <script setup>
 const props = defineProps({
   game: Object,
-  hasLineups: Boolean,
 });
 
 import { ref, toRefs } from "vue";
@@ -105,8 +106,9 @@ if (hasLineups.value) {
   align-items: center;
 }
 
-.lineupsRow {
+.lineupsEdgeRow {
   width: 100%;
+  min-height: 3.75rem;
   height: fit-content;
   display: flex;
   justify-content: center;
