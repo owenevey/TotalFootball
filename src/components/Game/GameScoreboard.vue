@@ -1,48 +1,48 @@
 <template>
-  <div class="scoreboard">
-    <div class="league">
-      <img :src="game.league.logo" />
-      <p class="round">{{ game.league.round }}</p>
+  <div id="scoreboardContainer">
+    <div id="league">
+      <img id="leagueLogo" :src="game.league.logo" />
+      <p id="leagueRound">{{ game.league.round }}</p>
     </div>
     <div class="divider"></div>
-    <div class="mainRow">
-      <div class="leftRow">
-        <div class="leftTeamName">
-          <h2>{{ game.teams.home.name }}</h2>
-          <img :src="game.teams.home.logo" />
+    <div id="mainRow">
+      <div id="homeTeamColumn">
+        <div id="homeTeamNameRow">
+          <h2 id="homeTeamName">{{ game.teams.home.name }}</h2>
+          <img id="homeTeamLogo" :src="game.teams.home.logo" />
         </div>
         <div v-for="event in events">
           <p
             v-if="event.team === 'home' && event.type === 'Goal'"
-            class="nameGoals"
+            class="scoreboardGoal"
           >
             {{ event.player.split(" ").slice(-1)[0] }}
             {{ event.time + "'" }}
           </p>
         </div>
       </div>
-      <div class="score">
-        <h1 v-if="game.fixture.status.short !== 'NS'">
+      <div id="scoreColumn">
+        <h1 class="score" v-if="game.fixture.status.short !== 'NS'">
           {{ game.goals.home }} - {{ game.goals.away }}
         </h1>
-        <h1 v-else>
+        <h1 class="score" v-else>
           {{
             new Date(game.fixture.date).toLocaleTimeString("en-US", {
               timeStyle: "short",
             })
           }}
         </h1>
-        <p>{{ game.fixture.status.long }}</p>
+        <p id="gameStatus">{{ game.fixture.status.long }}</p>
       </div>
-      <div class="rightRow">
-        <div class="rightTeamName">
-          <img :src="game.teams.away.logo" />
-          <h2>{{ game.teams.away.name }}</h2>
+      <div id="awayTeamColumn">
+        <div id="awayTeamNameRow">
+          <img id="awayTeamLogo" :src="game.teams.away.logo" />
+          <h2 id="awayTeamName">{{ game.teams.away.name }}</h2>
         </div>
         <div v-for="event in events">
           <p
             v-if="event.team === 'away' && event.type === 'Goal'"
-            class="nameGoals"
+            class="scoreboardGoal"
           >
             {{ event.player.split(" ").slice(-1)[0] }}
             {{ event.time + "'" }}
@@ -51,8 +51,8 @@
       </div>
     </div>
     <div class="divider"></div>
-    <div class="bottomRow">
-      <p>
+    <div id="bottomRow">
+      <p id="date">
         {{ new Date(game.fixture.date).toLocaleDateString("en-US") }}
         {{
           new Date(game.fixture.date).toLocaleTimeString("en-US", {
@@ -60,8 +60,8 @@
           })
         }}
       </p>
-      <p>{{ game.fixture.venue.name }}</p>
-      <p>{{ game.fixture.referee }}</p>
+      <p id="venue">{{ game.fixture.venue.name }}</p>
+      <p id="referee">{{ game.fixture.referee }}</p>
     </div>
   </div>
 </template>
@@ -71,7 +71,7 @@ const props = defineProps({
   game: Object,
 });
 
-import { ref, toRefs } from 'vue';
+import { ref, toRefs } from "vue";
 
 const { game } = toRefs(props);
 const events = ref(null);
@@ -91,7 +91,7 @@ events.value = eventsList;
 </script>
 
 <style scoped>
-.scoreboard {
+#scoreboardContainer {
   background-color: #ffffff;
   border-radius: 15px;
   display: flex;
@@ -99,50 +99,77 @@ events.value = eventsList;
   align-items: center;
 }
 
-.mainRow {
+#league {
+  display: flex;
+  align-items: center;
+}
+
+#leagueLogo {
+  object-fit: contain;
+  height: 2rem;
+  width: 2rem;
+  margin: 0.5rem 1rem 0.5rem 0;
+}
+
+#leagueRound {
+  color: black;
+  font-size: smaller;
+}
+
+#mainRow {
   display: flex;
   align-items: flex-start;
   width: 100%;
   padding-bottom: 1rem;
 }
 
-.leftRow {
+#homeTeamColumn {
   flex: 1;
   text-align: right;
   margin-top: 0.5rem;
 }
 
-.leftTeamName,
-.rightTeamName {
+#homeTeamNameRow {
   display: flex;
   align-items: center;
-}
-
-.leftTeamName {
   justify-content: flex-end;
 }
 
-.rightTeamName {
-  justify-content: flex-start;
+#homeTeamName {
+  font-weight: 400;
 }
 
-.leftTeamName > img,
-.leftTeamName > h2 {
+#homeTeamLogo {
+  object-fit: contain;
+  width: 3rem;
+  height: 3rem;
   padding-left: 1rem;
 }
 
-.rightTeamName > img,
-.rightTeamName > h2 {
-  padding-right: 1rem;
-}
-
-.rightRow {
+#awayTeamColumn {
   flex: 1;
   text-align: left;
   margin-top: 0.5rem;
 }
 
-.score {
+#awayTeamNameRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#awayTeamName {
+  font-weight: 400;
+}
+
+#awayTeamLogo {
+  object-fit: contain;
+  width: 3rem;
+  height: 3rem;
+  padding-right: 1rem;
+}
+
+#scoreColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,70 +179,36 @@ events.value = eventsList;
   padding-top: 0.5rem;
 }
 
-.score > * {
+.score {
+  white-space: nowrap;
+  margin: 0.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+#gameStatus {
+  color: gray;
   margin: 0.5rem;
   text-align: center;
 }
 
-.score > h1 {
-  white-space: nowrap;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 400;
-}
-
-hr {
-  color: gray;
-  border-top: 3px solid gray;
-  width: 100%;
-}
-
-p {
-  color: gray;
-}
-
-.bottomRow > p {
-  text-align: center;
-}
-
-.nameGoals {
+.scoreboardGoal {
   font-size: small;
+  color: gray;
 }
 
-.round {
-  color: black;
-  font-size: smaller;
-}
-
-.bottomRow {
+#bottomRow {
   display: flex;
   width: 80%;
   justify-content: center;
 }
-.bottomRow > p {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
 
-img {
-  object-fit: contain;
-  width: 3rem;
-  height: 3rem;
-}
-
-.league {
-  display: flex;
-  align-items: center;
-}
-
-.league > img {
-  height: 2rem;
-  width: 2rem;
-  margin: 0.5rem 1rem 0.5rem 0;
+#date,
+#venue,
+#referee {
+  padding: 0 1rem;
+  text-align: center;
+  color: gray;
 }
 
 .divider {

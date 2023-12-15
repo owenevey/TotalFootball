@@ -63,4 +63,10 @@ main {
     display: none;
   }
 }
+
+@media (max-width: 700px) {
+  main {
+    margin: 2rem 0;
+  }
+}
 </style>

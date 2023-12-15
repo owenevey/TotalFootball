@@ -1,7 +1,7 @@
 <template>
   <main>
-    <div class="gameContainer">
-      <div class="mainColumn">
+    <div id="gameContainer">
+      <div id="mainColumn">
         <GameScoreBoard :game="game"/>
         <GameLineups :game="game" :hasLineups="hasLineups" />
         <GameMatchStatsVue :game="game" />
@@ -15,13 +15,12 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
-import GameScoreBoard from "../components/GameScoreboard.vue";
-import GameLineups from "../components/GameLineups.vue";
-import GameMatchStatsVue from "../components/GameMatchStats.vue";
-import GamePlayerStats from "../components/GamePlayerStats.vue";
+import GameScoreBoard from "../components/Game/GameScoreboard.vue";
+import GameLineups from "../components/Game/GameLineups.vue";
+import GameMatchStatsVue from "../components/Game/GameMatchStats.vue";
+import GamePlayerStats from "../components/Game/GamePlayerStats.vue";
 
 const route = useRoute();
-
 const game = ref(null);
 
 const getData = async () => {
@@ -41,43 +40,14 @@ main {
   margin: 2rem;
 }
 
-.gameContainer {
+#gameContainer {
   display: grid;
   grid-template-columns: 60rem auto;
   column-gap: 1rem;
   margin: auto;
   max-width: 85rem;
 }
-.mainColumn {
+#mainColumn {
   max-width: 60rem;
-}
-
-
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 400;
-}
-
-p {
-  color: gray;
-}
-
-img {
-  object-fit: contain;
-  width: 3rem;
-  height: 3rem;
-}
-
-
-.divider {
-  background-color: #f5f5f5;
-  width: 100%;
-  height: 2px;
-}
-
-* {
-  font-family: "Rubik", sans-serif;
 }
 </style>

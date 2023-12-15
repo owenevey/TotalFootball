@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import NewsItem from "../NewsItem.vue";
+import NewsItem from "./NewsItem.vue";
 
 const articles = {
   "Ronaldo Scores Hat Trick in Portugal win vs Uruguay": "ronaldo.jpg",

@@ -148,7 +148,7 @@ const selectGame = (id) => {
 fetchGames(currentDate.value);
 </script>
 
-<style>
+<style scoped>
 #gamesContainer {
   background-color: #ffffff;
   height: fit-content;

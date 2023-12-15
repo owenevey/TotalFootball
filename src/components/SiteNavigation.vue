@@ -1,9 +1,9 @@
 <template>
   <header>
     <nav>
-      <div id="logo" @click="goHome()">
-        <img id="logoImg" src="../assets/icon.svg" />
-        <h1 id="logoName">Sports Scores</h1>
+      <div id="brandingContainer" @click="goHome()">
+        <img id="brandingLogo" src="../assets/icon.svg" />
+        <h1 id="brandingName">Sports Scores</h1>
       </div>
       <div>
         <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
@@ -42,13 +42,13 @@ nav {
   margin-bottom: 0rem;
 }
 
-#logo {
+#brandingContainer {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-#logoImg {
+#brandingLogo {
   display: none;
   object-fit: contain;
   width: 2rem;
@@ -56,7 +56,7 @@ nav {
   fill: white;
 }
 
-#logoName {
+#brandingName {
   padding-left: 0.5rem;
   color: white;
 }
