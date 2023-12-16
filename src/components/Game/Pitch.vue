@@ -5,7 +5,7 @@
         class="pitchColumn"
         v-for="(players, _) of Object.entries(homeLineup)"
       >
-        <div class="player" v-for="player in players[1].reverse()">
+        <div class="player" v-for="player in players[1].reverse()" @click="$emit('selectPlayer', player.id)">
           <div
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"
@@ -37,7 +37,7 @@
         class="pitchColumn"
         v-for="(players, _) of Object.entries(awayLineup).reverse()"
       >
-        <div class="player" v-for="player in players[1]">
+        <div class="player" v-for="player in players[1]" @click="$emit('selectPlayer', player.id)">
           <div
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"
@@ -193,6 +193,7 @@ defineProps({
   align-items: center;
   height: 5rem;
   width: 5rem;
+  cursor: pointer;
 }
 
 .playerCircle {
@@ -225,7 +226,7 @@ defineProps({
   text-align: center;
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 900px) {
   #pitch {
     flex-direction: column;
     height: 50rem;
@@ -250,6 +251,7 @@ defineProps({
     border-top: #0c9f67 6px solid;
     width: 100%;
     top: 50%;
+    margin-top: -3px;
     left: 0;
     margin-left: unset;
   }

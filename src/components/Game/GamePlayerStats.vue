@@ -1,43 +1,106 @@
 <template>
-  <div v-if="game.players[0]?.players" class="rightColumn">
-    <div class="rightTop">
-      <div class="playerRow">
+  <div id="playerContainer">
+    <div id="playerHeader">
+      <div id="playerRow">
         <img
-          class="playerPhoto"
-          :src="game.players[0].players[1].player.photo"
+          v-if="hasLineups"
+          id="playerPhoto"
+          :src="stats[selectedPlayer].photo"
         />
-        <h3>
-          {{ game.players[0].players[1].player.name }} ({{
-            game.players[0].players[1].statistics[0].games.position
-          }})
+        <h3 id="playerRowText">
+          {{ hasLineups ? stats[selectedPlayer].name : "No player info" }}
         </h3>
       </div>
     </div>
-    <div class="playerStats">
+    <div id="playerStatsContainer">
+      <div v-if="!hasLineups"  id="noStatsContainer">
+        <h4>No stats</h4>
+      </div>
       <div
-        v-for="(stat, j) in Object.entries(
-          game.players[0].players[1].statistics[0]
-        )"
-        class="playerStat"
+        v-if="hasLineups"
+        v-for="(stat, _) in Object.entries(stats[selectedPlayer].stats)"
+        class="statGroup"
       >
-        <p v-if="stat[1]" class="playerStatName">{{ stat[0] }}</p>
-        <div v-for="(number, name) in stat[1]" class="playerStatNumbers">
-          <p>{{ name }}</p>
-          <p>{{ number ?? 0 }}</p>
+        <p class="mainStatName">{{ stat[0] }}</p>
+        <div v-for="(number, name) in stat[1]" class="childStats">
+          <p class="childStatName">{{ name }}</p>
+          <p class="childStatNumber">{{ number ?? 0 }}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 const props = defineProps({
   game: Object,
+  selectedPlayer: Number,
+  hasLineups: Boolean,
 });
+
+import { ref, toRefs } from "vue";
+
+const { game, selectedPlayer, hasLineups } = toRefs(props);
+
+const stats = ref({});
+
+if (hasLineups.value) {
+  const allPlayers = game.value.players[0].players.concat(
+    game.value.players[1].players
+  );
+
+  const filteredStats = {
+    games: ["minutes", "rating", "position"],
+    goals: ["total", "assists"],
+    passes: ["total", "key"],
+    shots: ["total", "on"],
+    tackles: ["total", "blocks", "interceptions"],
+  };
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  function parseStats(stats) {
+    function innerParse(category, statsObj) {
+      const tempInner = {};
+      for (const [innerKey, innerVal] of Object.entries(statsObj)) {
+        if (filteredStats[category].includes(innerKey)) {
+          tempInner[capitalizeFirstLetter(innerKey)] = innerVal;
+        }
+      }
+      return tempInner;
+    }
+
+    const tempStats = {};
+    for (const [key, val] of Object.entries(stats)) {
+      if (Object.keys(filteredStats).includes(key)) {
+        tempStats[capitalizeFirstLetter(key)] = innerParse(key, val);
+      }
+    }
+    return tempStats;
+  }
+
+  const tempDict = {};
+  for (const team of game.value.players) {
+    for (const player of team.players) {
+      tempDict[player.player.id] = {
+        name: player.player.name,
+        photo: allPlayers.find(
+          (playerObj) => player.player.id === playerObj.player.id
+        ).player.photo,
+        stats: parseStats(player.statistics[0]),
+      };
+    }
+  }
+  stats.value = tempDict;
+}
 </script>
+
 <style scoped>
-.rightColumn {
+#playerContainer {
   height: fit-content;
-  max-width: 20rem;
+  width: 18rem;
   background-color: #ffffff;
   border-radius: 15px;
   display: flex;
@@ -46,39 +109,42 @@ const props = defineProps({
   overflow: hidden;
 }
 
-.rightTop {
+#playerHeader {
   width: 100%;
-  height: 8rem;
+  height: 7rem;
   background-color: #00935c;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.playerRow {
+#playerRow {
   display: flex;
+  height: 100%;
   align-items: center;
-  margin-left: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
-.playerRow > * {
-  margin-right: 0.5rem;
+#playerRowText {
   color: white;
+  margin: 0.3rem;
 }
 
-.playerPhoto {
+#playerPhoto {
   border-radius: 50%;
   object-fit: cover;
   height: 4rem;
   width: 4rem;
+  margin-right: 1rem;
 }
 
-.playerStats {
-  width: 90%;
-  margin: 0.5rem 0;
+#playerStatsContainer {
+  width: 16rem;
+  min-height: 20rem;
+  margin: 0.5rem 1rem;
 }
 
-.playerStat {
+.statGroup {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,25 +152,37 @@ const props = defineProps({
   width: 100%;
 }
 
-.playerStatName {
+.mainStatName {
   font-weight: 500;
   color: black;
 }
 
-.playerStatNumbers {
+.childStats {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-.playerStatNumbers > *,
-.playerStatName {
+
+.childStatName {
+  color: gray;
+}
+
+.childStats > *,
+.mainStatName {
   margin: 0.25rem;
 }
 
-img {
+#playerPhoto {
   object-fit: contain;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+#noStatsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
 }
 </style>

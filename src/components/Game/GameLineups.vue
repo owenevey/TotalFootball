@@ -9,7 +9,7 @@
         <h3 id="lineupsHomeTeamName">{{ game.teams.home.name }}</h3>
       </div>
       <h3 id="lineupsTitle">Lineups</h3>
-      <div class="lineupsRowRight">
+      <div id="awayTeamTopRow" class="lineupsRowRight">
         <h3 id="lineupsAwayTeamName">{{ game.teams.away.name }}</h3>
         <p v-if="hasLineups" class="lineupsFormation">
           {{ game.lineups[1].formation }}
@@ -21,35 +21,56 @@
       :home-lineup="homeLineup"
       :away-lineup="awayLineup"
       :hasLineups="hasLineups"
+      @selectPlayer="(playerID) => $emit('selectPlayer', playerID)"
     />
     <div class="lineupsEdgeRow">
-      <div v-if="hasLineups" class="lineupsRowLeft">
+      <div id="coachEdgeContainer">
+        <div v-if="hasLineups" class="lineupsRowLeft">
+          <img class="lineupsCoachImage" :src="game.lineups[0].coach.photo" />
+          <h3 class="lineupsCoachName">{{ game.lineups[0].coach.name }}</h3>
+        </div>
+        <h3 v-if="hasLineups" id="lineupsCoachTitle">Coach</h3>
+        <div v-if="hasLineups" class="lineupsRowRight">
+          <h3 class="lineupsCoachName">{{ game.lineups[1].coach.name }}</h3>
+          <img class="lineupsCoachImage" :src="game.lineups[1].coach.photo" />
+        </div>
+      </div>
+      <div id="awayTeamBottomRow" class="lineupsRowRight">
+        <h3 id="lineupsAwayTeamName">{{ game.teams.away.name }}</h3>
+        <p v-if="hasLineups" class="lineupsFormation">
+          {{ game.lineups[1].formation }}
+        </p>
+        <img class="lineupsTeamLogo" :src="game.teams.away.logo" />
+      </div>
+    </div>
+  </div>
+  <div id="coachCardContainer">
+    <h3 v-if="hasLineups" id="lineupsCoachTitle">Coach</h3>
+    <div id="coachCardRow">
+      <div v-if="hasLineups" class="coachCardColumn">
         <img class="lineupsCoachImage" :src="game.lineups[0].coach.photo" />
         <h3 class="lineupsCoachName">{{ game.lineups[0].coach.name }}</h3>
       </div>
-      <h3 v-if="hasLineups" id="lineupsCoachTitle">Coach</h3>
-      <div v-if="hasLineups" class="lineupsRowRight">
-        <h4 class="lineupsCoachName">{{ game.lineups[1].coach.name }}</h4>
+      <div v-if="hasLineups" class="coachCardColumn">
         <img class="lineupsCoachImage" :src="game.lineups[1].coach.photo" />
+        <h3 class="lineupsCoachName">{{ game.lineups[1].coach.name }}</h3>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 const props = defineProps({
   game: Object,
+  hasLineups: Boolean,
 });
 
 import { ref, toRefs } from "vue";
 import Pitch from "./Pitch.vue";
 
-const { game } = toRefs(props);
-
-const hasLineups = ref(null);
+const { game, hasLineups } = toRefs(props);
 const homeLineup = ref(null);
 const awayLineup = ref(null);
-
-hasLineups.value = game.value.lineups.length > 0;
 
 function parseLineup(lineupData) {
   const tempDict = {};
@@ -58,6 +79,7 @@ function parseLineup(lineupData) {
       tempDict[playerObj.player.grid.substring(0, 1)].push({
         name: playerObj.player.name,
         number: playerObj.player.number,
+        id: playerObj.player.id,
         kitColor:
           playerObj.player.pos === "G"
             ? "#" + lineupData.team.colors.goalkeeper.primary
@@ -72,6 +94,7 @@ function parseLineup(lineupData) {
         {
           name: playerObj.player.name,
           number: playerObj.player.number,
+          id: playerObj.player.id,
           kitColor:
             playerObj.player.pos === "G"
               ? "#" + lineupData.team.colors.goalkeeper.primary
@@ -141,6 +164,11 @@ if (hasLineups.value) {
   margin: 0.5rem;
 }
 
+#coachEdgeContainer {
+  display: flex;
+  width: 100%;
+}
+
 .lineupsTeamLogo,
 .lineupsCoachImage {
   object-fit: contain;
@@ -172,5 +200,51 @@ if (hasLineups.value) {
 
 .lineupsCoachImage {
   border-radius: 50%;
+}
+
+#awayTeamBottomRow {
+  display: none;
+}
+
+#coachCardContainer {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #lineupsTitle,
+  #awayTeamTopRow {
+    display: none;
+  }
+
+  #awayTeamBottomRow {
+    display: flex;
+  }
+
+  #coachEdgeContainer {
+    display: none;
+  }
+
+  #coachCardContainer {
+    margin-top: 1rem;
+    background-color: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #coachCardRow {
+    display: flex;
+    width: 100%;
+  }
+
+  .coachCardColumn {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    margin: 1rem;
+  }
 }
 </style>

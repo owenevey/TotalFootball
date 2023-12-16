@@ -2,7 +2,7 @@
   <div id="matchStatsContainer">
     <h3 id="matchStatsTitle">Match Stats</h3>
     <div class="divider"></div>
-    <div class="statRow" v-for="(stat, _) of Object.entries(stats)">
+    <div v-if="hasStats" class="statRow" v-for="(stat, _) of Object.entries(stats)">
       <h4 class="statName">{{ stat[0] }}</h4>
       <div class="statBar">
         <p class="statNumber">{{ stat[1][0] }}</p>
@@ -26,6 +26,9 @@
         <p class="statNumber">{{ stat[1][1] }}</p>
       </div>
     </div>
+    <div v-else>
+      <h4 id="noStatsText">No stats available yet</h4>
+    </div>
   </div>
 </template>
 <script setup>
@@ -36,7 +39,7 @@ const props = defineProps({
 import { ref, toRefs } from "vue";
 
 const { game } = toRefs(props);
-const hasLineups = ref(null);
+const hasStats = ref(null);
 const stats = ref({});
 
 function parseStatNumber(stat) {
@@ -68,9 +71,9 @@ function parseStatName(name) {
   return name;
 }
 
-hasLineups.value = game.value.lineups.length > 0;
+hasStats.value = game.value.statistics.length > 0;
 
-if (hasLineups.value) {
+if (hasStats.value) {
   const matchStats = {};
   for (const statsObj of game.value.statistics[0].statistics) {
     matchStats[parseStatName(statsObj.type)] = [
@@ -171,6 +174,10 @@ if (hasLineups.value) {
   padding: 2rem;
   color: black;
   text-align: center;
+}
+
+#noStatsText {
+  font-weight: 400;
 }
 
 .divider {

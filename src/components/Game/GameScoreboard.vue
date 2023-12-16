@@ -137,6 +137,7 @@ events.value = eventsList;
 
 #homeTeamName {
   font-weight: 400;
+  padding-left: 1rem;
 }
 
 #homeTeamLogo {
@@ -160,6 +161,7 @@ events.value = eventsList;
 
 #awayTeamName {
   font-weight: 400;
+  padding-right: 1rem;
 }
 
 #awayTeamLogo {
@@ -176,6 +178,7 @@ events.value = eventsList;
   height: fit-content;
   margin-left: 2rem;
   margin-right: 2rem;
+  
   padding-top: 0.5rem;
 }
 

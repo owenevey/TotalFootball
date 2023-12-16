@@ -2,11 +2,20 @@
   <main>
     <div id="gameContainer">
       <div id="mainColumn">
-        <GameScoreBoard :game="game"/>
-        <GameLineups :game="game" />
+        <GameScoreBoard :game="game" />
+        <GameLineups
+          :game="game"
+          :hasLineups="hasLineups"
+          @selectPlayer="(playerID) => (selectedPlayer = playerID)"
+        />
         <GameMatchStats :game="game" />
       </div>
-      <GamePlayerStats :game="game" />
+      <GamePlayerStats
+        id="playerContainer"
+        :game="game"
+        :selectedPlayer="selectedPlayer"
+        :hasLineups="hasLineups"
+      />
     </div>
   </main>
 </template>
@@ -22,6 +31,8 @@ import GamePlayerStats from "../components/Game/GamePlayerStats.vue";
 
 const route = useRoute();
 const game = ref(null);
+const hasLineups = ref(null);
+const selectedPlayer = ref(null);
 
 const getData = async () => {
   const result = await axios.get(
@@ -30,6 +41,12 @@ const getData = async () => {
   );
   console.log("result", result);
   game.value = result.data.response[0];
+
+  hasLineups.value = game.value.lineups.length > 0;
+  if (hasLineups.value) {
+    selectedPlayer.value = game.value.lineups[0].startXI[10].player.id;
+  }
+  
 };
 
 getData();
@@ -42,12 +59,25 @@ main {
 
 #gameContainer {
   display: grid;
-  grid-template-columns: 60rem auto;
+  grid-template-columns: 60rem 18rem;
   column-gap: 1rem;
   margin: auto;
-  max-width: 85rem;
+  max-width: 79rem;
 }
-#mainColumn {
-  max-width: 60rem;
+
+@media (max-width: 84rem) {
+  #gameContainer {
+    grid-template-columns: auto;
+  }
+
+  #playerContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    margin: 2rem 0;
+  }
 }
 </style>
