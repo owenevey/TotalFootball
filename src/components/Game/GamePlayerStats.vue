@@ -3,21 +3,21 @@
     <div id="playerHeader">
       <div id="playerRow">
         <img
-          v-if="hasLineups"
+          v-if="hasData"
           id="playerPhoto"
           :src="stats[selectedPlayer].photo"
         />
         <h3 id="playerRowText">
-          {{ hasLineups ? stats[selectedPlayer].name : "No player info" }}
+          {{ hasData ? stats[selectedPlayer].name : "No player info yet" }}
         </h3>
       </div>
     </div>
     <div id="playerStatsContainer">
-      <div v-if="!hasLineups"  id="noStatsContainer">
-        <h4>No stats</h4>
+      <div v-if="!hasData"  id="noStatsContainer">
+        <h4>No stats yet</h4>
       </div>
       <div
-        v-if="hasLineups"
+        v-if="hasData"
         v-for="(stat, _) in Object.entries(stats[selectedPlayer].stats)"
         class="statGroup"
       >
@@ -42,9 +42,15 @@ import { ref, toRefs } from "vue";
 
 const { game, selectedPlayer, hasLineups } = toRefs(props);
 
-const stats = ref({});
+const hasStats = game.value.statistics.length > 0;
+const hasPlayers = game.value.players.length > 0;
 
-if (hasLineups.value) {
+const hasData = ref(hasLineups.value && hasStats && hasPlayers);
+
+const stats = ref({});
+console.log(hasData.value)
+
+if (hasData.value) {
   const allPlayers = game.value.players[0].players.concat(
     game.value.players[1].players
   );

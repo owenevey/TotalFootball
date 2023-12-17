@@ -194,6 +194,11 @@ defineProps({
   height: 5rem;
   width: 5rem;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.player:hover {
+  transform: translate(0, -5%);
 }
 
 .playerCircle {

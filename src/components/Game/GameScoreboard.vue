@@ -1,16 +1,21 @@
 <template>
   <div id="scoreboardContainer">
-    <div id="league">
-      <img id="leagueLogo" :src="game.league.logo" />
-      <p id="leagueRound">{{ game.league.round }}</p>
+    <div id="topRow">
+      <div id="backContainer">
+        <div id="backButton" @click="goBack()">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </div>
+      </div>
+      <div id="leagueContainer">
+        <img id="leagueLogo" :src="game.league.logo" />
+        <p id="leagueRound">{{ game.league.round }}</p>
+      </div>
+      <div id="emptyTopRight"></div>
     </div>
     <div class="divider"></div>
     <div id="mainRow">
       <div id="homeTeamColumn">
-        <div id="homeTeamNameRow">
-          <h2 id="homeTeamName">{{ game.teams.home.name }}</h2>
-          <img id="homeTeamLogo" :src="game.teams.home.logo" />
-        </div>
+        <h2 id="homeTeamName">{{ game.teams.home.name }}</h2>
         <div v-for="event in events">
           <p
             v-if="event.team === 'home' && event.type === 'Goal'"
@@ -21,24 +26,26 @@
           </p>
         </div>
       </div>
-      <div id="scoreColumn">
-        <h1 class="score" v-if="game.fixture.status.short !== 'NS'">
-          {{ game.goals.home }} - {{ game.goals.away }}
-        </h1>
-        <h1 class="score" v-else>
-          {{
-            new Date(game.fixture.date).toLocaleTimeString("en-US", {
-              timeStyle: "short",
-            })
-          }}
-        </h1>
-        <p id="gameStatus">{{ game.fixture.status.long }}</p>
+      <div id="middleColumn">
+        <img id="homeTeamLogo" :src="game.teams.home.logo" />
+        <div id="scoreColumn">
+          <h1 class="score" v-if="game.fixture.status.short !== 'NS'">
+            {{ game.goals.home }} - {{ game.goals.away }}
+          </h1>
+          <h1 class="score" v-else>
+            {{
+              new Date(game.fixture.date).toLocaleTimeString("en-US", {
+                timeStyle: "short",
+              })
+            }}
+          </h1>
+          <p id="gameStatus">{{ game.fixture.status.long }}</p>
+        </div>
+        <img id="awayTeamLogo" :src="game.teams.away.logo" />
       </div>
       <div id="awayTeamColumn">
-        <div id="awayTeamNameRow">
-          <img id="awayTeamLogo" :src="game.teams.away.logo" />
-          <h2 id="awayTeamName">{{ game.teams.away.name }}</h2>
-        </div>
+
+        <h2 id="awayTeamName">{{ game.teams.away.name }}</h2>
         <div v-for="event in events">
           <p
             v-if="event.team === 'away' && event.type === 'Goal'"
@@ -52,16 +59,25 @@
     </div>
     <div class="divider"></div>
     <div id="bottomRow">
-      <p id="date">
-        {{ new Date(game.fixture.date).toLocaleDateString("en-US") }}
-        {{
-          new Date(game.fixture.date).toLocaleTimeString("en-US", {
-            timeStyle: "short",
-          })
-        }}
-      </p>
-      <p id="venue">{{ game.fixture.venue.name }}</p>
-      <p id="referee">{{ game.fixture.referee }}</p>
+      <div class="bottomInfoItem">
+        <span class="material-symbols-outlined"> event </span>
+        <p id="date">
+          {{ new Date(game.fixture.date).toLocaleDateString("en-US") }}
+          {{
+            new Date(game.fixture.date).toLocaleTimeString("en-US", {
+              timeStyle: "short",
+            })
+          }}
+        </p>
+      </div>
+      <div class="bottomInfoItem">
+        <span class="material-symbols-outlined"> stadium </span>
+        <p id="venue">{{ game.fixture.venue.name }}</p>
+      </div>
+      <div class="bottomInfoItem">
+        <span class="material-symbols-outlined"> sports </span>
+        <p id="referee">{{ game.fixture.referee }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -72,6 +88,9 @@ const props = defineProps({
 });
 
 import { ref, toRefs } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const { game } = toRefs(props);
 const events = ref(null);
@@ -88,6 +107,10 @@ for (const event of game.value.events) {
 }
 
 events.value = eventsList;
+
+function goBack() {
+  router.go(-1);
+}
 </script>
 
 <style scoped>
@@ -99,9 +122,41 @@ events.value = eventsList;
   align-items: center;
 }
 
-#league {
+#topRow {
   display: flex;
   align-items: center;
+  width: 100%;
+}
+
+#backButton {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  margin: 0.75rem;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 200, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+#backButton:hover {
+  background-color: #1a1a1a;
+}
+
+#backButton:hover .material-symbols-outlined {
+  color: white;
+}
+
+#leagueContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 #leagueLogo {
@@ -114,6 +169,11 @@ events.value = eventsList;
 #leagueRound {
   color: black;
   font-size: smaller;
+}
+
+#backContainer,
+#emptyTopRight {
+  flex: 1;
 }
 
 #mainRow {
@@ -171,15 +231,17 @@ events.value = eventsList;
   padding-right: 1rem;
 }
 
+#middleColumn {
+  display: flex;
+  align-items: center;
+}
+
 #scoreColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: fit-content;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  
-  padding-top: 0.5rem;
+  padding: 0 2rem;
 }
 
 .score {
@@ -206,11 +268,26 @@ events.value = eventsList;
   justify-content: center;
 }
 
+.bottomInfoItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+}
+
 #date,
 #venue,
 #referee {
-  padding: 0 1rem;
+  padding-left: 0.5rem;
   text-align: center;
+  color: gray;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.bottomInfoItem > .material-symbols-outlined {
   color: gray;
 }
 

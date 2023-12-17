@@ -8,7 +8,13 @@
         <p class="status">{{ game.fixture.status.short }}</p>
       </div>
       <div class="scoreboard" v-else>
-        <p class="time">{{ new Date(game.fixture.date).toLocaleTimeString('en-US', {timeStyle: 'short'}) }}</p>
+        <p class="time">
+          {{
+            new Date(game.fixture.date).toLocaleTimeString("en-US", {
+              timeStyle: "short",
+            })
+          }}
+        </p>
       </div>
       <img class="teamLogo" :src="game.teams.away.logo" />
     </div>
@@ -34,6 +40,10 @@ defineProps({
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.gameItemContainer:hover {
+  background-color: #f5f5f5;
 }
 
 .centerItem {
@@ -81,7 +91,7 @@ defineProps({
 .scoreboard {
   display: flex;
   flex-direction: column;
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
   border-radius: 10px;
   margin: 0px;
   padding: 0.5rem 0.75rem;

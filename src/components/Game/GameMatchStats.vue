@@ -97,7 +97,7 @@ if (hasStats.value) {
 <style scoped>
 #matchStatsContainer {
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  padding-bottom: 1rem;
   background-color: #ffffff;
   border-radius: 15px;
   display: flex;
@@ -119,6 +119,7 @@ if (hasStats.value) {
 
 .statName {
   font-weight: 400;
+  margin: 1rem
 }
 .statBar {
   display: flex;

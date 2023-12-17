@@ -2,11 +2,11 @@
   <div id="gamesContainer">
     <div id="dateRow">
       <div id="previousDay" @click="fetchPreviousDay()">
-        <img class="chevron" src="../../assets/ChevronLeft.svg" />
+        <span class="material-symbols-outlined">chevron_left</span>
       </div>
       <h3 id="dateTitle">{{ currentDateString }}</h3>
       <div id="nextDay" @click="fetchNextDay()">
-        <img class="chevron" src="../../assets/ChevronRight.svg" />
+        <span class="material-symbols-outlined">chevron_right</span>
       </div>
     </div>
     <div class="divider"></div>
@@ -156,8 +156,16 @@ fetchGames(currentDate.value);
   align-items: center;
 }
 
-.chevron {
-  height: 1rem;
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 200, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+#previousDay:hover, #nextDay:hover {
+  background-color: #1a1a1a;
+}
+
+#previousDay:hover .material-symbols-outlined, #nextDay:hover .material-symbols-outlined {
+  color: white;
 }
 
 #dateTitle {

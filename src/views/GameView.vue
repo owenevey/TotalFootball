@@ -33,6 +33,7 @@ const route = useRoute();
 const game = ref(null);
 const hasLineups = ref(null);
 const selectedPlayer = ref(null);
+// const showModal = ref(false);
 
 const getData = async () => {
   const result = await axios.get(
@@ -46,7 +47,6 @@ const getData = async () => {
   if (hasLineups.value) {
     selectedPlayer.value = game.value.lineups[0].startXI[10].player.id;
   }
-  
 };
 
 getData();
@@ -65,6 +65,8 @@ main {
   max-width: 79rem;
 }
 
+
+
 @media (max-width: 84rem) {
   #gameContainer {
     grid-template-columns: auto;
@@ -72,6 +74,11 @@ main {
 
   #playerContainer {
     display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
   }
 }
 
