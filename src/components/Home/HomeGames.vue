@@ -135,6 +135,7 @@ fetchGames(currentDate.value);
   background-color: #ffffff;
   height: fit-content;
   border-radius: 15px;
+  border: 2px #f0f0f0 solid;
 }
 
 #dateRow {

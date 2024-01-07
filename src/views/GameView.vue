@@ -1,8 +1,26 @@
 <template>
+  <div id="stickyHeader" v-show="showHeader">
+    <div id="headerContainer">
+      <div id="headerHomeTeam">
+        <h2 class="headerTeamName">{{ game.teams.home.name }}</h2>
+        <img class="headerTeamLogo" :src="game.teams.home.logo" />
+      </div>
+
+      <div id="headerScoreContainer">
+        <h1 id="headerScore">{{ game.goals.home }} - {{ game.goals.away }}</h1>
+        <p id="headerGameStatus">{{ game.fixture.status.long }}</p>
+      </div>
+
+      <div id="headerAwayTeam">
+        <img class="headerTeamLogo" :src="game.teams.away.logo" />
+        <h2 class="headerTeamName">{{ game.teams.away.name }}</h2>
+      </div>
+    </div>
+  </div>
   <main>
     <div id="gameContainer">
       <div id="mainColumn">
-        <GameScoreBoard :game="game" />
+        <GameScoreBoard :game="game" :events="events" />
         <GameLineups
           :game="game"
           :hasLineups="hasLineups"
@@ -10,12 +28,15 @@
         />
         <GameMatchStats :game="game" />
       </div>
-      <GamePlayerStats
-        id="playerContainer"
-        :game="game"
-        :selectedPlayer="selectedPlayer"
-        :hasLineups="hasLineups"
-      />
+      <div id="rightColumn">
+        <GamePlayerStats
+          id="playerContainer"
+          :game="game"
+          :selectedPlayer="selectedPlayer"
+          :hasLineups="hasLineups"
+        />
+        <GameEvents :game="game" :events="events" />
+      </div>
     </div>
   </main>
 </template>
@@ -28,12 +49,14 @@ import GameScoreBoard from "../components/Game/GameScoreboard.vue";
 import GameLineups from "../components/Game/GameLineups.vue";
 import GameMatchStats from "../components/Game/GameMatchStats.vue";
 import GamePlayerStats from "../components/Game/GamePlayerStats.vue";
+import GameEvents from "../components/Game/GameEvents.vue";
 
 const route = useRoute();
 const game = ref(null);
 const hasLineups = ref(null);
 const selectedPlayer = ref(null);
-// const showModal = ref(false);
+const events = ref(null);
+const showHeader = ref(false);
 
 const getData = async () => {
   const result = await axios.get(
@@ -47,12 +70,102 @@ const getData = async () => {
   if (hasLineups.value) {
     selectedPlayer.value = game.value.lineups[0].startXI[10].player.id;
   }
+
+  const eventsList = [];
+
+  for (const event of game.value.events) {
+    eventsList.push({
+      time: event.time.elapsed + (event.time.extra ?? 0),
+      type: event.type,
+      detail: event.detail,
+      player: event.player.name,
+      team: event.team.name === game.value.teams.home.name ? "home" : "away",
+    });
+  }
+
+  events.value = eventsList;
 };
 
 getData();
+
+document.addEventListener("scroll", onScroll);
+
+function onScroll() {
+  if (window.scrollY >= 200) {
+    showHeader.value = true;
+  } else {
+    showHeader.value = false;
+  }
+}
 </script>
 
 <style scoped>
+#stickyHeader {
+  height: 7rem;
+  width: 100%;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5);
+  z-index: 2;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#headerContainer {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#headerHomeTeam {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#headerAwayTeam {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.headerTeamName {
+  font-weight: 400;
+}
+
+.headerTeamLogo {
+  object-fit: contain;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+}
+
+#headerScoreContainer {
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#headerScore {
+  font-weight: 400;
+  margin: 0;
+}
+
+#headerGameStatus {
+  color: gray;
+  margin: 0.5rem;
+  text-align: center;
+}
+
 main {
   margin: 2rem;
 }
@@ -65,20 +178,13 @@ main {
   max-width: 79rem;
 }
 
-
-
 @media (max-width: 84rem) {
   #gameContainer {
     grid-template-columns: auto;
   }
 
-  #playerContainer {
+  #rightColumn {
     display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
   }
 }
 

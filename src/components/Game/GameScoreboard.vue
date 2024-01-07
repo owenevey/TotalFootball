@@ -85,6 +85,7 @@
 <script setup>
 const props = defineProps({
   game: Object,
+  events: Object,
 });
 
 import { ref, toRefs } from "vue";
@@ -93,20 +94,6 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const { game } = toRefs(props);
-const events = ref(null);
-
-const eventsList = [];
-
-for (const event of game.value.events) {
-  eventsList.push({
-    time: event.time.elapsed + (event.time.extra ?? 0),
-    type: event.type,
-    player: event.player.name,
-    team: event.team.name === game.value.teams.home.name ? "home" : "away",
-  });
-}
-
-events.value = eventsList;
 
 function goBack() {
   router.go(-1);
@@ -117,6 +104,7 @@ function goBack() {
 #scoreboardContainer {
   background-color: #ffffff;
   border-radius: 15px;
+  border: 2px #f0f0f0 solid;
   display: flex;
   flex-direction: column;
   align-items: center;

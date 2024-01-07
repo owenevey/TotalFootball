@@ -22,16 +22,17 @@ const articles = {
 };
 </script>
 <style scoped>
+#newsContainer {
+  border-radius: 15px;
+  border: 2px #f0f0f0 solid;
+  background-color: #ffffff;
+  height: fit-content;
+}
+
 #newsTitle {
   font-weight: 500;
   padding: 1.3rem;
   margin: 0px;
-}
-
-#newsContainer {
-  border-radius: 15px;
-  background-color: #ffffff;
-  height: fit-content;
 }
 
 #newsItemsContainer {

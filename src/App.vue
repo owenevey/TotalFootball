@@ -12,7 +12,7 @@ import SiteNavigation from "./components/SiteNavigation.vue"
 body {
   height: 100%;
   margin: 0px;
-  background-color: #f5f5f5;
+  background-color: #fafafa;
 }
 
 * {

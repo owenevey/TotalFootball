@@ -124,6 +124,7 @@ if (hasLineups.value) {
   margin-top: 1rem;
   background-color: #ffffff;
   border-radius: 15px;
+  border: 2px #f0f0f0 solid;
   display: flex;
   flex-direction: column;
   align-items: center;

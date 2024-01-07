@@ -18,6 +18,7 @@ import HomeLeagueItem from "./HomeLeagueItem.vue";
 <style scoped>
 #leaguesContainer {
   border-radius: 15px;
+  border: 2px #f0f0f0 solid;
   background-color: #ffffff;
   height: fit-content;
 }

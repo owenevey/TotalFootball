@@ -13,7 +13,7 @@
       </div>
     </div>
     <div id="playerStatsContainer">
-      <div v-if="!hasData"  id="noStatsContainer">
+      <div v-if="!hasData" id="noStatsContainer">
         <h4>No stats yet</h4>
       </div>
       <div
@@ -48,7 +48,6 @@ const hasPlayers = game.value.players.length > 0;
 const hasData = ref(hasLineups.value && hasStats && hasPlayers);
 
 const stats = ref({});
-console.log(hasData.value)
 
 if (hasData.value) {
   const allPlayers = game.value.players[0].players.concat(
@@ -106,9 +105,10 @@ if (hasData.value) {
 <style scoped>
 #playerContainer {
   height: fit-content;
-  width: 18rem;
+  width: 100%;
   background-color: #ffffff;
   border-radius: 15px;
+  border: 2px #f0f0f0 solid;
   display: flex;
   flex-direction: column;
   align-items: center;
