@@ -59,6 +59,9 @@
           <h4>{{ event.time }}'</h4>
         </div>
       </div>
+      <div v-if="events.length === 0" id="noEventsContainer">
+        <h4 id="noEventsText">No events yet</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -110,6 +113,7 @@ const { game } = toRefs(props);
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: -1px;
 }
 
 .eventRow {
@@ -118,7 +122,7 @@ const { game } = toRefs(props);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px #f5f5f5 solid;
+  border-bottom: 1px #f0f0f0 solid;
 }
 
 .homeEventRow {
@@ -158,6 +162,17 @@ const { game } = toRefs(props);
 
 .redCard {
   background-color: #e55d5b;
+}
+
+#noEventsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+}
+
+#noEventsText {
+  font-weight: 400;
 }
 
 .divider {

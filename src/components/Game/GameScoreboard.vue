@@ -234,7 +234,7 @@ function goBack() {
 
 .score {
   white-space: nowrap;
-  margin: 0.5rem;
+  margin: 0.5rem 0.5rem 0 0.5rem;
   text-align: center;
   font-weight: 400;
 }

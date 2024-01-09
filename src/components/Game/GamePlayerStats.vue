@@ -14,7 +14,7 @@
     </div>
     <div id="playerStatsContainer">
       <div v-if="!hasData" id="noStatsContainer">
-        <h4>No stats yet</h4>
+        <h4 id="noStatsText">No player stats yet</h4>
       </div>
       <div
         v-if="hasData"
@@ -190,5 +190,9 @@ if (hasData.value) {
   justify-content: center;
   align-items: center;
   height: 20rem;
+}
+
+#noStatsText {
+  font-weight: 400;
 }
 </style>

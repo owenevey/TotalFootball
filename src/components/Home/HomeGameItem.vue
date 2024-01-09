@@ -91,7 +91,6 @@ defineProps({
 .scoreboard {
   display: flex;
   flex-direction: column;
-  /* background-color: #f3f3f3; */
   border-radius: 10px;
   margin: 0px;
   padding: 0.5rem 0.75rem;

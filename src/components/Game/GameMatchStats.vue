@@ -27,7 +27,7 @@
       </div>
     </div>
     <div v-else>
-      <h4 id="noStatsText">No stats available yet</h4>
+      <h4 id="noStatsText">No match stats yet</h4>
     </div>
   </div>
 </template>

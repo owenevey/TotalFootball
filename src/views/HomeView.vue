@@ -2,7 +2,12 @@
   <main>
     <div id="homeContainer">
       <HomeLeagues id="leaguesContainer" :leagues="leagues" />
-      <HomeGames :leagues="leagues" />
+      <Suspense>
+        <HomeGamesAsync :leagues="leagues" />
+        <template #fallback>
+          <HomeGamesFallback />
+        </template>
+      </Suspense>
       <HomeNews id="newsContainer" />
     </div>
   </main>
@@ -12,7 +17,8 @@
 import { watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import HomeLeagues from "../components/Home/HomeLeagues.vue";
-import HomeGames from "../components/Home/HomeGames.vue";
+import HomeGamesAsync from "../components/Home/HomeGamesAsync.vue";
+import HomeGamesFallback from "../components/Home/HomeGamesFallback.vue";
 import HomeNews from "../components/Home/HomeNews.vue";
 
 const router = useRouter();
@@ -25,7 +31,7 @@ watch(route, (newValue, oldValue) => {
 const leagues = {
   "Premier League": 39,
   "La Liga": 140,
-  "Bundesliga": 78,
+  Bundesliga: 78,
   "Serie A": 135,
   "Ligue 1": 61,
   "UEFA Champions League": 2,
