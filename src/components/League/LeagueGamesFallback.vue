@@ -10,28 +10,30 @@
       </div>
     </div>
     <div class="divider"></div>
-    <div class="leagueContainer">
-      <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
+    <div id="gameItemsContainer">
+      <div class="leagueContainer">
+        <div class="leagueTitleRow">
+          <div class="fallbackFlag shimmer"></div>
+          <div class="fallbackLeagueTitle shimmer"></div>
+        </div>
+        <div class="fallbackGameItem shimmer"></div>
+        <div class="fallbackGameItem shimmer"></div>
       </div>
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
-    </div>
-    <div class="leagueContainer">
-      <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
+      <div class="leagueContainer">
+        <div class="leagueTitleRow">
+          <div class="fallbackFlag shimmer"></div>
+          <div class="fallbackLeagueTitle shimmer"></div>
+        </div>
+        <div class="fallbackGameItem shimmer"></div>
+        <div class="fallbackGameItem shimmer"></div>
       </div>
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
-    </div>
-    <div class="leagueContainer">
-      <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
+      <div class="leagueContainer">
+        <div class="leagueTitleRow">
+          <div class="fallbackFlag shimmer"></div>
+          <div class="fallbackLeagueTitle shimmer"></div>
+        </div>
+        <div class="fallbackGameItem shimmer"></div>
       </div>
-      <div class="fallbackGameItem shimmer"></div>
     </div>
   </div>
 </template>
@@ -77,7 +79,7 @@ function getCurrentDayString() {
 <style scoped>
 #gamesContainer {
   background-color: #ffffff;
-  height: fit-content;
+  height: 30rem;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
 }
@@ -125,6 +127,11 @@ function getCurrentDayString() {
   background-color: #f5f5f5;
   width: 100%;
   height: 2px;
+}
+
+#gameItemsContainer {
+    height: 25.9rem;
+    overflow: scroll;
 }
 
 .leagueContainer {

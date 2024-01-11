@@ -33,7 +33,7 @@ defineProps({
 }
 
 h3 {
-  font-weight: 500;
+  font-weight: 400;
   margin: 0rem;
 }
 

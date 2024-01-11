@@ -2,7 +2,7 @@
   <div id="leaguesContainer">
     <h3 id="leaguesTitle">Leagues</h3>
     <div id="leaguesItemsContainer">
-      <HomeLeagueItem v-for="(_, leagueName) in leagues" :name="leagueName" />
+      <HomeLeagueItem v-for="(leagueID, leagueName) in leagues" :name="leagueName" @click="selectLeague(leagueID)" />
     </div>
   </div>
 </template>
@@ -11,7 +11,18 @@
 defineProps({
   leagues: Object
 })
+
+import { useRouter } from "vue-router";
 import HomeLeagueItem from "./HomeLeagueItem.vue";
+
+const router = useRouter();
+
+const selectLeague = (id) => {
+  router.push({
+    name: "league",
+    params: { id: id },
+  });
+};
 
 </script>
 

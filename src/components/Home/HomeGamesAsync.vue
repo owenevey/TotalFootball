@@ -48,8 +48,8 @@ const route = useRoute();
 const gameData = ref(null);
 
 var currentDay = "";
-if (route.params.date) {
-  currentDay = route.params.date;
+if (route.query.date) {
+  currentDay = route.query.date;
 } else {
   currentDay = getTodaysDate();
 }
@@ -112,14 +112,14 @@ const fetchGames = async (date) => {
 const fetchPreviousDay = () => {
   router.push({
     name: "home",
-    params: { date: getDifferentDate(-1) },
+    query: { date: getDifferentDate(-1) },
   });
 };
 
 const fetchNextDay = () => {
   router.push({
     name: "home",
-    params: { date: getDifferentDate(+1) },
+    query: { date: getDifferentDate(+1) },
   });
 };
 

@@ -1,46 +1,44 @@
 <template>
   <div id="gamesContainer">
     <div id="dateRow">
-      <div id="previousDay">
+      <div id="previousDay" @click="fetchPreviousDay()">
         <span class="material-symbols-outlined">chevron_left</span>
       </div>
       <h3 id="dateTitle">{{ currentDateString }}</h3>
-      <div id="nextDay">
+      <div id="nextDay" @click="fetchNextDay()">
         <span class="material-symbols-outlined">chevron_right</span>
       </div>
     </div>
     <div class="divider"></div>
-    <div class="leagueContainer">
-      <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
+    <div id="gameItemsContainer">
+        <HomeGameItem
+          v-for="game in gameData"
+          :game="game"
+          @click="selectGame(game.fixture.id)"
+        />
+      <div id="noGamesContainer" v-if="Object.keys(gameData).length === 0">
+        <h4 id="noGamesText">No Games This Day</h4>
       </div>
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
-    </div>
-    <div class="leagueContainer">
-      <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
-      </div>
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
-    </div>
-    <div class="leagueContainer">
-      <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
-      </div>
-      <div class="fallbackGameItem shimmer"></div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRoute } from "vue-router";
+const props = defineProps({
+  leagueID: Number,
+});
 
+import { ref, toRefs } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import HomeGameItem from "../Home/HomeGameItem.vue";
+import axios from "axios";
+
+const { leagueID } = toRefs(props);
+
+const router = useRouter();
 const route = useRoute();
+
+const gameData = ref({});
 
 var currentDay = "";
 if (route.query.date) {
@@ -72,12 +70,63 @@ function getCurrentDayString() {
 
   return date.toLocaleString("en-US", { dateStyle: "full" }).slice(0, -6);
 }
+
+function getDifferentDate(dayOffset) {
+  var currentYear = currentDate.value.substring(0, 4);
+  var currentMonth = currentDate.value.substring(5, 7);
+  var currentDay = currentDate.value.substring(8);
+
+  let date = new Date(currentYear, currentMonth - 1, currentDay);
+  date.setDate(date.getDate() + dayOffset);
+
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
+
+  var formattedDate = year + "-" + month + "-" + day;
+  return formattedDate;
+}
+
+const fetchGames = async (date) => {
+  console.log("IIDD", leagueID);
+  const result = await axios.get(
+    `https://v3.football.api-sports.io/fixtures?season=2023&league=${leagueID.value}&from=${date}&to=${date}`,
+    { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
+  );
+  gameData.value = result.data.response;
+  console.log(result.data.response);
+};
+
+const fetchPreviousDay = () => {
+  router.push({
+    name: "league",
+    params: { id: leagueID.value },
+    query: { date: getDifferentDate(-1) },
+  });
+};
+
+const fetchNextDay = () => {
+  router.push({
+    name: "league",
+    params: { id: leagueID.value },
+    query: { date: getDifferentDate(+1) },
+  });
+};
+
+const selectGame = (id) => {
+  router.push({
+    name: "game",
+    query: { id: id },
+  });
+};
+
+await fetchGames(currentDate.value);
 </script>
 
 <style scoped>
 #gamesContainer {
   background-color: #ffffff;
-  height: fit-content;
+  height: 30rem;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
 }
@@ -127,6 +176,16 @@ function getCurrentDayString() {
   height: 2px;
 }
 
+#gameItemsContainer {
+  height: 25.9rem;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 1.5rem 1rem 1.5rem;
+}
+
 .leagueContainer {
   display: flex;
   flex-direction: column;
@@ -135,7 +194,7 @@ function getCurrentDayString() {
   margin: 0 1.5rem 1rem 1.5rem;
 }
 
-.leagueContainer > * {
+#gameItemsContainer > * {
   margin: 0.5rem;
 }
 
@@ -147,43 +206,26 @@ function getCurrentDayString() {
 }
 
 .leagueFlag {
-  width: 2rem;
-  height: 2rem;
   margin-right: 1rem;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.fallbackLeagueTitle {
-  height: 1.5rem;
-  width: 14rem;
-  margin: 1.33em 0;
-  border-radius: 5px;
-}
-
-.fallbackFlag {
   width: 2rem;
   height: 2rem;
-  margin-right: 1rem;
-  border-radius: 50%;
 }
 
-.fallbackGameItem {
-  height: 4rem;
+.leagueTitle {
+  font-weight: 500;
+}
+
+#noGamesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
   width: 100%;
-  border-radius: 15px;
 }
 
-.shimmer {
-  background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
-  background-size: 300%;
-  background-position-x: 100%;
-  animation: shimmer 1s infinite linear;
-}
-
-@keyframes shimmer {
-  to {
-    background-position-x: 0%;
-  }
+#noGamesText {
+  font-weight: 400;
 }
 </style>
