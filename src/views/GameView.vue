@@ -74,7 +74,7 @@ getData();
 
 <style scoped>
 main {
-  margin: 2rem;
+  margin: 1rem;
 }
 
 #gameContainer {
@@ -85,7 +85,7 @@ main {
   max-width: 79rem;
 }
 
-@media (max-width: 84rem) {
+@media (max-width: 82rem) {
   #gameContainer {
     grid-template-columns: auto;
   }
@@ -95,9 +95,9 @@ main {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   main {
-    margin: 2rem 0;
+    margin: 1rem 0;
   }
 }
 </style>

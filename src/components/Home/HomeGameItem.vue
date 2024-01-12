@@ -31,7 +31,7 @@ defineProps({
 <style scoped>
 .gameItemContainer {
   height: 4rem;
-  width: 98%;
+  width: 95%;
   background-color: #ffffff;
   border-radius: 15px;
   border: 2px solid #f3f3f3;

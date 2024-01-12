@@ -32,6 +32,7 @@ const selectLeague = (id) => {
   border: 2px #f0f0f0 solid;
   background-color: #ffffff;
   height: fit-content;
+  overflow: hidden;
 }
 
 #leaguesTitle {
@@ -45,10 +46,7 @@ const selectLeague = (id) => {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0 1rem 1rem 1rem;
+  overflow: hidden;
 }
 
-#leaguesItemsContainer > * {
-  margin: 0.25rem;
-}
 </style>

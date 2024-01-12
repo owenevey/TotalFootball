@@ -44,14 +44,14 @@
       </div>
     </div>
   </div>
-  <div id="coachCardContainer">
-    <h3 v-if="hasLineups" id="lineupsCoachTitle">Coach</h3>
+  <div v-if="hasLineups" id="coachCardContainer">
+    <h3 id="lineupsCoachTitle">Coach</h3>
     <div id="coachCardRow">
-      <div v-if="hasLineups" class="coachCardColumn">
+      <div class="coachCardColumn">
         <img class="lineupsCoachImage" :src="game.lineups[0].coach.photo" />
         <h3 class="lineupsCoachName">{{ game.lineups[0].coach.name }}</h3>
       </div>
-      <div v-if="hasLineups" class="coachCardColumn">
+      <div class="coachCardColumn">
         <img class="lineupsCoachImage" :src="game.lineups[1].coach.photo" />
         <h3 class="lineupsCoachName">{{ game.lineups[1].coach.name }}</h3>
       </div>

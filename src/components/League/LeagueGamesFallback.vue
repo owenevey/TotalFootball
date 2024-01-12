@@ -11,36 +11,20 @@
     </div>
     <div class="divider"></div>
     <div id="gameItemsContainer">
-      <div class="leagueContainer">
-        <div class="leagueTitleRow">
-          <div class="fallbackFlag shimmer"></div>
-          <div class="fallbackLeagueTitle shimmer"></div>
-        </div>
-        <div class="fallbackGameItem shimmer"></div>
-        <div class="fallbackGameItem shimmer"></div>
-      </div>
-      <div class="leagueContainer">
-        <div class="leagueTitleRow">
-          <div class="fallbackFlag shimmer"></div>
-          <div class="fallbackLeagueTitle shimmer"></div>
-        </div>
-        <div class="fallbackGameItem shimmer"></div>
-        <div class="fallbackGameItem shimmer"></div>
-      </div>
-      <div class="leagueContainer">
-        <div class="leagueTitleRow">
-          <div class="fallbackFlag shimmer"></div>
-          <div class="fallbackLeagueTitle shimmer"></div>
-        </div>
-        <div class="fallbackGameItem shimmer"></div>
-      </div>
+      <div class="fallbackGameItem shimmer"></div>
+      <div class="fallbackGameItem shimmer"></div>
+      <div class="fallbackGameItem shimmer"></div>
     </div>
   </div>
 </template>
 
 <script setup>
+const props = defineProps({
+  leagueID: String,
+});
+
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute,  } from "vue-router";
 
 const route = useRoute();
 
@@ -78,8 +62,9 @@ function getCurrentDayString() {
 
 <style scoped>
 #gamesContainer {
+  flex: 2.5;
   background-color: #ffffff;
-  height: 30rem;
+  height: 20.8rem;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
 }
@@ -130,54 +115,34 @@ function getCurrentDayString() {
 }
 
 #gameItemsContainer {
-    height: 25.9rem;
-    overflow: scroll;
-}
-
-.leagueContainer {
+  height: 16.7rem;
+  width: 100%;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0 1.5rem 1rem 1.5rem;
 }
 
-.leagueContainer > * {
-  margin: 0.5rem;
+#gameItemsContainer > * {
+  margin-top: 1rem;
 }
 
-.leagueTitleRow {
+#noGamesContainer {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  height: 10rem;
   width: 100%;
 }
 
-.leagueFlag {
-  width: 2rem;
-  height: 2rem;
-  margin-right: 1rem;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.fallbackLeagueTitle {
-  height: 1.5rem;
-  width: 14rem;
-  margin: 1.33em 0;
-  border-radius: 5px;
-}
-
-.fallbackFlag {
-  width: 2rem;
-  height: 2rem;
-  margin-right: 1rem;
-  border-radius: 50%;
+#noGamesText {
+  font-weight: 400;
 }
 
 .fallbackGameItem {
   height: 4rem;
-  width: 100%;
+  width: 95%;
   border-radius: 15px;
 }
 
@@ -191,6 +156,12 @@ function getCurrentDayString() {
 @keyframes shimmer {
   to {
     background-position-x: 0%;
+  }
+}
+
+@media (max-width: 1000px) {
+  #gamesContainer {
+    width: 100%;
   }
 }
 </style>

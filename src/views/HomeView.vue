@@ -41,13 +41,13 @@ const leagues = {
 
 <style scoped>
 main {
-  margin: 2rem;
+  margin: 1rem;
 }
 
 #homeContainer {
   display: grid;
   grid-template-columns: 16rem auto 20rem;
-  column-gap: 2rem;
+  column-gap: 1rem;
   margin: auto;
   max-width: 83rem;
 }
@@ -65,14 +65,15 @@ main {
   #homeContainer {
     grid-template-columns: auto;
   }
+
   #leaguesContainer {
     display: none;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   main {
-    margin: 2rem 0;
+    margin: 1rem 0;
   }
 }
 </style>

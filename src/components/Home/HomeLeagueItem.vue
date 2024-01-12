@@ -22,10 +22,15 @@ defineProps({
 .leagueItemContainer {
   height: fit-content;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
-  border-radius: 40px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.leagueItemContainer:hover {
+  background-color: #f5f5f5;
 }
 
 .leagueItemLogo {

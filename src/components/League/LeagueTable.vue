@@ -1,6 +1,6 @@
 <template>
-  <div id="outerContainer">
-    <div id="tableContainer">
+  <div v-for="group in league.standings" class="outerContainer">
+    <div class="tableContainer">
       <div class="headerRow">
         <div class="teamInfo">
           <p class="rank">#</p>
@@ -18,7 +18,7 @@
         </div>
         <div class="form"><p>Form</p></div>
       </div>
-      <LeagueTableRow v-for="team in league.standings[0]" :team="team" />
+      <LeagueTableRow v-for="team in group" :team="team" />
     </div>
   </div>
 </template>
@@ -31,11 +31,11 @@ import LeagueTableRow from "./LeagueTableRow.vue";
 </script>
 
 <style scoped>
-#outerContainer {
+.outerContainer {
     width: 100%;
 }
 
-#tableContainer {
+.tableContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,6 +43,7 @@ import LeagueTableRow from "./LeagueTableRow.vue";
   border: 2px #f0f0f0 solid;
   background-color: #ffffff;
   padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .headerRow {

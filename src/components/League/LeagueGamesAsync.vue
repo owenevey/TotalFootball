@@ -11,11 +11,11 @@
     </div>
     <div class="divider"></div>
     <div id="gameItemsContainer">
-        <HomeGameItem
-          v-for="game in gameData"
-          :game="game"
-          @click="selectGame(game.fixture.id)"
-        />
+      <HomeGameItem
+        v-for="game in gameData"
+        :game="game"
+        @click="selectGame(game.fixture.id)"
+      />
       <div id="noGamesContainer" v-if="Object.keys(gameData).length === 0">
         <h4 id="noGamesText">No Games This Day</h4>
       </div>
@@ -25,7 +25,7 @@
 
 <script setup>
 const props = defineProps({
-  leagueID: Number,
+  leagueID: String,
 });
 
 import { ref, toRefs } from "vue";
@@ -88,7 +88,6 @@ function getDifferentDate(dayOffset) {
 }
 
 const fetchGames = async (date) => {
-  console.log("IIDD", leagueID);
   const result = await axios.get(
     `https://v3.football.api-sports.io/fixtures?season=2023&league=${leagueID.value}&from=${date}&to=${date}`,
     { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
@@ -125,8 +124,9 @@ await fetchGames(currentDate.value);
 
 <style scoped>
 #gamesContainer {
+  flex: 2.5;
   background-color: #ffffff;
-  height: 30rem;
+  height: 20.8rem;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
 }
@@ -177,44 +177,17 @@ await fetchGames(currentDate.value);
 }
 
 #gameItemsContainer {
-  height: 25.9rem;
+  height: 16.7rem;
+  width: 100%;
   overflow: scroll;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0 1.5rem 1rem 1.5rem;
-}
-
-.leagueContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0 1.5rem 1rem 1.5rem;
 }
 
 #gameItemsContainer > * {
-  margin: 0.5rem;
-}
-
-.leagueTitleRow {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-}
-
-.leagueFlag {
-  margin-right: 1rem;
-  border-radius: 50%;
-  object-fit: cover;
-  width: 2rem;
-  height: 2rem;
-}
-
-.leagueTitle {
-  font-weight: 500;
+  margin-top: 1rem;
 }
 
 #noGamesContainer {
@@ -227,5 +200,12 @@ await fetchGames(currentDate.value);
 
 #noGamesText {
   font-weight: 400;
+}
+
+@media (max-width: 1000px) {
+  #gamesContainer {
+    width: 100%;
+  }
+
 }
 </style>

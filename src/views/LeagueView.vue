@@ -2,7 +2,7 @@
   <main>
     <div id="leagueContainer">
       <div id="topContainer">
-        <LeagueTitleRow :league="leagueData" />
+        <LeagueInfoRow :league="leagueData" />
         <Suspense>
           <LeagueGamesAsync :leagueID="route.params.id" />
           <template #fallback>
@@ -20,7 +20,7 @@ import { watch } from "vue";
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
-import LeagueTitleRow from "../components/League/LeagueTitleRow.vue";
+import LeagueInfoRow from "../components/League/LeagueInfoRow.vue";
 import LeagueGamesAsync from "../components/League/LeagueGamesAsync.vue";
 import LeagueGamesFallback from "../components/League/LeagueGamesFallback.vue";
 import LeagueTable from "../components/League/LeagueTable.vue";
@@ -31,10 +31,6 @@ const router = useRouter();
 watch(route, (newValue, oldValue) => {
   router.go();
 });
-
-const leagues = {
-  "Premier League": 39,
-};
 
 const leagueData = ref(null);
 
@@ -54,7 +50,7 @@ fetchData(route.params.id);
 
 <style scoped>
 main {
-  margin: 2rem;
+  margin: 1rem;
 }
 
 #leagueContainer {
@@ -67,10 +63,23 @@ main {
 }
 
 #topContainer {
-  display: grid;
-  grid-template-columns: 20rem auto;
-  column-gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 1000px) {
+  #topContainer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  main {
+    margin: 1rem 0;
+  }
 }
 </style>

@@ -59,6 +59,7 @@ nav {
 #brandingName {
   padding-left: 0.5rem;
   color: white;
+  font-weight: 500;
 }
 
 .navLink {
