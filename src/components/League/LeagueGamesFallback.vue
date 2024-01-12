@@ -64,9 +64,10 @@ function getCurrentDayString() {
 #gamesContainer {
   flex: 2.5;
   background-color: #ffffff;
-  height: 20.8rem;
+  height: 20.4rem;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
+  box-sizing: border-box;
 }
 
 #dateRow {
@@ -115,7 +116,7 @@ function getCurrentDayString() {
 }
 
 #gameItemsContainer {
-  height: 16.7rem;
+  height: 16rem;
   width: 100%;
   overflow: scroll;
   display: flex;

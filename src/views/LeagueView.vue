@@ -10,7 +10,12 @@
           </template>
         </Suspense>
       </div>
-      <LeagueTable :league="leagueData" />
+      <Suspense>
+        <LeagueTable />
+        <template #fallback>
+          <LeagueTableFallback />
+        </template>
+      </Suspense>
     </div>
   </main>
 </template>
@@ -24,6 +29,7 @@ import LeagueInfoRow from "../components/League/LeagueInfoRow.vue";
 import LeagueGamesAsync from "../components/League/LeagueGamesAsync.vue";
 import LeagueGamesFallback from "../components/League/LeagueGamesFallback.vue";
 import LeagueTable from "../components/League/LeagueTable.vue";
+import LeagueTableFallback from "../components/League/LeagueTableFallback.vue";
 
 const route = useRoute();
 const router = useRouter();

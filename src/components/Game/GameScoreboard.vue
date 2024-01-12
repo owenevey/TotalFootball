@@ -108,6 +108,7 @@ function goBack() {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 #topRow {

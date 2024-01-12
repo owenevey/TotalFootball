@@ -10,14 +10,16 @@
       </div>
     </div>
     <div class="divider"></div>
-    <div id="gameItemsContainer">
-      <HomeGameItem
-        v-for="game in gameData"
-        :game="game"
-        @click="selectGame(game.fixture.id)"
-      />
-      <div id="noGamesContainer" v-if="Object.keys(gameData).length === 0">
-        <h4 id="noGamesText">No Games This Day</h4>
+    <div id="scrollContainer">
+      <div id="gameItemsContainer">
+        <HomeGameItem
+          v-for="game in gameData"
+          :game="game"
+          @click="selectGame(game.fixture.id)"
+        />
+        <div id="noGamesContainer" v-if="Object.keys(gameData).length === 0">
+          <h4 id="noGamesText">No Games This Day</h4>
+        </div>
       </div>
     </div>
   </div>
@@ -126,9 +128,10 @@ await fetchGames(currentDate.value);
 #gamesContainer {
   flex: 2.5;
   background-color: #ffffff;
-  height: 20.8rem;
+  height: 20.4rem;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
+  box-sizing: border-box;
 }
 
 #dateRow {
@@ -176,14 +179,19 @@ await fetchGames(currentDate.value);
   height: 2px;
 }
 
-#gameItemsContainer {
-  height: 16.7rem;
+#scrollContainer {
+  height: 16rem;
   width: 100%;
   overflow: scroll;
+}
+
+#gameItemsContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 #gameItemsContainer > * {
@@ -206,6 +214,5 @@ await fetchGames(currentDate.value);
   #gamesContainer {
     width: 100%;
   }
-
 }
 </style>

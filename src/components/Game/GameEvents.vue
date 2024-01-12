@@ -88,6 +88,7 @@ const { game } = toRefs(props);
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 #eventsTitle {

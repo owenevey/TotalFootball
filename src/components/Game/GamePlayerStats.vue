@@ -113,6 +113,7 @@ if (hasData.value) {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 #playerHeader {

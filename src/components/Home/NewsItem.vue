@@ -26,6 +26,7 @@ defineProps({
   border: 2px solid #f3f3f3;
   border-radius: 10px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .textContainer {

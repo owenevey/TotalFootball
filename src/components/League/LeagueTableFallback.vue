@@ -1,5 +1,5 @@
 <template>
-  <div v-for="group in leagueStandings" class="outerContainer">
+  <div class="outerContainer">
     <div class="tableContainer">
       <div class="headerRow">
         <div class="teamInfo">
@@ -18,32 +18,16 @@
         </div>
         <div class="form"><p>Form</p></div>
       </div>
-      <LeagueTableRow v-for="team in group" :team="team" />
+      <div class="fallbackTableRow" v-for="i in 20">
+        <div class="fallbackTeamInfo shimmer"></div>
+        <div class="fallbackStats shimmer"></div>
+        <div class="fallbackForm shimmer"></div>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { useRoute } from "vue-router";
-import axios from "axios";
-import LeagueTableRow from "./LeagueTableRow.vue";
-
-const route = useRoute();
-
-const leagueStandings = ref(null);
-
-const fetchData = async (id) => {
-  const result = await axios.get(
-    `https://v3.football.api-sports.io/standings?league=${id}&season=2023`,
-    { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
-  );
-
-  leagueStandings.value = result.data.response[0].league.standings;
-};
-
-await fetchData(route.params.id);
-</script>
+<script setup></script>
 
 <style scoped>
 .outerContainer {
@@ -119,8 +103,49 @@ p {
   color: gray;
 }
 
+.fallbackTableRow {
+  width: 100%;
+  height: 1.5rem;
+  margin: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fallbackTeamInfo {
+  height: 100%;
+  width: 19rem;
+  margin-left: 0.75rem;
+  border-radius: 5px;
+}
+
+.fallbackStats {
+  height: 100%;
+  width: 24rem;
+  border-radius: 5px;
+}
+
+.fallbackForm {
+  height: 100%;
+  width: 11.6rem;
+  border-radius: 5px;
+}
+
+.shimmer {
+  background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+  background-size: 300%;
+  background-position-x: 100%;
+  animation: shimmer 1s infinite linear;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: 0%;
+  }
+}
+
 @media (max-width: 1100px) {
-  .form {
+  .fallbackForm, .form {
     display: none;
   }
 }
@@ -131,6 +156,10 @@ p {
   .losses,
   .plusMinus {
     display: none;
+  }
+
+  .fallbackStats {
+    width: 10.5rem;
   }
 }
 </style>

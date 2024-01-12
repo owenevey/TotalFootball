@@ -20,7 +20,9 @@
         <span class="infoImage material-symbols-outlined"> groups </span>
         <div>
           <h4 class="secondaryText">Size</h4>
-          <h2 class="primaryText">{{ league.standings[0].length }} Teams</h2>
+          <h2 class="primaryText">
+            {{ league.standings.flat(Infinity).length }} Teams
+          </h2>
         </div>
       </div>
     </div>
@@ -39,11 +41,12 @@ defineProps({
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
   background-color: #ffffff;
-  height: 20.8rem;
+  height: 20.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 1rem;
+  box-sizing: border-box;
 }
 
 #rowsContainer {
@@ -92,6 +95,18 @@ defineProps({
   #rowsContainer {
     flex-direction: row;
     justify-content: space-between;
+    min-width: 90%;
+  }
+}
+
+@media (max-width: 800px) {
+  .infoRow {
+    /* width: fit-content; */
+  }
+  #rowsContainer {
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: unset;
   }
 }
 </style>

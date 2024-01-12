@@ -40,6 +40,7 @@ defineProps({
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .gameItemContainer:hover {
