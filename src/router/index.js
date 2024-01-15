@@ -4,7 +4,7 @@ import GameView from "../views/GameView.vue";
 import LeagueView from "../views/LeagueView.vue";
 import LeaguesView from "../views/LeaguesView.vue";
 import NewsView from "../views/NewsView.vue";
-import ArticleView from "../views/articleView.vue";
+import ArticleView from "../views/ArticleView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
