@@ -2,17 +2,28 @@
   <div id="newsContainer">
     <h3 id="newsTitle">News</h3>
     <div id="newsItemsContainer">
-      <NewsItem
+      <HomeNewsItem
         v-for="(file, title) in articles"
         :title="title"
         :imageName="file"
+        @click="selectArticle()"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-import NewsItem from "./NewsItem.vue";
+import { useRouter } from "vue-router";
+import HomeNewsItem from "./HomeNewsItem.vue";
+
+const router = useRouter();
+
+const selectArticle = () => {
+  router.push({
+    name: "article",
+    params: { id: 2 },
+  });
+};
 
 const articles = {
   "Ronaldo Scores Hat Trick in Portugal win vs Uruguay": "ronaldo.jpg",
@@ -40,10 +51,10 @@ const articles = {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 0rem 1rem 1rem 1rem;
+  padding: 0rem 1rem 0.5rem 1rem;
 }
 
 #newsItemsContainer > * {
-  margin: 0.5rem;
+  margin: 0 0.5rem 1rem 0.5rem;
 }
 </style>

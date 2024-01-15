@@ -1,10 +1,9 @@
 <template>
   <header>
     <nav>
-      <div id="brandingContainer" @click="goHome()">
-        <img id="brandingLogo" src="../assets/icon.svg" />
-        <h1 id="brandingName">Sports Scores</h1>
-      </div>
+      <h1 id="brandingName" @click="goHome()">
+        <span id="leftBrandName">Total</span>Football
+      </h1>
       <div>
         <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
           <p class="navLink">News</p>
@@ -13,7 +12,7 @@
           <p class="navLink">Settings</p>
         </RouterLink>
         <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
-          <p class="navLink">About Us</p>
+          <p class="navLink">About</p>
         </RouterLink>
       </div>
     </nav>
@@ -37,35 +36,35 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00935c;
+  background-color: #ffffff;
   padding: 0 40px;
   margin-bottom: 0rem;
-}
-
-#brandingContainer {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-#brandingLogo {
-  display: none;
-  object-fit: contain;
-  width: 2rem;
-  height: 2rem;
-  fill: white;
+  border-bottom: 2px #f0f0f0 solid;
 }
 
 #brandingName {
-  padding-left: 0.5rem;
-  color: white;
-  font-weight: 500;
+  font-size: xx-large;
+  margin: 1.33rem 0;
+  padding-right: 2px;
+  font-style: italic;
+  cursor: pointer;
+}
+
+#brandingName:hover {
+  opacity: 0.6;
+}
+
+#leftBrandName {
+  color: #00935c;
+  font-style: italic;
+  font-size: xx-large;
 }
 
 .navLink {
   display: inline;
   padding: 10px;
-  color: white;
+  color: black;
   text-decoration: none;
+  font-weight: 500;
 }
 </style>

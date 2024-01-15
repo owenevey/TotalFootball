@@ -170,7 +170,7 @@ function getCurrentDayString() {
 
 .fallbackGameItem {
   height: 4rem;
-  width: 95%;
+  width: 100%;
   border-radius: 15px;
 }
 

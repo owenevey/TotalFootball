@@ -176,7 +176,6 @@ await fetchGames(currentDate.value);
 
 #dateTitle {
   font-weight: 500;
-  padding: 1.3rem;
   margin: 0;
 }
 

@@ -1,11 +1,13 @@
 <template>
   <SiteNavigation />
   <RouterView />
+  <BottomNav />
 </template>
 
 <script setup>
 import { RouterView } from 'vue-router'
 import SiteNavigation from "./components/SiteNavigation.vue"
+import BottomNav from './components/BottomNav.vue';
 </script>
 
 <style>
@@ -16,6 +18,12 @@ body {
 }
 
 * {
-  font-family: "Rubik", sans-serif;
+  font-family: "Jost", sans-serif;
+}
+
+@media (max-width: 1000px) {
+  body {
+    margin-bottom: 5rem;
+  }
 }
 </style>

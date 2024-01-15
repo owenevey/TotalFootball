@@ -38,7 +38,6 @@ const fetchData = async (id) => {
     `https://v3.football.api-sports.io/standings?league=${id}&season=2023`,
     { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
   );
-
   leagueStandings.value = result.data.response[0].league.standings;
 };
 

@@ -23,7 +23,6 @@ const selectLeague = (id) => {
     params: { id: id },
   });
 };
-
 </script>
 
 <style scoped>
@@ -48,5 +47,4 @@ const selectLeague = (id) => {
   align-items: flex-start;
   overflow: hidden;
 }
-
 </style>

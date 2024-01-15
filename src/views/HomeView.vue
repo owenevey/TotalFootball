@@ -11,6 +11,7 @@
       <HomeNews id="newsContainer" />
     </div>
   </main>
+  <BottomNav />
 </template>
 
 <script setup>
@@ -20,6 +21,7 @@ import HomeLeagues from "../components/Home/HomeLeagues.vue";
 import HomeGamesAsync from "../components/Home/HomeGamesAsync.vue";
 import HomeGamesFallback from "../components/Home/HomeGamesFallback.vue";
 import HomeNews from "../components/Home/HomeNews.vue";
+import BottomNav from "../components/BottomNav.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -35,7 +37,12 @@ const leagues = {
   "Serie A": 135,
   "Ligue 1": 61,
   "UEFA Champions League": 2,
-  "Europa League": 3,
+  "UEFA Europa League": 3,
+  Eredivisie: 88,
+  "Primeira Liga": 94,
+  "Major League Soccer": 253,
+  "Liga MX": 262,
+  "Pro League": 307,
 };
 </script>
 

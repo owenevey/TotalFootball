@@ -29,6 +29,10 @@ defineProps({
   box-sizing: border-box;
 }
 
+.newsContainer:hover {
+  background-color: #f5f5f5;
+}
+
 .textContainer {
   padding: 0.5rem;
 }

@@ -26,16 +26,10 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  leagueID: String,
-});
-
-import { ref, toRefs } from "vue";
+import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import HomeGameItem from "../Home/HomeGameItem.vue";
 import axios from "axios";
-
-const { leagueID } = toRefs(props);
 
 const router = useRouter();
 const route = useRoute();
@@ -91,7 +85,7 @@ function getDifferentDate(dayOffset) {
 
 const fetchGames = async (date) => {
   const result = await axios.get(
-    `https://v3.football.api-sports.io/fixtures?season=2023&league=${leagueID.value}&from=${date}&to=${date}`,
+    `https://v3.football.api-sports.io/fixtures?season=2023&league=${route.params.id}&from=${date}&to=${date}`,
     { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
   );
   gameData.value = result.data.response;
@@ -101,7 +95,7 @@ const fetchGames = async (date) => {
 const fetchPreviousDay = () => {
   router.push({
     name: "league",
-    params: { id: leagueID.value },
+    params: { id: route.params.id },
     query: { date: getDifferentDate(-1) },
   });
 };
@@ -109,7 +103,7 @@ const fetchPreviousDay = () => {
 const fetchNextDay = () => {
   router.push({
     name: "league",
-    params: { id: leagueID.value },
+    params: { id: route.params.id },
     query: { date: getDifferentDate(+1) },
   });
 };
@@ -169,7 +163,6 @@ await fetchGames(currentDate.value);
 
 #dateTitle {
   font-weight: 500;
-  padding: 1.3rem;
   margin: 0;
 }
 
@@ -180,7 +173,7 @@ await fetchGames(currentDate.value);
 }
 
 #scrollContainer {
-  height: 16rem;
+  height: 16.0315rem;
   width: 100%;
   overflow: scroll;
 }
@@ -196,6 +189,7 @@ await fetchGames(currentDate.value);
 
 #gameItemsContainer > * {
   margin-top: 1rem;
+  width: 95%;
 }
 
 #noGamesContainer {
@@ -210,7 +204,7 @@ await fetchGames(currentDate.value);
   font-weight: 400;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   #gamesContainer {
     width: 100%;
   }

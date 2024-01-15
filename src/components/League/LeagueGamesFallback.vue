@@ -127,6 +127,7 @@ function getCurrentDayString() {
 
 #gameItemsContainer > * {
   margin-top: 1rem;
+  width: 95%
 }
 
 #noGamesContainer {
@@ -160,7 +161,7 @@ function getCurrentDayString() {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   #gamesContainer {
     width: 100%;
   }

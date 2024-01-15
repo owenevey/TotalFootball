@@ -2,27 +2,24 @@
   <div id="leagueInfoContainer">
     <div id="rowsContainer">
       <div class="infoRow">
-        <img class="infoImage" :src="league.logo" />
+        <div class="infoImage shimmer"></div>
         <div>
           <h4 class="secondaryText">League</h4>
-          <h2 class="primaryText">{{ league.name }}</h2>
+          <div class="primaryText shimmer"></div>
         </div>
       </div>
       <div class="infoRow">
-        <img v-if="league.flag" class="infoImage" :src="league.flag" />
-        <span v-else class="infoImage material-symbols-outlined"> public </span>
+        <div class="infoImage shimmer"></div>
         <div>
           <h4 class="secondaryText">Country</h4>
-          <h2 class="primaryText">{{ league.country }}</h2>
+          <div class="primaryText shimmer"></div>
         </div>
       </div>
       <div class="infoRow">
-        <span class="infoImage material-symbols-outlined"> groups </span>
+        <div class="infoImage shimmer"></div>
         <div>
           <h4 class="secondaryText">Size</h4>
-          <h2 class="primaryText">
-            {{ league.standings.flat(Infinity).length }} Teams
-          </h2>
+          <div class="primaryText shimmer"></div>
         </div>
       </div>
     </div>
@@ -30,9 +27,6 @@
 </template>
 
 <script setup>
-defineProps({
-  league: Object,
-});
 </script>
 
 <style scoped>
@@ -64,10 +58,10 @@ defineProps({
 }
 
 .infoImage {
-  object-fit: contain;
   width: 3rem;
   height: 3rem;
-  padding-right: 1rem;
+  margin-right: 1rem;
+  border-radius: 15px;
 }
 
 .material-symbols-outlined {
@@ -81,8 +75,23 @@ defineProps({
 }
 
 .primaryText {
-  font-weight: 400;
+  width: 7rem;
+  height: 1.5rem;
   margin: 0;
+  border-radius: 5px;
+}
+
+.shimmer {
+  background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+  background-size: 300%;
+  background-position-x: 100%;
+  animation: shimmer 1s infinite linear;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: 0%;
+  }
 }
 
 @media (max-width: 1000px) {

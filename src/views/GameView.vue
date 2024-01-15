@@ -22,6 +22,7 @@
       </div>
     </div>
   </main>
+  <BottomNav />
 </template>
 
 <script setup>
@@ -34,6 +35,7 @@ import GameMatchStats from "../components/Game/GameMatchStats.vue";
 import GamePlayerStats from "../components/Game/GamePlayerStats.vue";
 import GameEvents from "../components/Game/GameEvents.vue";
 import GameHeader from "../components/Game/GameHeader.vue";
+import BottomNav from "../components/BottomNav.vue";
 
 const route = useRoute();
 const game = ref(null);
@@ -49,7 +51,7 @@ const getData = async () => {
   console.log("result", result);
   game.value = result.data.response[0];
 
-  hasLineups.value = game.value.lineups.length > 0;
+  hasLineups.value = game.value.lineups[0].startXI !== undefined;
   if (hasLineups.value) {
     selectedPlayer.value = game.value.lineups[0].startXI[10].player.id;
   }
