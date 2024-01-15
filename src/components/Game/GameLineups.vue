@@ -18,8 +18,8 @@
       </div>
     </div>
     <Pitch
-      :home-lineup="homeLineup"
-      :away-lineup="awayLineup"
+      :homeLineup="homeLineup"
+      :awayLineup="awayLineup"
       :hasLineups="hasLineups"
       @selectPlayer="(playerID) => $emit('selectPlayer', playerID)"
     />
