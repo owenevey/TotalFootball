@@ -69,8 +69,8 @@ import { ref, toRefs } from "vue";
 import Pitch from "./Pitch.vue";
 
 const { game, hasLineups } = toRefs(props);
-const homeLineup = ref(null);
-const awayLineup = ref(null);
+const homeLineup = ref({});
+const awayLineup = ref({});
 
 function parseLineup(lineupData) {
   const tempDict = {};
