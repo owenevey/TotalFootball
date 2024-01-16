@@ -39,7 +39,7 @@ const props = defineProps({
 import { ref, toRefs } from "vue";
 
 const { game } = toRefs(props);
-const hasStats = ref(null);
+const hasStats = ref(false);
 const stats = ref({});
 
 function parseStatNumber(stat) {
