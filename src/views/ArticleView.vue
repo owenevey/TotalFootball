@@ -10,7 +10,6 @@
         </p>
         <div v-for="paragraph in text">
           <p class="articleText">{{ paragraph }}</p>
-          <!-- <br /> -->
         </div>
       </div>
     </div>

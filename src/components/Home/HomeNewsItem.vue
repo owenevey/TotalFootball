@@ -1,6 +1,6 @@
 <template>
   <div class="newsContainer">
-    <img :src="'../../../public/news/' + imageName" />
+    <img :src="'/public/news/' + imageName" />
     <div class="textContainer">
       <h3>{{ title }}</h3>
       <p>3 hrs ago</p>
