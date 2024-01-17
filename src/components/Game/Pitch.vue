@@ -35,7 +35,7 @@
     <div v-if="hasLineups" id="rightPitch">
       <div
         class="pitchColumn"
-        v-for="(players, _) of Object.entries(awayLineup).reverse()"
+        v-for="(players, _) of Object.entries(awayLineup)"
       >
         <div class="player" v-for="player in players[1]" @click="$emit('selectPlayer', player.id)">
           <div
@@ -61,7 +61,7 @@ defineProps({
   awayLineup: Object,
   hasLineups: Boolean,
 });
-
+// unreverse lineups on line 38
 </script>
 
 <style scoped>
