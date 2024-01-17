@@ -1,5 +1,5 @@
 <template>
-    <div id="fallback">
+    <div id="fall">
         Fallback content!
     </div>
 </template>
@@ -7,7 +7,7 @@
 
 </script>
 <style scoped>
-    #fallback {
+    #fall {
         display: flex;
         justify-content: center;
         align-items: center;
