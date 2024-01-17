@@ -3,11 +3,11 @@
       <div id="gameContainer">
         <div id="mainColumn">
           <GameScoreBoard :game="game" :events="events" />
-          <!-- <GameLineups
+          <GameLineups
             :game="game"
             :hasLineups="hasLineups"
             @selectPlayer="(playerID) => (selectedPlayer = playerID)"
-          /> -->
+          />
           <GameMatchStats :game="game" />
         </div>
         <div id="rightColumn">

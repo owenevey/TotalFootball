@@ -5,7 +5,7 @@
         class="pitchColumn"
         v-for="(players, _) of Object.entries(homeLineup)"
       >
-        <div class="player" v-for="player in players[1].reverse()" @click="$emit('selectPlayer', player.id)">
+        <div class="player" v-for="player in players[1]" @click="$emit('selectPlayer', player.id)">
           <div
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"

@@ -69,7 +69,6 @@ import { ref, toRefs } from "vue";
 import Pitch from "./Pitch.vue";
 
 const { game, hasLineups } = toRefs(props);
-console.log("props", game, hasLineups)
 const homeLineup = ref({});
 const awayLineup = ref({});
 
