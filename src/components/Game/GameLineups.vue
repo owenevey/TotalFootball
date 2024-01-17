@@ -69,11 +69,13 @@ import { ref, toRefs } from "vue";
 import Pitch from "./Pitch.vue";
 
 const { game, hasLineups } = toRefs(props);
+console.log("props", game, hasLineups)
 const homeLineup = ref({});
 const awayLineup = ref({});
 
 function parseLineup(lineupData) {
   const tempDict = {};
+  console.log("in parseLineup, startXI:", lineupData.startXI)
   for (const playerObj of lineupData.startXI) {
     if (playerObj.player.grid.substring(0, 1) in tempDict) {
       tempDict[playerObj.player.grid.substring(0, 1)].push({
@@ -111,6 +113,7 @@ function parseLineup(lineupData) {
 }
 
 if (hasLineups.value) {
+  console.log("has lineups.value", hasLineups.value)
   const homeLineupData = game.value.lineups[0];
   const awayLineupData = game.value.lineups[1];
 
