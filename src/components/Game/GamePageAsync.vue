@@ -11,13 +11,13 @@
           <GameMatchStats :game="game" />
         </div>
         <div id="rightColumn">
-          <!-- <GamePlayerStats
+          <GamePlayerStats
             id="playerContainer"
             :game="game"
             :selectedPlayer="selectedPlayer"
             :hasLineups="hasLineups"
-          /> -->
-          <!-- <GameEvents :game="game" :events="events" /> -->
+          />
+          <GameEvents :game="game" :events="events" />
         </div>
       </div>
     <BottomNav />
