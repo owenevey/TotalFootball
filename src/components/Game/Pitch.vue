@@ -62,7 +62,6 @@ defineProps({
   hasLineups: Boolean,
 });
 
-console.log("pitch props", homeLineup, awayLineup, hasLineups)
 </script>
 
 <style scoped>

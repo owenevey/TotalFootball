@@ -79,7 +79,6 @@ const { game } = toRefs(props);
 
 <style scoped>
 #eventsContainer {
-  margin-top: 1rem;
   height: fit-content;
   width: 100%;
   border-radius: 15px;

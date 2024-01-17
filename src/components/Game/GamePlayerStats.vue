@@ -1,6 +1,6 @@
 <template>
   <div id="playerContainer">
-    <!-- <div id="playerHeader">
+    <div id="playerHeader">
       <div id="playerRow">
         <img
           v-if="hasData"
@@ -27,7 +27,7 @@
           <p class="childStatNumber">{{ number ?? 0 }}</p>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -38,68 +38,68 @@ const props = defineProps({
   hasLineups: Boolean,
 });
 
-// import { ref, toRefs } from "vue";
+import { ref, toRefs } from "vue";
 
-// const { game, selectedPlayer, hasLineups } = toRefs(props);
+const { game, selectedPlayer, hasLineups } = toRefs(props);
 
-// const hasStats = game.value.statistics.length > 0;
-// const hasPlayers = game.value.players.length > 0;
+const hasStats = game.value.statistics.length > 0;
+const hasPlayers = game.value.players.length > 0;
 
-// const hasData = ref(hasLineups.value && hasStats && hasPlayers);
+const hasData = ref(hasLineups.value && hasStats && hasPlayers);
 
-// const stats = ref({});
+const stats = ref({});
 
-// if (hasData.value) {
-//   const allPlayers = game.value.players[0].players.concat(
-//     game.value.players[1].players
-//   );
+if (hasData.value) {
+  const allPlayers = game.value.players[0].players.concat(
+    game.value.players[1].players
+  );
 
-//   const filteredStats = {
-//     games: ["minutes", "rating", "position"],
-//     goals: ["total", "assists"],
-//     passes: ["total", "key"],
-//     shots: ["total", "on"],
-//     tackles: ["total", "blocks", "interceptions"],
-//   };
+  const filteredStats = {
+    games: ["minutes", "rating", "position"],
+    goals: ["total", "assists"],
+    passes: ["total", "key"],
+    shots: ["total", "on"],
+    tackles: ["total", "blocks", "interceptions"],
+  };
 
-//   function capitalizeFirstLetter(string) {
-//     return string.charAt(0).toUpperCase() + string.slice(1);
-//   }
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
-//   function parseStats(stats) {
-//     function innerParse(category, statsObj) {
-//       const tempInner = {};
-//       for (const [innerKey, innerVal] of Object.entries(statsObj)) {
-//         if (filteredStats[category].includes(innerKey)) {
-//           tempInner[capitalizeFirstLetter(innerKey)] = innerVal;
-//         }
-//       }
-//       return tempInner;
-//     }
+  function parseStats(stats) {
+    function innerParse(category, statsObj) {
+      const tempInner = {};
+      for (const [innerKey, innerVal] of Object.entries(statsObj)) {
+        if (filteredStats[category].includes(innerKey)) {
+          tempInner[capitalizeFirstLetter(innerKey)] = innerVal;
+        }
+      }
+      return tempInner;
+    }
 
-//     const tempStats = {};
-//     for (const [key, val] of Object.entries(stats)) {
-//       if (Object.keys(filteredStats).includes(key)) {
-//         tempStats[capitalizeFirstLetter(key)] = innerParse(key, val);
-//       }
-//     }
-//     return tempStats;
-//   }
+    const tempStats = {};
+    for (const [key, val] of Object.entries(stats)) {
+      if (Object.keys(filteredStats).includes(key)) {
+        tempStats[capitalizeFirstLetter(key)] = innerParse(key, val);
+      }
+    }
+    return tempStats;
+  }
 
-//   const tempDict = {};
-//   for (const team of game.value.players) {
-//     for (const player of team.players) {
-//       tempDict[player.player.id] = {
-//         name: player.player.name,
-//         photo: allPlayers.find(
-//           (playerObj) => player.player.id === playerObj.player.id
-//         ).player.photo,
-//         stats: parseStats(player.statistics[0]),
-//       };
-//     }
-//   }
-//   stats.value = tempDict;
-// }
+  const tempDict = {};
+  for (const team of game.value.players) {
+    for (const player of team.players) {
+      tempDict[player.player.id] = {
+        name: player.player.name,
+        photo: allPlayers.find(
+          (playerObj) => player.player.id === playerObj.player.id
+        ).player.photo,
+        stats: parseStats(player.statistics[0]),
+      };
+    }
+  }
+  stats.value = tempDict;
+}
 </script>
 
 <style scoped>
@@ -114,6 +114,7 @@ const props = defineProps({
   align-items: center;
   overflow: hidden;
   box-sizing: border-box;
+  margin-bottom: 1rem;
 }
 
 #playerHeader {
