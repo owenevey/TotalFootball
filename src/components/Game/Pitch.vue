@@ -5,7 +5,11 @@
         class="pitchColumn"
         v-for="(players, _) of Object.entries(homeLineup)"
       >
-        <div class="player" v-for="player in players[1]" @click="$emit('selectPlayer', player.id)">
+        <div
+          class="player"
+          v-for="player in players[1].toReversed()"
+          @click="$emit('selectPlayer', player.id)"
+        >
           <div
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"
@@ -35,9 +39,13 @@
     <div v-if="hasLineups" id="rightPitch">
       <div
         class="pitchColumn"
-        v-for="(players, _) of Object.entries(awayLineup)"
+        v-for="(players, _) of Object.entries(awayLineup).toReversed()"
       >
-        <div class="player" v-for="player in players[1]" @click="$emit('selectPlayer', player.id)">
+        <div
+          class="player"
+          v-for="player in players[1]"
+          @click="$emit('selectPlayer', player.id)"
+        >
           <div
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"
@@ -61,7 +69,6 @@ defineProps({
   awayLineup: Object,
   hasLineups: Boolean,
 });
-// unreverse lineups on line 38
 </script>
 
 <style scoped>
