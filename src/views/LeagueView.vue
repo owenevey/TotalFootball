@@ -55,7 +55,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 80rem;
+  max-width: 70rem;
   margin: auto;
 }
 

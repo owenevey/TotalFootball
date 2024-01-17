@@ -3,7 +3,7 @@
     <img
       class="leagueItemLogo"
       :src="
-        '../src/assets/leagues/' +
+        '../../../public/leagues/' +
         name.toLowerCase().replaceAll(' ', '_') +
         '_logo.png'
       "
