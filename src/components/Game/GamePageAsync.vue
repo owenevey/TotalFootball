@@ -8,7 +8,7 @@
             :hasLineups="hasLineups"
             @selectPlayer="(playerID) => (selectedPlayer = playerID)"
           /> -->
-          <!-- <GameMatchStats :game="game" /> -->
+          <GameMatchStats :game="game" />
         </div>
         <div id="rightColumn">
           <!-- <GamePlayerStats
