@@ -88,10 +88,4 @@ await getData();
     display: none;
   }
 }
-
-@media (max-width: 800px) {
-  main {
-    margin: 1rem 0;
-  }
-}
 </style>

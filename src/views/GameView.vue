@@ -20,4 +20,10 @@ import BottomNav from "../components/BottomNav.vue";
 main {
   margin: 1rem;
 }
+
+@media (max-width: 800px) {
+  main {
+    margin: 1rem 0;
+  }
+}
 </style>
