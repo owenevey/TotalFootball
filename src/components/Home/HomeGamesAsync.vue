@@ -190,7 +190,7 @@ await fetchGames(currentDate.value);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 1.5rem 2.5rem;
+  margin: 1.5rem 1.5rem 2.5rem 1.5rem;
   gap: 1rem;
 }
 
@@ -229,7 +229,7 @@ await fetchGames(currentDate.value);
 
 @media (max-width: 420px) {
   .leagueContainer {
-    margin: 1rem 0.25rem;
+    margin: 1.5rem 0.25rem 2.5rem 0.25rem;
   }
 
   .leagueFlag {
