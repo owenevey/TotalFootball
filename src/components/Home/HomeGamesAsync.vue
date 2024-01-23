@@ -190,7 +190,7 @@ await fetchGames(currentDate.value);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 1.5rem 1.5rem;
+  margin: 1.5rem 2.5rem;
   gap: 1rem;
 }
 
