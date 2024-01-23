@@ -9,30 +9,35 @@
         <span class="material-symbols-outlined">chevron_right</span>
       </div>
     </div>
+
     <div class="divider"></div>
+
     <div class="leagueContainer">
       <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
+        <div class="leagueFlagFallback shimmer"></div>
+        <div class="leagueTitleFallback shimmer"></div>
       </div>
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
+      <div class="gameItemFallback shimmer"></div>
+      <div class="gameItemFallback shimmer"></div>
     </div>
+
     <div class="leagueContainer">
       <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
+        <div class="leagueFlagFallback shimmer"></div>
+        <div class="leagueTitleFallback shimmer"></div>
       </div>
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
+      <div class="gameItemFallback shimmer"></div>
+      <div class="gameItemFallback shimmer"></div>
     </div>
+
     <div class="leagueContainer">
       <div class="leagueTitleRow">
-        <div class="fallbackFlag shimmer"></div>
-        <div class="fallbackLeagueTitle shimmer"></div>
+        <div class="leagueFlagFallback shimmer"></div>
+        <div class="leagueTitleFallback shimmer"></div>
       </div>
-      <div class="fallbackGameItem shimmer"></div>
+      <div class="gameItemFallback shimmer"></div>
     </div>
+
   </div>
 </template>
 
@@ -117,7 +122,6 @@ function getCurrentDayString() {
 
 #dateTitle {
   font-weight: 500;
-  padding: 1.3rem;
   margin: 0;
 }
 
@@ -132,11 +136,8 @@ function getCurrentDayString() {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0 1.5rem 1rem 1.5rem;
-}
-
-.leagueContainer > * {
-  margin: 0.5rem;
+  margin: 1.5rem 1.5rem 2.5rem 1.5rem;
+  gap: 1rem;
 }
 
 .leagueTitleRow {
@@ -144,31 +145,25 @@ function getCurrentDayString() {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  margin: 0;
 }
 
-.leagueFlag {
-  width: 2rem;
-  height: 2rem;
+.leagueFlagFallback {
   margin-right: 1rem;
   border-radius: 50%;
-  object-fit: cover;
+  width: 2rem;
+  height: 2rem;
 }
 
-.fallbackLeagueTitle {
+.leagueTitleFallback {
   height: 1.5rem;
   width: 14rem;
-  margin: 1.33em 0;
   border-radius: 5px;
+  font-weight: 500;
+  margin: 0;
 }
 
-.fallbackFlag {
-  width: 2rem;
-  height: 2rem;
-  margin-right: 1rem;
-  border-radius: 50%;
-}
-
-.fallbackGameItem {
+.gameItemFallback {
   height: 4rem;
   width: 100%;
   border-radius: 15px;
@@ -184,6 +179,16 @@ function getCurrentDayString() {
 @keyframes shimmer {
   to {
     background-position-x: 0%;
+  }
+}
+
+@media (max-width: 420px) {
+  .leagueContainer {
+    margin: 1.5rem 0.25rem 2.5rem 0.25rem;
+  }
+
+  .leagueFlag {
+    margin-left: 0.5rem;
   }
 }
 </style>

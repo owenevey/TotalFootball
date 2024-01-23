@@ -4,8 +4,9 @@
       <p class="homeTeamName">{{ game.teams.home.name }}</p>
       <img class="teamLogo" :src="game.teams.home.logo" />
     </div>
+
     <div class="centerItem" v-if="game.fixture.status.short !== 'NS'">
-      <p>{{ game.goals.home }} - {{ game.goals.away }}</p>
+      <p class="score">{{ game.goals.home }} - {{ game.goals.away }}</p>
       <p class="status">{{ game.fixture.status.short }}</p>
     </div>
     <div class="centerItem" v-else>
@@ -17,6 +18,7 @@
         }}
       </p>
     </div>
+
     <div class="rightItem">
       <img class="teamLogo" :src="game.teams.away.logo" />
       <p class="awayTeamName">{{ game.teams.away.name }}</p>
@@ -42,7 +44,6 @@ defineProps({
   align-items: center;
   cursor: pointer;
   box-sizing: border-box;
-  /* margin: 1rem 0 0 0; */
 }
 
 .gameItemContainer:hover {
@@ -116,7 +117,7 @@ defineProps({
   }
 
   .centerItem {
-    padding: 0 0.5rem;
+    padding: 0 0.75rem;
   }
 
   .gameItemContainer {

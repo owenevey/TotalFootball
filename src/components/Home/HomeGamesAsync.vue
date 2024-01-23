@@ -9,7 +9,9 @@
         <span class="material-symbols-outlined">chevron_right</span>
       </div>
     </div>
+
     <div class="divider"></div>
+
     <div class="leagueContainer" v-for="(fixtures, league) in gameData">
       <div class="leagueTitleRow">
         <img
@@ -24,6 +26,7 @@
         @click="selectGame(game.fixture.id)"
       />
     </div>
+
     <div id="noGamesContainer" v-if="Object.keys(gameData).length === 0">
       <h4 id="noGamesText">No Games This Day</h4>
     </div>
@@ -233,7 +236,7 @@ await fetchGames(currentDate.value);
   }
 
   .leagueFlag {
-    margin-left: 0.25rem;
+    margin-left: 0.5rem;
   }
 }
 </style>
