@@ -47,7 +47,7 @@ const getData = async () => {
   console.log("result", result);
   game.value = result.data.response[0];
 
-  hasLineups.value = game.value.lineups[0].startXI !== undefined;
+  hasLineups.value = game.value.lineups[0]?.startXI !== undefined;
   if (hasLineups.value) {
     selectedPlayer.value = game.value.lineups[0].startXI[10].player.id;
   }
