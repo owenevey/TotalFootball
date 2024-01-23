@@ -190,11 +190,8 @@ await fetchGames(currentDate.value);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0 1.5rem 1rem 1.5rem;
-}
-
-.leagueContainer > * {
-  margin: 0.5rem;
+  margin: 1.5rem 1.5rem;
+  gap: 1rem;
 }
 
 .leagueTitleRow {
@@ -202,6 +199,7 @@ await fetchGames(currentDate.value);
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  margin: 0;
 }
 
 .leagueFlag {
@@ -214,6 +212,7 @@ await fetchGames(currentDate.value);
 
 .leagueTitle {
   font-weight: 500;
+  margin: 0;
 }
 
 #noGamesContainer {
@@ -226,5 +225,15 @@ await fetchGames(currentDate.value);
 
 #noGamesText {
   font-weight: 400;
+}
+
+@media (max-width: 420px) {
+  .leagueContainer {
+    margin: 1rem 0.25rem;
+  }
+
+  .leagueFlag {
+    margin-left: 0.25rem;
+  }
 }
 </style>

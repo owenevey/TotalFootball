@@ -32,6 +32,7 @@ const articles = {
   "Newcastle thumps PSG in Group of Death Matchup": "newcastle.jpg",
 };
 </script>
+
 <style scoped>
 #newsContainer {
   border-radius: 15px;

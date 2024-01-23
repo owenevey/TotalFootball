@@ -4,7 +4,7 @@
       <h1 id="brandingName" @click="goHome()">
         <span id="leftBrandName">Total</span>Football
       </h1>
-      <div>
+      <div id="navLinks">
         <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
           <p class="navLink">News</p>
         </RouterLink>
@@ -66,5 +66,11 @@ nav {
   color: black;
   text-decoration: none;
   font-weight: 500;
+}
+
+@media (max-width: 550px) {
+  #navLinks {
+    display: none;
+  }
 }
 </style>

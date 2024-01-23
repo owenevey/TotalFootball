@@ -1,24 +1,26 @@
 <template>
   <div class="gameItemContainer">
-    <p class="homeTeamName">{{ game.teams.home.name }}</p>
-    <div class="centerItem">
+    <div class="leftItem">
+      <p class="homeTeamName">{{ game.teams.home.name }}</p>
       <img class="teamLogo" :src="game.teams.home.logo" />
-      <div class="scoreboard" v-if="game.fixture.status.short !== 'NS'">
-        <p>{{ game.goals.home }} - {{ game.goals.away }}</p>
-        <p class="status">{{ game.fixture.status.short }}</p>
-      </div>
-      <div class="scoreboard" v-else>
-        <p class="time">
-          {{
-            new Date(game.fixture.date).toLocaleTimeString("en-US", {
-              timeStyle: "short",
-            })
-          }}
-        </p>
-      </div>
-      <img class="teamLogo" :src="game.teams.away.logo" />
     </div>
-    <p class="awayTeamName">{{ game.teams.away.name }}</p>
+    <div class="centerItem" v-if="game.fixture.status.short !== 'NS'">
+      <p>{{ game.goals.home }} - {{ game.goals.away }}</p>
+      <p class="status">{{ game.fixture.status.short }}</p>
+    </div>
+    <div class="centerItem" v-else>
+      <p class="time">
+        {{
+          new Date(game.fixture.date).toLocaleTimeString("en-US", {
+            timeStyle: "short",
+          })
+        }}
+      </p>
+    </div>
+    <div class="rightItem">
+      <img class="teamLogo" :src="game.teams.away.logo" />
+      <p class="awayTeamName">{{ game.teams.away.name }}</p>
+    </div>
   </div>
 </template>
 
@@ -35,53 +37,52 @@ defineProps({
   background-color: #ffffff;
   border-radius: 15px;
   border: 2px solid #f3f3f3;
-  min-width: fit-content;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   cursor: pointer;
   box-sizing: border-box;
+  /* margin: 1rem 0 0 0; */
 }
 
 .gameItemContainer:hover {
   background-color: #f5f5f5;
 }
 
-.centerItem {
+.leftItem {
+  flex: 1;
   display: flex;
-  height: 100%;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
-  flex: 1;
-}
-
-.centerItem > * {
-  display: flex;
-  padding: 1rem;
-  flex: 1;
-  white-space: nowrap;
-}
-
-.homeTeamName,
-.awayTeamName {
-  flex: 1;
-  display: flex;
-  text-align: center;
+  gap: 1rem;
 }
 
 .homeTeamName {
-  justify-content: flex-end;
   text-align: right;
 }
 
-.awayTeamName {
-  justify-content: flex-start;
-  text-align: left;
+.centerItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.5rem;
 }
 
-.scoreboard > p {
+.centerItem > * {
+  padding: 0;
   margin: 0;
+  white-space: nowrap;
   text-align: center;
+  font-weight: 500;
+}
+
+.rightItem {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
 }
 
 .status {
@@ -89,23 +90,37 @@ defineProps({
   font-weight: 400;
 }
 
-.scoreboard {
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0.5rem 0.75rem;
-  flex-grow: 0;
-  font-weight: 500;
-}
-
-.gameItemContainer > * {
-  padding: 0 0.5rem;
-}
-
 .teamLogo {
   object-fit: contain;
   width: 2rem;
   height: 2rem;
+}
+
+@media (max-width: 550px) {
+  .leftItem {
+    flex-direction: column-reverse;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  .rightItem {
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  .homeTeamName,
+  .awayTeamName {
+    margin: 0.5rem 0 0 0;
+    text-align: center;
+  }
+
+  .centerItem {
+    padding: 0 0.5rem;
+  }
+
+  .gameItemContainer {
+    height: fit-content;
+  }
 }
 </style>
