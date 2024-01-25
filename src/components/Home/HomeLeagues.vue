@@ -27,9 +27,9 @@ const selectLeague = (id) => {
 
 <style scoped>
 #leaguesContainer {
+  background-color: #ffffff;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
-  background-color: #ffffff;
   height: fit-content;
   overflow: hidden;
 }

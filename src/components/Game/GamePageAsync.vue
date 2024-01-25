@@ -1,25 +1,27 @@
 <template>
   <GameHeader :game="game" />
-  <div id="gameContainer">
-    <div id="mainColumn">
-      <GameScoreBoard :game="game" :events="events" />
-      <GameLineups
-        :game="game"
-        :hasLineups="hasLineups"
-        @selectPlayer="(playerID) => (selectedPlayer = playerID)"
-      />
-      <GameMatchStats :game="game" />
+  <main>
+    <div id="gameContainer">
+      <div id="mainColumn">
+        <GameScoreBoard :game="game" :events="events" />
+        <GameLineups
+          :game="game"
+          :hasLineups="hasLineups"
+          @selectPlayer="(playerID) => (selectedPlayer = playerID)"
+        />
+        <GameMatchStats :game="game" />
+      </div>
+      <div id="rightColumn">
+        <GamePlayerStats
+          id="playerContainer"
+          :game="game"
+          :selectedPlayer="selectedPlayer"
+          :hasLineups="hasLineups"
+        />
+        <GameEvents :game="game" :events="events" />
+      </div>
     </div>
-    <div id="rightColumn">
-      <GamePlayerStats
-        id="playerContainer"
-        :game="game"
-        :selectedPlayer="selectedPlayer"
-        :hasLineups="hasLineups"
-      />
-      <GameEvents :game="game" :events="events" />
-    </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -77,6 +79,16 @@ await getData();
   column-gap: 1rem;
   margin: auto;
   max-width: 79rem;
+}
+
+main {
+  margin: 1rem;
+}
+
+@media (max-width: 800px) {
+  main {
+    margin: 1rem 0;
+  }
 }
 
 @media (max-width: 82rem) {

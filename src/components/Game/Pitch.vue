@@ -14,7 +14,10 @@
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"
           >
-            <p :style="{ color: player.numberColor, fontWeight: 500 }">
+            <p
+              class="playerNumber"
+              :style="{ color: player.numberColor, fontWeight: 500 }"
+            >
               {{ player.number }}
             </p>
           </div>
@@ -50,7 +53,10 @@
             class="playerCircle"
             :style="{ 'background-color': player.kitColor }"
           >
-            <p :style="{ color: player.numberColor, fontWeight: 500 }">
+            <p
+              class="playerNumber"
+              :style="{ color: player.numberColor, fontWeight: 500 }"
+            >
               {{ player.number }}
             </p>
           </div>
@@ -199,8 +205,8 @@ defineProps({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 5rem;
-  width: 5rem;
+  height: 3rem;
+  width: 3rem;
   cursor: pointer;
   transition: 0.5s;
 }
@@ -339,6 +345,16 @@ defineProps({
     border-right: #0c9f67 6px solid;
     right: unset;
     transform: translate(0, 50%);
+  }
+
+  .playerCircle {
+    height: 2rem;
+    width: 2rem;
+    margin: 0.25rem;
+  }
+
+  .playerNumber {
+    font-size: small;
   }
 }
 </style>

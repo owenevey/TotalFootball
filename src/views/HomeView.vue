@@ -2,12 +2,14 @@
   <main>
     <div id="homeContainer">
       <HomeLeagues id="leaguesContainer" :leagues="leagues" />
+
       <Suspense>
         <HomeGamesAsync :leagues="leagues" />
         <template #fallback>
           <HomeGamesFallback />
         </template>
       </Suspense>
+      
       <HomeNews id="newsContainer" />
     </div>
   </main>

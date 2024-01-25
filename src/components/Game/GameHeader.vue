@@ -1,32 +1,33 @@
 <template>
   <div id="stickyHeader">
     <div id="headerContainer">
-      <div id="headerHomeTeam">
-        <h2 class="headerTeamName">{{ game.teams.home.name }}</h2>
-        <img class="headerTeamLogo" :src="game.teams.home.logo" />
+      <div id="homeTeamColumn">
+        <h2 id="homeTeamName">{{ game.teams.home.name }}</h2>
+        <img id="homeTeamLogo" :src="game.teams.home.logo" />
       </div>
 
-      <div id="headerScoreContainer">
-        <h1 id="headerScore" v-if="game.fixture.status.short !== 'NS'">
-          {{ game.goals.home }} - {{ game.goals.away }}
-        </h1>
-        <h1 id="headerScore" v-else>
-          {{
-            new Date(game.fixture.date).toLocaleTimeString("en-US", {
-              timeStyle: "short",
-            })
-          }}
-        </h1>
-        <p id="headerGameStatus">{{ game.fixture.status.long }}</p>
-      </div>
+        <div id="scoreColumn">
+          <h1 class="score" v-if="game.fixture.status.short !== 'NS'">
+            {{ game.goals.home }} - {{ game.goals.away }}
+          </h1>
+          <h1 class="score" v-else>
+            {{
+              new Date(game.fixture.date).toLocaleTimeString("en-US", {
+                timeStyle: "short",
+              })
+            }}
+          </h1>
+          <p id="gameStatus">{{ game.fixture.status.long }}</p>
+        </div>
 
-      <div id="headerAwayTeam">
-        <img class="headerTeamLogo" :src="game.teams.away.logo" />
-        <h2 class="headerTeamName">{{ game.teams.away.name }}</h2>
+      <div id="awayTeamColumn">
+        <img id="awayTeamLogo" :src="game.teams.away.logo" />
+        <h2 id="awayTeamName">{{ game.teams.away.name }}</h2>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 defineProps({
   game: Object,
@@ -62,55 +63,64 @@ function onScroll() {
 }
 
 #headerContainer {
-  height: 100%;
-  min-width: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-#headerHomeTeam {
+#homeTeamColumn {
   flex: 1;
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  text-align: right;
+  gap: 1rem;
 }
 
-#headerAwayTeam {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.headerTeamName {
+#homeTeamName, #awayTeamName {
   font-weight: 400;
+  margin: 0;
 }
 
-.headerTeamLogo {
+#homeTeamLogo, #awayTeamLogo {
   object-fit: contain;
   width: 3rem;
   height: 3rem;
-  padding: 1rem;
 }
 
-#headerScoreContainer {
-  padding: 0 1.5rem;
+#awayTeamColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+#scoreColumn {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  height: fit-content;
+  padding: 0 2rem;
 }
 
-#headerScore {
-  font-weight: 400;
-  margin: 0.5rem 0.5rem 0 0.5rem;
-}
-
-#headerGameStatus {
-  color: gray;
-  margin: 0.5rem;
+.score {
+  white-space: nowrap;
   text-align: center;
+  margin: 0;
+  font-weight: 400;
+}
+
+#gameStatus {
+  color: gray;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  #stickyHeader {
+    display: none;
+  }
 }
 </style>

@@ -35,9 +35,9 @@ const articles = {
 
 <style scoped>
 #newsContainer {
+  background-color: #ffffff;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
-  background-color: #ffffff;
   height: fit-content;
 }
 
@@ -52,10 +52,11 @@ const articles = {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 0rem 1rem 0.5rem 1rem;
+  gap: 1rem;
+  padding: 0rem 1rem 1rem 1rem;
 }
 
 #newsItemsContainer > * {
-  margin: 0 0.5rem 1rem 0.5rem;
+  margin: 0;
 }
 </style>

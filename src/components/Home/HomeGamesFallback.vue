@@ -187,7 +187,7 @@ function getCurrentDayString() {
     margin: 1.5rem 0.25rem 2.5rem 0.25rem;
   }
 
-  .leagueFlag {
+  .leagueFlagFallback {
     margin-left: 0.5rem;
   }
 }

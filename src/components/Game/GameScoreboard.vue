@@ -12,44 +12,55 @@
       </div>
       <div id="emptyTopRight"></div>
     </div>
+
     <div class="divider"></div>
+
     <div id="mainRow">
       <div id="homeTeamColumn">
         <h2 id="homeTeamName">{{ game.teams.home.name }}</h2>
+        <img id="homeTeamLogo" :src="game.teams.home.logo" />
+      </div>
+
+      <div id="scoreColumn">
+        <h1 class="score" v-if="game.fixture.status.short !== 'NS'">
+          {{ game.goals.home }} - {{ game.goals.away }}
+        </h1>
+        <h1 class="score" v-else>
+          {{
+            new Date(game.fixture.date).toLocaleTimeString("en-US", {
+              timeStyle: "short",
+            })
+          }}
+        </h1>
+        <p id="gameStatus">{{ game.fixture.status.long }}</p>
+      </div>
+
+      <div id="awayTeamColumn">
+        <img id="awayTeamLogo" :src="game.teams.away.logo" />
+        <h2 id="awayTeamName">{{ game.teams.away.name }}</h2>
+      </div>
+    </div>
+
+    <div id="goalsRow">
+      <div id="homeGoalsColumn">
         <div v-for="event in events">
           <p
             v-if="event.team === 'home' && event.type === 'Goal'"
-            class="scoreboardGoal"
+            class="awayScoreboardGoal"
           >
             {{ event.player.split(" ").slice(-1)[0] }}
             {{ event.time + "'" }}
           </p>
         </div>
       </div>
-      <div id="middleColumn">
-        <img id="homeTeamLogo" :src="game.teams.home.logo" />
-        <div id="scoreColumn">
-          <h1 class="score" v-if="game.fixture.status.short !== 'NS'">
-            {{ game.goals.home }} - {{ game.goals.away }}
-          </h1>
-          <h1 class="score" v-else>
-            {{
-              new Date(game.fixture.date).toLocaleTimeString("en-US", {
-                timeStyle: "short",
-              })
-            }}
-          </h1>
-          <p id="gameStatus">{{ game.fixture.status.long }}</p>
-        </div>
-        <img id="awayTeamLogo" :src="game.teams.away.logo" />
-      </div>
-      <div id="awayTeamColumn">
 
-        <h2 id="awayTeamName">{{ game.teams.away.name }}</h2>
+        <span id="dividerBallIcon" class="material-symbols-outlined"> sports_soccer </span>
+
+      <div id="awayGoalsColumn">
         <div v-for="event in events">
           <p
             v-if="event.team === 'away' && event.type === 'Goal'"
-            class="scoreboardGoal"
+            class="homeScoreboardGoal"
           >
             {{ event.player.split(" ").slice(-1)[0] }}
             {{ event.time + "'" }}
@@ -57,7 +68,9 @@
         </div>
       </div>
     </div>
-    <div class="divider"></div>
+
+    <div id="bottomRowDivider" class="divider"></div>
+
     <div id="bottomRow">
       <div class="bottomInfoItem">
         <span class="material-symbols-outlined"> event </span>
@@ -70,10 +83,12 @@
           }}
         </p>
       </div>
+
       <div class="bottomInfoItem">
         <span class="material-symbols-outlined"> stadium </span>
         <p id="venue">{{ game.fixture.venue.name }}</p>
       </div>
+
       <div class="bottomInfoItem">
         <span class="material-symbols-outlined"> sports </span>
         <p id="referee">{{ game.fixture.referee }}</p>
@@ -146,18 +161,20 @@ function goBack() {
   justify-content: center;
   align-items: center;
   flex: 1;
+  gap: 1rem;
+  margin: 0rem;
 }
 
 #leagueLogo {
   object-fit: contain;
   height: 2rem;
   width: 2rem;
-  margin: 0.5rem 1rem 0.5rem 0;
 }
 
 #leagueRound {
   color: black;
   font-size: smaller;
+  text-align: center;
 }
 
 #backContainer,
@@ -167,62 +184,40 @@ function goBack() {
 
 #mainRow {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 #homeTeamColumn {
   flex: 1;
-  text-align: right;
-  margin-top: 0.5rem;
-}
-
-#homeTeamNameRow {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: flex-end;
-}
-
-#homeTeamName {
-  font-weight: 400;
-  padding-left: 1rem;
-}
-
-#homeTeamLogo {
-  object-fit: contain;
-  width: 3rem;
-  height: 3rem;
-  padding-left: 1rem;
-}
-
-#awayTeamColumn {
-  flex: 1;
-  text-align: left;
-  margin-top: 0.5rem;
-}
-
-#awayTeamNameRow {
-  display: flex;
   align-items: center;
-  justify-content: flex-start;
+  gap: 1rem;
 }
 
+#homeTeamName,
 #awayTeamName {
   font-weight: 400;
-  padding-right: 1rem;
+  margin: 0;
 }
 
+#homeTeamLogo,
 #awayTeamLogo {
   object-fit: contain;
   width: 3rem;
   height: 3rem;
-  padding-right: 1rem;
 }
 
-#middleColumn {
+#awayTeamColumn {
+  flex: 1;
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
 }
 
 #scoreColumn {
@@ -235,19 +230,58 @@ function goBack() {
 
 .score {
   white-space: nowrap;
-  margin: 0.5rem 0.5rem 0 0.5rem;
   text-align: center;
+  margin: 0;
   font-weight: 400;
 }
 
 #gameStatus {
   color: gray;
-  margin: 0.5rem;
+  margin: 0;
   text-align: center;
 }
 
-.scoreboardGoal {
+#goalsRow {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+#homeGoalsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+}
+
+#awayGoalsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.homeScoreboardGoal {
   font-size: small;
+  color: gray;
+  text-align: right;
+  margin: 0.5rem 0;
+}
+
+.awayScoreboardGoal {
+  font-size: small;
+  color: gray;
+  text-align: left;
+  margin: 0.5rem 0;
+}
+
+
+#dividerBallIcon {
+  margin-top: 0.6rem;
+  font-size: medium;
   color: gray;
 }
 
@@ -262,12 +296,12 @@ function goBack() {
   justify-content: center;
   align-items: center;
   margin: 0 1rem;
+  gap: 0.5rem;
 }
 
 #date,
 #venue,
 #referee {
-  padding-left: 0.5rem;
   text-align: center;
   color: gray;
 }
@@ -284,5 +318,36 @@ function goBack() {
   background-color: #f5f5f5;
   width: 100%;
   height: 2px;
+}
+
+@media (max-width: 900px) {
+  #homeTeamColumn {
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+
+  #awayTeamColumn {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #scoreColumn {
+    padding: 0 0.5rem;
+  }
+
+  #goalsRow {
+    gap: 1.5rem;
+  }
+
+  #homeTeamName,
+  #awayTeamName {
+    font-size: medium;
+    text-align: center;
+  }
+
+  #bottomRow,
+  #bottomRowDivider {
+    display: none;
+  }
 }
 </style>
