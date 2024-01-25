@@ -6,8 +6,8 @@
 
 <script setup>
 import { RouterView } from 'vue-router'
-import SiteNavigation from "./components/SiteNavigation.vue"
-import BottomNav from './components/BottomNav.vue';
+import SiteNavigation from "./components/Navigation/SiteNavigation.vue"
+import BottomNav from './components/Navigation/BottomNav.vue';
 </script>
 
 <style>
@@ -21,7 +21,7 @@ body {
   font-family: "Jost", sans-serif;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   body {
     margin-bottom: 5rem;
   }

@@ -35,7 +35,7 @@ import LeagueGamesAsync from "../components/League/LeagueGamesAsync.vue";
 import LeagueGamesFallback from "../components/League/LeagueGamesFallback.vue";
 import LeagueTable from "../components/League/LeagueTable.vue";
 import LeagueTableFallback from "../components/League/LeagueTableFallback.vue";
-import BottomNav from "../components/BottomNav.vue";
+import BottomNav from "../components/Navigation/BottomNav.vue";
 
 const route = useRoute();
 const router = useRouter();

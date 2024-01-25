@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import BottomNav from "../components/BottomNav.vue";
+import BottomNav from "../components/Navigation/BottomNav.vue";
 
 import { useRouter } from "vue-router";
 import HomeLeagueItem from "../components/Home/HomeLeagueItem.vue";

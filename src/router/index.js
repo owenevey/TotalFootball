@@ -12,6 +12,7 @@ const router = createRouter({
     {
       path: "/:pathMatch(.*)*",
       component: HomeView,
+      // Do funny 404 message
     },
     {
       path: "/home",

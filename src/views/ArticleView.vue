@@ -17,7 +17,7 @@
   <BottomNav />
 </template>
 <script setup>
-import BottomNav from "../components/BottomNav.vue";
+import BottomNav from "../components/Navigation/BottomNav.vue";
 
 const text = [
   "In a thrilling soccer match that left fans on the edge of their seats, Cristiano Ronaldo showcased his unparalleled skill and goal-scoring prowess as he netted an impressive hat-trick against Uruguay. The match, held at the iconic stadium, unfolded into a spectacular display of football brilliance that will be etched in the memories of fans for years to come.",

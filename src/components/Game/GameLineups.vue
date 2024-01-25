@@ -190,6 +190,7 @@ if (hasLineups.value) {
 
 .lineupsCoachName {
   font-weight: 400;
+  margin: 0.5rem;
 }
 
 .lineupsFormation {
@@ -247,7 +248,7 @@ if (hasLineups.value) {
     flex-direction: column;
     justify-self: center;
     align-items: center;
-    margin: 1rem;
+    margin: 0 1rem 1rem 1rem;
   }
 }
 </style>

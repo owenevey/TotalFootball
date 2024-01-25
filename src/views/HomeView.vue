@@ -23,7 +23,7 @@ import HomeLeagues from "../components/Home/HomeLeagues.vue";
 import HomeGamesAsync from "../components/Home/HomeGamesAsync.vue";
 import HomeGamesFallback from "../components/Home/HomeGamesFallback.vue";
 import HomeNews from "../components/Home/HomeNews.vue";
-import BottomNav from "../components/BottomNav.vue";
+import BottomNav from "../components/Navigation/BottomNav.vue";
 
 const router = useRouter();
 const route = useRoute();

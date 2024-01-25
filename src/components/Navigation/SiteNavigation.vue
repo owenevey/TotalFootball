@@ -5,11 +5,8 @@
         <span id="leftBrandName">Total</span>Football
       </h1>
       <div id="navLinks">
-        <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
+        <RouterLink :to="{ name: 'news' }" style="text-decoration: none">
           <p class="navLink">News</p>
-        </RouterLink>
-        <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
-          <p class="navLink">Settings</p>
         </RouterLink>
         <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
           <p class="navLink">About</p>
@@ -37,7 +34,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 0 40px;
+  padding: 0 30px;
   margin-bottom: 0rem;
   border-bottom: 2px #f0f0f0 solid;
 }
@@ -57,7 +54,6 @@ nav {
 #leftBrandName {
   color: #00935c;
   font-style: italic;
-  font-size: xx-large;
 }
 
 .navLink {
@@ -68,9 +64,20 @@ nav {
   font-weight: 500;
 }
 
+@media (max-width: 900px) {
+  #brandingName {
+    font-size: x-large;
+    margin: 1rem 0;
+  }
+}
+
 @media (max-width: 550px) {
   #navLinks {
     display: none;
+  }
+
+  nav {
+    padding: 0 15px;
   }
 }
 </style>

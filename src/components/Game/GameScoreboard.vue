@@ -202,6 +202,7 @@ function goBack() {
 #awayTeamName {
   font-weight: 400;
   margin: 0;
+  padding: 0 0.5rem;
 }
 
 #homeTeamLogo,
@@ -343,6 +344,10 @@ function goBack() {
   #awayTeamName {
     font-size: medium;
     text-align: center;
+  }
+
+  #gameStatus {
+    font-size: small;
   }
 
   #bottomRow,

@@ -174,7 +174,7 @@ if (hasStats.value) {
 
 .statNumber {
   width: 2rem;
-  padding: 2rem;
+  padding: 1rem;
   color: black;
   text-align: center;
 }
