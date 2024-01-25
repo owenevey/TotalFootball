@@ -23,7 +23,7 @@ body {
 
 @media (max-width: 900px) {
   body {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
   }
 }
 </style>
