@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import NotFoundView from "../views/NotFoundView.vue"
+import AboutView from "../views/AboutView.vue"
 import HomeView from "../views/HomeView.vue";
 import GameView from "../views/GameView.vue";
 import LeagueView from "../views/LeagueView.vue";
@@ -11,8 +13,7 @@ const router = createRouter({
   routes: [
     {
       path: "/:pathMatch(.*)*",
-      component: HomeView,
-      // Do funny 404 message
+      component: NotFoundView,
     },
     {
       path: "/home",
@@ -43,6 +44,11 @@ const router = createRouter({
       path: "/news/article/:id",
       name: "article",
       component: ArticleView,
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: AboutView,
     },
   ],
 });

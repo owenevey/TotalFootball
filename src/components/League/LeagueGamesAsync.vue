@@ -122,7 +122,7 @@ await fetchGames(currentDate.value);
 #gamesContainer {
   flex: 2.5;
   background-color: #ffffff;
-  height: 20.4rem;
+  height: 100%;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
   box-sizing: border-box;
@@ -173,30 +173,24 @@ await fetchGames(currentDate.value);
 }
 
 #scrollContainer {
-  height: 16.0315rem;
+  height: calc(100% - 66px);
   width: 100%;
   overflow: scroll;
 }
 
 #gameItemsContainer {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 1rem;
-}
-
-#gameItemsContainer > * {
-  margin-top: 1rem;
-  width: 95%;
+  gap: 1rem;
+  margin: 1rem 1.5rem;
 }
 
 #noGamesContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10rem;
   width: 100%;
 }
 

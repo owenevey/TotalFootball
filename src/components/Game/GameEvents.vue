@@ -1,5 +1,5 @@
 <template>
-  <div id="eventsContainer">
+  <div class="eventsContainer">
     <h3 id="eventsTitle">Events</h3>
     <div class="divider"></div>
     <div id="teamsRow">
@@ -78,7 +78,7 @@ const { game } = toRefs(props);
 </script>
 
 <style scoped>
-#eventsContainer {
+.eventsContainer {
   height: fit-content;
   width: 100%;
   border-radius: 15px;

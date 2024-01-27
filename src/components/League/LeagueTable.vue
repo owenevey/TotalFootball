@@ -57,7 +57,6 @@ await fetchData(route.params.id);
   border: 2px #f0f0f0 solid;
   background-color: #ffffff;
   padding: 1rem;
-  margin-bottom: 1rem;
   box-sizing: border-box;
 }
 
@@ -118,17 +117,24 @@ p {
   color: gray;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
   .form {
     display: none;
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 800px) {
   .wins,
   .draws,
   .losses,
   .plusMinus {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .gamesPlayed,
+  .goalDifferential {
     display: none;
   }
 }

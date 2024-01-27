@@ -96,7 +96,6 @@ if (hasStats.value) {
 
 <style scoped>
 #matchStatsContainer {
-  margin-top: 1rem;
   padding-bottom: 1rem;
   background-color: #ffffff;
   border-radius: 15px;

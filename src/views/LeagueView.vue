@@ -57,6 +57,7 @@ main {
   align-items: center;
   max-width: 70rem;
   margin: auto;
+  gap: 1rem;
 }
 
 #topContainer {
@@ -65,12 +66,14 @@ main {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
+  height: 20.4rem;
+  gap: 1rem;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 900px) {
   #topContainer {
     flex-direction: column;
+    height: fit-content;
   }
 }
 

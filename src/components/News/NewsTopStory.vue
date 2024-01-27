@@ -2,7 +2,7 @@
   <div class="newsContainer">
     <img :src="'/news/' + imageName" />
     <div class="textContainer">
-      <h3>{{ title }}</h3>
+      <h1>{{ title }}</h1>
       <p>3 hrs ago</p>
     </div>
   </div>
@@ -17,19 +17,18 @@ defineProps({
 
 <style scoped>
 .newsContainer {
-  height: fit-content;
+  height: 20rem;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
-  border: 2px solid #f3f3f3;
-  border-radius: 10px;
   overflow: hidden;
+  background-color: #f5f5f5;
   box-sizing: border-box;
 }
 
-.newsContainer:hover h3 {
+.newsContainer:hover {
   text-decoration-line: underline;
 }
 
@@ -38,10 +37,10 @@ defineProps({
 }
 
 .textContainer {
-  padding: 0.5rem;
+  padding: 2rem;
 }
 
-h3 {
+h1 {
   font-weight: 400;
   margin: 0rem;
 }
@@ -49,12 +48,11 @@ h3 {
 p {
   color: gray;
   margin: 0rem;
-  font-size: small;
 }
 
 img {
   object-fit: cover;
-  width: 100%;
-  height: 10rem;
+  width: 50%;
+  height: 100%;
 }
 </style>

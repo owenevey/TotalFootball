@@ -1,20 +1,30 @@
 <template>
   <main>
-    <div id="newsGridContainer">
-      <HomeNewsItem
-        v-for="i in 20"
-        class="gridItem"
+    <div id="newsContainer">
+      <h1 id="newsTitle">News</h1>
+      <NewsTopStory
+        class="topStory"
         title="Newcastle thumps PSG in Group of Death Matchup"
         imageName="newcastle.jpg"
         @click="selectArticle()"
       />
+      <div id="newsGridContainer">
+        <NewsItem
+          v-for="i in 20"
+          class="gridItem"
+          title="Newcastle thumps PSG in Group of Death Matchup"
+          imageName="newcastle.jpg"
+          @click="selectArticle()"
+        />
+      </div>
     </div>
   </main>
   <BottomNav />
 </template>
 
 <script setup>
-import HomeNewsItem from "../components/Home/HomeNewsItem.vue";
+import NewsTopStory from "../components/News/NewsTopStory.vue";
+import NewsItem from "../components/News/NewsItem.vue";
 import BottomNav from "../components/Navigation/BottomNav.vue";
 
 import { useRouter } from "vue-router";
@@ -30,17 +40,27 @@ const selectArticle = () => {
 </script>
 
 <style scoped>
-#newsGridContainer {
+#newsTitle {
+  margin: 0;
+}
+
+#newsContainer {
   background-color: #ffffff;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
   max-width: 80rem;
   margin: auto;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#newsGridContainer {
   display: grid;
   gap: 1rem;
   grid-template-columns: auto auto auto auto;
-  padding: 1rem;
-  box-sizing: border-box;
 }
 
 .gridItem {
@@ -60,6 +80,10 @@ main {
 @media (max-width: 750px) {
   #newsGridContainer {
     grid-template-columns: auto auto;
+  }
+
+  .topStory {
+    display: none;
   }
 }
 

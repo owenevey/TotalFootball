@@ -6,10 +6,10 @@
       </h1>
       <div id="navLinks">
         <RouterLink :to="{ name: 'news' }" style="text-decoration: none">
-          <p class="navLink">News</p>
+          <p class="navLink news">News</p>
         </RouterLink>
-        <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
-          <p class="navLink">About</p>
+        <RouterLink :to="{ name: 'about' }" style="text-decoration: none">
+          <p class="navLink about">About</p>
         </RouterLink>
       </div>
     </nav>
@@ -58,10 +58,11 @@ nav {
 
 .navLink {
   display: inline;
-  padding: 10px;
+  padding: 20px;
   color: black;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 900px) {
@@ -72,8 +73,13 @@ nav {
 }
 
 @media (max-width: 550px) {
-  #navLinks {
+  .news {
     display: none;
+  }
+  .about {
+    padding: 15px;
+    font-weight: 600;
+    font-size: unset;
   }
 
   nav {

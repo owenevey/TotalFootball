@@ -111,17 +111,24 @@ defineProps({
   color: white;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
   .form {
     display: none;
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 800px) {
   .wins,
   .draws,
   .losses,
   .plusMinus {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .gamesPlayed,
+  .goalDifferential {
     display: none;
   }
 }

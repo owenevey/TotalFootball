@@ -43,6 +43,7 @@ defineProps({
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding: 0.25rem;
   box-sizing: border-box;
 }
 

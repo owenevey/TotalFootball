@@ -121,7 +121,6 @@ if (hasLineups.value) {
 
 <style scoped>
 #lineupsContainer {
-  margin-top: 1rem;
   background-color: #ffffff;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;

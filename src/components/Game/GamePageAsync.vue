@@ -10,6 +10,7 @@
           @selectPlayer="(playerID) => (selectedPlayer = playerID)"
         />
         <GameMatchStats :game="game" />
+        <GameEvents id="bottomEvents" :game="game" :events="events" />
       </div>
       <div id="rightColumn">
         <GamePlayerStats
@@ -81,8 +82,18 @@ await getData();
   max-width: 79rem;
 }
 
+#mainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 main {
   margin: 1rem;
+}
+
+#bottomEvents {
+  display: none;
 }
 
 @media (max-width: 800px) {
@@ -98,6 +109,10 @@ main {
 
   #rightColumn {
     display: none;
+  }
+
+  #bottomEvents {
+    display: flex;
   }
 }
 </style>
