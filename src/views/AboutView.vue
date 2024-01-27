@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="container">
-      <img src="owen.jpeg" />
+      <img src="/owen.jpeg" />
       <div id="textContainer">
         <h3>About Me</h3>
         <p>
