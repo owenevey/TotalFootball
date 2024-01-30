@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="articleContainer">
-      <img id="articleImage" src="../../public/news/ronaldo.jpg" />
+      <img id="articleImage" src="/news/ronaldo.jpg" />
       <div id="articleBody">
         <h2 id="articleTitle">Ronaldo nets hat trick in win vs Uruguay</h2>
         <p id="articleSubtext">

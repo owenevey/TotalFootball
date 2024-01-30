@@ -12,41 +12,45 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: "/totalfootball",
+      redirect: "/totalfootball/home",
+    },
+    {
       path: "/:pathMatch(.*)*",
       component: NotFoundView,
     },
     {
-      path: "/home",
+      path: "/totalfootball/home",
       name: "home",
       component: HomeView,
     },
     {
-      path: "/game/",
+      path: "/totalfootball/game/",
       name: "game",
       component: GameView,
     },
     {
-      path: "/league/:id",
+      path: "/totalfootball/league/:id",
       name: "league",
       component: LeagueView,
     },
     {
-      path: "/leagues",
+      path: "/totalfootball/leagues",
       name: "leagues",
       component: LeaguesView,
     },
     {
-      path: "/news",
+      path: "/totalfootball/news",
       name: "news",
       component: NewsView,
     },
     {
-      path: "/news/article/:id",
+      path: "/totalfootball/news/article/:id",
       name: "article",
       component: ArticleView,
     },
     {
-      path: "/about",
+      path: "/totalfootball/about",
       name: "about",
       component: AboutView,
     },
