@@ -54,55 +54,6 @@ const response = await docClient.send(command);
 articles.value = response.Items;
 console.log("Table Items:", response.Items);
 
-/////////////////
-
-// const testImage = ref(null);
-
-// import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
-
-// const s3_client = new S3Client({
-//   region: "us-east-1",
-//   credentials: {
-//     accessKeyId: "AKIA24CGRZVIGS5KDMH4",
-//     secretAccessKey: "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",
-//   },
-// });
-
-// const s3_command = new GetObjectCommand({
-//   Bucket: "owenevey-totalfootball",
-//   Key: "news/ronaldo.jpg",
-// });
-
-// const imageResponse = await s3_client.send(s3_command);
-
-// const readableStream = imageResponse.Body;
-
-// // Convert the ReadableStream to ArrayBuffer
-// const buffer = [];
-// const reader = readableStream.getReader();
-
-// while (true) {
-//   const { done, value } = await reader.read();
-
-//   if (done) break;
-
-//   buffer.push(value);
-// }
-
-// const arrayBuffer = new Uint8Array(
-//   buffer.reduce((acc, chunk) => [...acc, ...chunk], [])
-// ).buffer;
-
-// // Create a Blob from the ArrayBuffer
-// const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
-
-// // Create a data URL from the Blob
-// const dataUrl = URL.createObjectURL(blob);
-
-// // Set the dataUrl to the testImage ref
-// testImage.value = dataUrl;
-
-/////////////
 
 import { useRouter } from "vue-router";
 
