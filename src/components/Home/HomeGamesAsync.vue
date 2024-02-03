@@ -102,7 +102,7 @@ const fetchGames = async (date) => {
   for (const [name, id] of Object.entries(leagues.value)) {
     const result = await axios.get(
       `https://v3.football.api-sports.io/fixtures?season=2023&league=${id}&from=${date}&to=${date}`,
-      { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
+      { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
     );
     console.log(name, result);
     if (result.data.response.length > 0) {

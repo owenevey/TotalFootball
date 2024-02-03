@@ -45,7 +45,7 @@ const events = ref(null);
 const getData = async () => {
   const result = await axios.get(
     `https://v3.football.api-sports.io/fixtures?id=${route.query.id}`,
-    { headers: { "x-apisports-key": "40aeba2773c22a5e9fa2a99c765cd909" } }
+    { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
   );
   console.log("result", result);
   game.value = result.data.response[0];

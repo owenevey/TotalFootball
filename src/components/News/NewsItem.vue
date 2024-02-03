@@ -1,6 +1,6 @@
 <template>
   <div class="newsContainer">
-    <img :src="testImage" />
+    <img :src="imageFile" />
     <div class="textContainer">
       <h3>{{ title }}</h3>
       <p>3 hrs ago</p>
@@ -15,55 +15,50 @@ const props = defineProps({
 });
 
 import { ref, toRefs } from "vue";
-
-const { imageName } = toRefs(props);
-console.log(imageName.value, "J")
-
-const testImage = ref(null);
-
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 
-const s3_client = new S3Client({
-  region: "us-east-1",
-  credentials: {
-    accessKeyId: import.meta.env.VITE_APP_AWS_ACCESS_KEY_ID,
-    secretAccessKey: import.meta.env.VITE_APP_AWS_SECRET_ACCESS_KEY,
-  },
-});
+const imageFile = ref(null);
+const { imageName } = toRefs(props);
 
-const s3_command = new GetObjectCommand({
-  Bucket: "owenevey-totalfootball",
-  Key: `news/${imageName.value}`,
-});
+const fetchImage = async () => {
+  const s3_client = new S3Client({
+    region: "us-east-1",
+    credentials: {
+      accessKeyId: import.meta.env.VITE_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: import.meta.env.VITE_APP_AWS_SECRET_ACCESS_KEY,
+    },
+  });
 
-const imageResponse = await s3_client.send(s3_command);
+  const s3_command = new GetObjectCommand({
+    Bucket: "owenevey-totalfootball",
+    Key: `news/${imageName.value}`,
+  });
 
-const readableStream = imageResponse.Body;
+  const imageResponse = await s3_client.send(s3_command);
 
-// // Convert the ReadableStream to ArrayBuffer
-const buffer = [];
-const reader = readableStream.getReader();
+  const readableStream = imageResponse.Body;
 
-while (true) {
-  const { done, value } = await reader.read();
+  const buffer = [];
+  const reader = readableStream.getReader();
 
-  if (done) break;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer.push(value);
+  }
 
-  buffer.push(value);
-}
+  const arrayBuffer = new Uint8Array(
+    buffer.reduce((acc, chunk) => [...acc, ...chunk], [])
+  ).buffer;
 
-const arrayBuffer = new Uint8Array(
-  buffer.reduce((acc, chunk) => [...acc, ...chunk], [])
-).buffer;
+  const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
 
-// // Create a Blob from the ArrayBuffer
-const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
+  const dataUrl = URL.createObjectURL(blob);
 
-// // Create a data URL from the Blob
-const dataUrl = URL.createObjectURL(blob);
+  imageFile.value = dataUrl;
+};
 
-// // Set the dataUrl to the testImage ref
-testImage.value = dataUrl;
+await fetchImage();
 </script>
 
 <style scoped>

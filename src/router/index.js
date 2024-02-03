@@ -49,7 +49,7 @@ const router = createRouter({
       component: NewsView,
     },
     {
-      path: "/totalfootball/news/article/:id",
+      path: "/totalfootball/news/article/:id/:img",
       name: "article",
       component: ArticleView,
     },

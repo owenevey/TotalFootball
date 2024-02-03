@@ -12,9 +12,9 @@
         <NewsItem
           v-for="article in articles"
           class="gridItem"
-          title="Newcastle thumps PSG in Group of Death Matchup"
+          :title="article.title"
           :imageName="article.imageName"
-          @click="selectArticle()"
+          @click="selectArticle(article)"
         />
       </div>
     </div>
@@ -31,38 +31,38 @@ import { ref } from "vue";
 
 const articles = ref(null);
 
-/////////////////
-
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
 
-const client = new DynamoDBClient({
-  region: "us-east-1",
-  credentials: {
-    accessKeyId: import.meta.env.VITE_APP_AWS_ACCESS_KEY_ID,
-    secretAccessKey: import.meta.env.VITE_APP_AWS_SECRET_ACCESS_KEY,
-  },
-});
+const fetchArticles = async () => {
+  const client = new DynamoDBClient({
+    region: "us-east-1",
+    credentials: {
+      accessKeyId: import.meta.env.VITE_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: import.meta.env.VITE_APP_AWS_SECRET_ACCESS_KEY,
+    },
+  });
 
-const docClient = DynamoDBDocumentClient.from(client);
+  const docClient = DynamoDBDocumentClient.from(client);
 
-const command = new ScanCommand({
-  TableName: "TotalFootball-News",
-});
+  const command = new ScanCommand({
+    TableName: "TotalFootball-News",
+  });
 
-const response = await docClient.send(command);
-articles.value = response.Items;
-console.log("Table Items:", response.Items);
+  const response = await docClient.send(command);
+  articles.value = response.Items;
+};
 
+await fetchArticles();
 
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const selectArticle = () => {
+const selectArticle = (article) => {
   router.push({
     name: "article",
-    params: { id: 2 },
+    params: { id: article.id, img: article.imageName.slice(0, -4) },
   });
 };
 </script>
