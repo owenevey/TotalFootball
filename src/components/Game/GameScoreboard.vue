@@ -269,7 +269,7 @@ function goBack() {
   font-size: small;
   color: gray;
   text-align: right;
-  margin: 0.5rem 0;
+  margin: 0.15rem 0;
 }
 
 .awayScoreboardGoal {

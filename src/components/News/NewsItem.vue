@@ -1,58 +1,108 @@
 <template>
-    <div class="newsContainer">
-      <img :src="'/news/' + imageName" />
-      <div class="textContainer">
-        <h3>{{ title }}</h3>
-        <p>3 hrs ago</p>
-      </div>
+  <div class="newsContainer">
+    <img :src="testImage" />
+    <div class="textContainer">
+      <h3>{{ title }}</h3>
+      <p>3 hrs ago</p>
     </div>
-  </template>
-  
-  <script setup>
-  defineProps({
-    title: String,
-    imageName: String,
-  });
-  </script>
-  
-  <style scoped>
-  .newsContainer {
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    cursor: pointer;
-    box-sizing: border-box;
-  }
-  
-  .newsContainer:hover {
-    text-decoration-line: underline;
-  }
+  </div>
+</template>
 
-  .newsContainer:hover img {
-    opacity: 0.5;
-  }
-  
-  .textContainer {
-    padding: 0.5rem;
-  }
-  
-  h3 {
-    font-weight: 400;
-    margin: 0rem;
-  }
-  
-  p {
-    color: gray;
-    margin: 0rem;
-    font-size: small;
-  }
-  
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 10rem;
-  }
-  </style>
-  
+<script setup>
+const props = defineProps({
+  title: String,
+  imageName: String,
+});
+
+import { ref, toRefs } from "vue";
+
+const { imageName } = toRefs(props);
+console.log(imageName.value, "J")
+
+const testImage = ref(null);
+
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+
+const s3_client = new S3Client({
+  region: "us-east-1",
+  credentials: {
+    accessKeyId: "AKIA24CGRZVIGS5KDMH4",
+    secretAccessKey: "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",
+  },
+});
+
+const s3_command = new GetObjectCommand({
+  Bucket: "owenevey-totalfootball",
+  Key: `news/${imageName.value}`,
+});
+
+const imageResponse = await s3_client.send(s3_command);
+
+const readableStream = imageResponse.Body;
+
+// Convert the ReadableStream to ArrayBuffer
+const buffer = [];
+const reader = readableStream.getReader();
+
+while (true) {
+  const { done, value } = await reader.read();
+
+  if (done) break;
+
+  buffer.push(value);
+}
+
+const arrayBuffer = new Uint8Array(
+  buffer.reduce((acc, chunk) => [...acc, ...chunk], [])
+).buffer;
+
+// Create a Blob from the ArrayBuffer
+const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
+
+// Create a data URL from the Blob
+const dataUrl = URL.createObjectURL(blob);
+
+// Set the dataUrl to the testImage ref
+testImage.value = dataUrl;
+</script>
+
+<style scoped>
+.newsContainer {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.newsContainer:hover {
+  text-decoration-line: underline;
+}
+
+.newsContainer:hover img {
+  opacity: 0.5;
+}
+
+.textContainer {
+  padding: 0.5rem;
+}
+
+h3 {
+  font-weight: 400;
+  margin: 0rem;
+}
+
+p {
+  color: gray;
+  margin: 0rem;
+  font-size: small;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 10rem;
+}
+</style>
