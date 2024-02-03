@@ -194,7 +194,7 @@ await fetchGames(currentDate.value);
   justify-content: flex-start;
   align-items: center;
   margin: 1.5rem 1.5rem 2.5rem 1.5rem;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .leagueTitleRow {

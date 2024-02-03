@@ -39,8 +39,8 @@ import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
 const client = new DynamoDBClient({
   region: "us-east-1",
   credentials: {
-    accessKeyId: "AKIA24CGRZVIGS5KDMH4",
-    secretAccessKey: "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",
+    accessKeyId: import.meta.env.VITE_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: import.meta.env.VITE_APP_AWS_SECRET_ACCESS_KEY,
   },
 });
 

@@ -26,8 +26,8 @@ import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 const s3_client = new S3Client({
   region: "us-east-1",
   credentials: {
-    accessKeyId: "AKIA24CGRZVIGS5KDMH4",
-    secretAccessKey: "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",
+    accessKeyId: import.meta.env.VITE_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: import.meta.env.VITE_APP_AWS_SECRET_ACCESS_KEY,
   },
 });
 
@@ -40,7 +40,7 @@ const imageResponse = await s3_client.send(s3_command);
 
 const readableStream = imageResponse.Body;
 
-// Convert the ReadableStream to ArrayBuffer
+// // Convert the ReadableStream to ArrayBuffer
 const buffer = [];
 const reader = readableStream.getReader();
 
@@ -56,13 +56,13 @@ const arrayBuffer = new Uint8Array(
   buffer.reduce((acc, chunk) => [...acc, ...chunk], [])
 ).buffer;
 
-// Create a Blob from the ArrayBuffer
+// // Create a Blob from the ArrayBuffer
 const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
 
-// Create a data URL from the Blob
+// // Create a data URL from the Blob
 const dataUrl = URL.createObjectURL(blob);
 
-// Set the dataUrl to the testImage ref
+// // Set the dataUrl to the testImage ref
 testImage.value = dataUrl;
 </script>
 

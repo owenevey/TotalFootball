@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router'
-import SiteNavigation from "./components/Navigation/SiteNavigation.vue"
-import BottomNav from './components/Navigation/BottomNav.vue';
+import { RouterView } from "vue-router";
+import SiteNavigation from "./components/Navigation/SiteNavigation.vue";
+import BottomNav from "./components/Navigation/BottomNav.vue";
 </script>
 
 <style>

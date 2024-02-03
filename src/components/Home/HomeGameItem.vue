@@ -42,6 +42,7 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1.5rem;
   cursor: pointer;
   padding: 0.25rem;
   box-sizing: border-box;
@@ -68,7 +69,7 @@ defineProps({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 1.5rem;
+  width: 2rem;
 }
 
 .centerItem > * {
@@ -77,6 +78,10 @@ defineProps({
   white-space: nowrap;
   text-align: center;
   font-weight: 500;
+}
+
+.time {
+  white-space: unset;
 }
 
 .rightItem {
@@ -99,6 +104,36 @@ defineProps({
 }
 
 @media (max-width: 550px) {
+
+  .homeTeamName,
+  .awayTeamName {
+    font-size: small;
+  }
+
+  .teamLogo {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.leftItem, .rightItem {
+  gap: 0.5rem;
+}
+
+.score, .time {
+  font-size: small;
+}
+
+.status {
+  font-size: x-small;
+  display: none;
+}
+
+  .gameItemContainer {
+    gap: 1rem;
+  }
+}
+
+/* @media (max-width: 550px) {
   .leftItem {
     flex-direction: column-reverse;
     gap: 0;
@@ -124,5 +159,5 @@ defineProps({
   .gameItemContainer {
     height: fit-content;
   }
-}
+} */
 </style>
