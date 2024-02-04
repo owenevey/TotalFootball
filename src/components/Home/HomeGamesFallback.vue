@@ -19,7 +19,6 @@
       </div>
       <div class="homeGameItemFallback shimmer"></div>
       <div class="homeGameItemFallback shimmer"></div>
-      <div class="homeGameItemFallback shimmer"></div>
     </div>
 
     <div class="leagueContainer">
@@ -43,10 +42,8 @@
 </template>
 
 <script setup>
-
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
 
 const router = useRouter();
 const route = useRoute();
@@ -113,7 +110,6 @@ const fetchNextDay = () => {
     query: { date: getDifferentDate(+1) },
   });
 };
-
 </script>
 
 <style scoped>
@@ -141,6 +137,7 @@ const fetchNextDay = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .material-symbols-outlined {
@@ -177,7 +174,7 @@ const fetchNextDay = () => {
   gap: 0.5rem;
 }
 
-.leagueTitleRow{
+.leagueTitleRow {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -200,9 +197,9 @@ const fetchNextDay = () => {
 }
 
 .homeGameItemFallback {
-height: 4rem;
-width: 100%;
-border-radius: 15px;
+  height: 4rem;
+  width: 100%;
+  border-radius: 15px;
 }
 
 @media (max-width: 420px) {

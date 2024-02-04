@@ -1,6 +1,7 @@
 <template>
   <div class="outerContainer">
     <div class="tableContainer">
+
       <div class="headerRow">
         <div class="teamInfo">
           <p class="rank">#</p>
@@ -16,13 +17,20 @@
           <p class="goalDifferential">GD</p>
           <p class="points">PTS</p>
         </div>
-        <div class="form"><p>Form</p></div>
+        <div class="form">
+          <p>Form</p>
+        </div>
       </div>
-      <div class="fallbackTableRow" v-for="i in 20">
-        <div class="fallbackTeamInfo shimmer"></div>
-        <div class="fallbackStats shimmer"></div>
-        <div class="fallbackForm shimmer"></div>
+
+      <div v-for="i in 20" class="headerRow">
+        <div class="teamInfo">
+          <div class="teamInfoFallback shimmer"></div>
+        </div>
+
+        <div class="statsFallback shimmer"></div>
+        <div class="formFallback shimmer"></div>
       </div>
+
     </div>
   </div>
 </template>
@@ -32,6 +40,7 @@
 <style scoped>
 .outerContainer {
   width: 100%;
+  min-width: fit-content;
 }
 
 .tableContainer {
@@ -42,7 +51,6 @@
   border: 2px #f0f0f0 solid;
   background-color: #ffffff;
   padding: 1rem;
-  margin-bottom: 1rem;
   box-sizing: border-box;
 }
 
@@ -52,83 +60,87 @@
   margin: 0.25rem 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .teamInfo {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
 }
 
 .rank {
-  width: 2rem;
-  margin: 0 0.5rem;
+  width: 1.5rem;
+  margin: 0;
   text-align: center;
 }
 
 .logo {
+  object-fit: contain;
   width: 1.33rem;
   height: 1.33rem;
-  margin: 0 1rem;
+  margin: 0;
 }
 
 .teamName {
-  text-align: start;
-  width: 12rem;
-  margin: 0 0.5rem;
+  text-align: left;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .stats {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
 }
 
 .stats > * {
   text-align: center;
-  margin: 0.25rem;
-  width: 3rem;
+  margin: 0;
+  width: 1.5rem;
   white-space: nowrap;
+}
+
+.plusMinus {
+  width: 3rem;
 }
 
 .form {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 11.65rem;
+  width: 10.7rem;
 }
 
-p {
+.form > p {
+  text-align: left;
+}
+
+.teamInfo > p,
+.stats > p,
+.form > p {
   color: gray;
 }
 
-.fallbackTableRow {
-  width: 100%;
-  height: 1.5rem;
-  margin: 0.25rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.teamInfoFallback {
+  height: 1.33rem;
+  width: 18rem;
+  border-radius: 3px;
 }
 
-.fallbackTeamInfo {
-  height: 100%;
-  width: 19rem;
-  margin-left: 0.75rem;
-  border-radius: 5px;
+.statsFallback {
+  height: 1.33rem;
+  width: 21rem;
+  border-radius: 3px;
 }
 
-.fallbackStats {
-  height: 100%;
-  width: 24rem;
-  border-radius: 5px;
-}
-
-.fallbackForm {
-  height: 100%;
-  width: 11.6rem;
-  border-radius: 5px;
+.formFallback {
+  height: 1.33rem;
+  width: 10.7rem;
+  border-radius: 3px;
 }
 
 .shimmer {
@@ -144,13 +156,13 @@ p {
   }
 }
 
-@media (max-width: 1100px) {
-  .fallbackForm, .form {
+@media (max-width: 950px) {
+  .form, .formFallback {
     display: none;
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 700px) {
   .wins,
   .draws,
   .losses,
@@ -158,8 +170,23 @@ p {
     display: none;
   }
 
-  .fallbackStats {
-    width: 10.5rem;
+  .statsFallback {
+    width: 7.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gamesPlayed,
+  .goalDifferential {
+    display: none;
+  }
+
+  .statsFallback {
+    width: 2rem;
+  }
+
+  .teamInfoFallback {
+    width: 12rem;
   }
 }
 </style>

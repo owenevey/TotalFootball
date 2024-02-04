@@ -37,7 +37,7 @@ const fetchArticles = async () => {
   });
 
   const response = await docClient.send(command);
-  articles.value = response.Items;
+  articles.value = response.Items.sort(() => 0.5 - Math.random());;
 };
 
 const router = useRouter();

@@ -39,7 +39,7 @@ const fetchArticles = async () => {
   });
 
   const response = await docClient.send(command);
-  articles.value = response.Items;
+  articles.value = response.Items.sort(() => 0.5 - Math.random());
 };
 
 await fetchArticles();
@@ -57,19 +57,17 @@ const selectArticle = (article) => {
 </script>
 
 <style scoped>
-#newsTitle {
-  margin: 0;
-  font-weight: 500;
-}
-
 #newsContainer {
-  width: 98%;
+  width: 100%;
   margin: auto;
-  box-sizing: border-box;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+#newsTitle {
+  margin: 0;
+  font-weight: 500;
 }
 
 #newsGridContainer {
@@ -82,11 +80,7 @@ const selectArticle = (article) => {
   width: 100%;
 }
 
-main {
-  margin: 1rem;
-}
-
-@media (max-width: 1200px) {
+@media (max-width: 1150px) {
   #newsGridContainer {
     grid-template-columns: auto auto auto;
   }
@@ -95,10 +89,6 @@ main {
 @media (max-width: 750px) {
   #newsGridContainer {
     grid-template-columns: auto auto;
-  }
-
-  .topStory {
-    display: none;
   }
 }
 
@@ -109,8 +99,8 @@ main {
 }
 
 @media (max-width: 800px) {
-  main {
-    margin: 1rem 0;
+  #newsContainer {
+    width: calc(100% - 2rem);
   }
 }
 </style>

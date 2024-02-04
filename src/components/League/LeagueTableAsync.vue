@@ -16,7 +16,9 @@
           <p class="goalDifferential">GD</p>
           <p class="points">PTS</p>
         </div>
-        <div class="form"><p>Form</p></div>
+        <div class="form">
+          <p>Form</p>
+        </div>
       </div>
       <LeagueTableRow v-for="team in group" :team="team" />
     </div>
@@ -36,7 +38,9 @@ const leagueStandings = ref(null);
 const fetchData = async (id) => {
   const result = await axios.get(
     `https://v3.football.api-sports.io/standings?league=${id}&season=2023`,
-    { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
+    {
+      headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
+    }
   );
   leagueStandings.value = result.data.response[0].league.standings;
 };
@@ -47,6 +51,7 @@ await fetchData(route.params.id);
 <style scoped>
 .outerContainer {
   width: 100%;
+  min-width: fit-content;
 }
 
 .tableContainer {
@@ -66,64 +71,78 @@ await fetchData(route.params.id);
   margin: 0.25rem 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .teamInfo {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
 }
 
 .rank {
-  width: 2rem;
-  margin: 0 0.5rem;
+  width: 1.5rem;
+  margin: 0;
   text-align: center;
 }
 
 .logo {
+  object-fit: contain;
   width: 1.33rem;
   height: 1.33rem;
-  margin: 0 1rem;
+  margin: 0;
 }
 
 .teamName {
-  text-align: start;
-  width: 12rem;
-  margin: 0 0.5rem;
+  text-align: left;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .stats {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
 }
 
 .stats > * {
   text-align: center;
-  margin: 0.25rem;
-  width: 3rem;
+  margin: 0;
+  width: 1.5rem;
   white-space: nowrap;
+}
+
+.plusMinus {
+  width: 3rem;
 }
 
 .form {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 11.65rem;
+  width: 10.7rem;
 }
 
-p {
+.form > p {
+  text-align: left;
+}
+
+.teamInfo > p,
+.stats > p,
+.form > p {
   color: gray;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
   .form {
     display: none;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .wins,
   .draws,
   .losses,
@@ -132,7 +151,7 @@ p {
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 480px) {
   .gamesPlayed,
   .goalDifferential {
     display: none;

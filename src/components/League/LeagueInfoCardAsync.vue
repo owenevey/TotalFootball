@@ -1,7 +1,7 @@
 <template>
   <div id="leagueInfoContainer">
     <div class="infoRow">
-      <img class="infoImage" :src="leagueData.logo" />
+        <img class="leagueImage" :src="leagueData.logo" />
       <div>
         <h4 class="secondaryText">League</h4>
         <h2 class="primaryText">{{ leagueData.name }}</h2>
@@ -9,8 +9,8 @@
     </div>
 
     <div class="infoRow">
-      <img v-if="leagueData.flag" class="infoImage" :src="leagueData.flag" />
-      <span v-else class="infoImage material-symbols-outlined"> public </span>
+        <img v-if="leagueData.flag" class="flagImage" :src="leagueData.flag" />
+        <span v-else class="sizeImage material-symbols-outlined"> public </span>
       <div>
         <h4 class="secondaryText">Country</h4>
         <h2 class="primaryText">{{ leagueData.country }}</h2>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="infoRow">
-      <span class="infoImage material-symbols-outlined"> groups </span>
+        <span class="sizeImage material-symbols-outlined"> groups </span>
       <div>
         <h4 class="secondaryText">Size</h4>
         <h2 class="primaryText">
@@ -41,7 +41,9 @@ const route = useRoute();
 const fetchData = async (id) => {
   const result = await axios.get(
     `https://v3.football.api-sports.io/standings?league=${id}&season=2023`,
-    { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
+    {
+      headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
+    }
   );
   leagueData.value = result.data.response[0].league;
 };
@@ -61,7 +63,7 @@ await fetchData(route.params.id);
   gap: 2rem;
   padding: 1.5rem;
   height: 100%;
-  /* min-width: 15rem; */
+  min-width: fit-content;
   box-sizing: border-box;
 }
 
@@ -72,14 +74,21 @@ await fetchData(route.params.id);
   align-items: center;
 }
 
-.infoImage {
+.leagueImage {
   object-fit: contain;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
-.material-symbols-outlined {
-  font-size: 3rem;
+.flagImage {
+  object-fit: cover;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+.sizeImage {
+  font-size: 2.5rem;
 }
 
 .secondaryText {
@@ -95,9 +104,9 @@ await fetchData(route.params.id);
 
 @media (max-width: 900px) {
   #leagueInfoContainer {
-    width: 100%;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .infoRow {

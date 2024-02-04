@@ -3,11 +3,12 @@
     <div id="leagueContainer">
       <div id="topContainer">
         <Suspense>
-          <LeagueInfoCard />
+          <LeagueInfoCardAsync />
           <template #fallback>
             <LeagueInfoCardFallbackVue />
           </template>
         </Suspense>
+
         <Suspense>
           <LeagueGamesAsync />
           <template #fallback>
@@ -15,19 +16,21 @@
           </template>
         </Suspense>
       </div>
+
       <Suspense>
-        <LeagueTable />
+        <LeagueTableAsync />
         <template #fallback>
           <LeagueTableFallback />
         </template>
       </Suspense>
-    </div>
-    <Suspense>
+
+      <Suspense>
         <BottomNews />
         <template #fallback>
           <div></div>
         </template>
       </Suspense>
+    </div>
   </main>
   <BottomNav />
 </template>
@@ -35,11 +38,11 @@
 <script setup>
 import { watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import LeagueInfoCard from "../components/League/LeagueInfoCard.vue";
+import LeagueInfoCardAsync from "../components/League/LeagueInfoCardAsync.vue";
 import LeagueInfoCardFallbackVue from "../components/League/LeagueInfoCardFallback.vue";
 import LeagueGamesAsync from "../components/League/LeagueGamesAsync.vue";
 import LeagueGamesFallback from "../components/League/LeagueGamesFallback.vue";
-import LeagueTable from "../components/League/LeagueTable.vue";
+import LeagueTableAsync from "../components/League/LeagueTableAsync.vue";
 import LeagueTableFallback from "../components/League/LeagueTableFallback.vue";
 import BottomNav from "../components/Navigation/BottomNav.vue";
 import BottomNews from "../components/BottomNews.vue";
@@ -73,7 +76,7 @@ main {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 20.4rem;
+  height: 18.9rem;
   gap: 1rem;
 }
 

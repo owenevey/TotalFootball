@@ -46,18 +46,20 @@ defineProps({
   margin: 0.25rem 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .teamInfo {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
 }
 
 .rank {
-  width: 2rem;
-  margin: 0 0.5rem;
+  width: 1.5rem;
+  margin: 0;
   text-align: center;
 }
 
@@ -65,13 +67,12 @@ defineProps({
   object-fit: contain;
   width: 1.33rem;
   height: 1.33rem;
-  margin: 0 1rem;
+  margin: 0;
 }
 
 .teamName {
-  text-align: start;
-  width: 12rem;
-  margin: 0 0.5rem;
+  text-align: left;
+  margin: 0;
   white-space: nowrap;
 }
 
@@ -79,20 +80,26 @@ defineProps({
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
 }
 
 .stats > * {
   text-align: center;
-  margin: 0.25rem;
-  width: 3rem;
+  margin: 0;
+  width: 1.5rem;
   white-space: nowrap;
+}
+
+.plusMinus {
+  width: 3rem;
 }
 
 .form {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 11.65rem;
+  width: 10.7rem;
+  gap: 1rem;
 }
 
 .formSquare {
@@ -102,22 +109,21 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
 }
 
 .formText {
   text-align: center;
-  font-size: small;
+  font-size: 0.8rem;
   color: white;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
   .form {
     display: none;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .wins,
   .draws,
   .losses,
@@ -126,7 +132,7 @@ defineProps({
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 480px) {
   .gamesPlayed,
   .goalDifferential {
     display: none;

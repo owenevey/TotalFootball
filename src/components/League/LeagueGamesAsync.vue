@@ -86,7 +86,9 @@ function getDifferentDate(dayOffset) {
 const fetchGames = async (date) => {
   const result = await axios.get(
     `https://v3.football.api-sports.io/fixtures?season=2023&league=${route.params.id}&from=${date}&to=${date}`,
-    { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
+    {
+      headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
+    }
   );
   gameData.value = result.data.response;
   console.log(result.data.response);
@@ -120,9 +122,11 @@ await fetchGames(currentDate.value);
 
 <style scoped>
 #gamesContainer {
-  flex: 2.5;
+  flex: 1;
   background-color: #ffffff;
   height: 100%;
+  width: 100%;
+  min-width: fit-content;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
   box-sizing: border-box;
@@ -145,6 +149,7 @@ await fetchGames(currentDate.value);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .material-symbols-outlined {
@@ -163,11 +168,12 @@ await fetchGames(currentDate.value);
 
 #dateTitle {
   font-weight: 500;
+  white-space: nowrap;
   margin: 0;
 }
 
 .divider {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
   width: 100%;
   height: 2px;
 }
@@ -175,7 +181,7 @@ await fetchGames(currentDate.value);
 #scrollContainer {
   height: calc(100% - 66px);
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 #gameItemsContainer {
@@ -183,8 +189,8 @@ await fetchGames(currentDate.value);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
-  margin: 1rem 1.5rem;
+  margin: 1rem;
+  gap: 0.5rem;
 }
 
 #noGamesContainer {
@@ -198,9 +204,9 @@ await fetchGames(currentDate.value);
   font-weight: 400;
 }
 
-@media (max-width: 1100px) {
-  #gamesContainer {
-    width: 100%;
+@media (max-width: 420px) {
+  #gameItemsContainer {
+    margin: 1rem 0.5rem;
   }
 }
 </style>

@@ -1,26 +1,26 @@
 <template>
   <div id="leagueInfoContainer">
-    <div id="rowsContainer">
-      <div class="infoRow">
-        <div class="infoImage shimmer"></div>
-        <div>
-          <h4 class="secondaryText">League</h4>
-          <div class="primaryText shimmer"></div>
-        </div>
+    <div class="infoRow">
+      <div class="infoImageFallback shimmer"></div>
+      <div>
+        <div class="secondaryTextFallback shimmer"></div>
+        <div class="primaryTextFallback shimmer"></div>
       </div>
-      <div class="infoRow">
-        <div class="infoImage shimmer"></div>
-        <div>
-          <h4 class="secondaryText">Country</h4>
-          <div class="primaryText shimmer"></div>
-        </div>
+    </div>
+
+    <div class="infoRow">
+      <div class="infoImageFallback shimmer"></div>
+      <div>
+        <div class="secondaryTextFallback shimmer"></div>
+        <div class="primaryTextFallback shimmer"></div>
       </div>
-      <div class="infoRow">
-        <div class="infoImage shimmer"></div>
-        <div>
-          <h4 class="secondaryText">Size</h4>
-          <div class="primaryText shimmer"></div>
-        </div>
+    </div>
+
+    <div class="infoRow">
+      <div class="infoImageFallback shimmer"></div>
+      <div>
+        <div class="secondaryTextFallback shimmer"></div>
+        <div class="primaryTextFallback shimmer"></div>
       </div>
     </div>
   </div>
@@ -31,54 +31,81 @@
 
 <style scoped>
 #leagueInfoContainer {
-  flex: 1;
+  background-color: #ffffff;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
-  background-color: #ffffff;
-  height: 20.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 1rem;
-  box-sizing: border-box;
-}
-
-#rowsContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.5rem;
+  height: 100%;
+  min-width: fit-content;
+  box-sizing: border-box;
 }
 
 .infoRow {
-  flex: 1;
-  margin: 1.5rem;
+  gap: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.infoImage {
-  width: 3rem;
-  height: 3rem;
-  margin-right: 1rem;
-  border-radius: 15px;
+.infoImageFallback {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
 }
 
-.material-symbols-outlined {
-  font-size: 3rem;
-}
-
-.secondaryText {
-  font-weight: 400;
-  color: gray;
-  margin: 0;
-}
-
-.primaryText {
-  width: 7rem;
-  height: 1.5rem;
-  margin: 0;
+.secondaryTextFallback {
+  height: 1rem;
+  width: 4rem;
+  margin: 0.25rem;
   border-radius: 5px;
+}
+
+.primaryTextFallback {
+  height: 1.5rem;
+  width: 8rem;
+  margin: 0.25rem;
+  border-radius: 5px;
+}
+
+@media (max-width: 900px) {
+  #leagueInfoContainer {
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    min-width: fit-content;
+  }
+
+  .infoRow {
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 0;
+  }
+
+  .primaryTextFallback {
+    width: 5rem;
+  }
+
+  .secondaryTextFallback {
+    width: 3rem;
+  }
+
+  .primaryTextFallback,
+  .secondaryTextFallback {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 450px) {
+  .primaryText {
+    font-size: large;
+  }
 }
 
 .shimmer {
@@ -91,31 +118,6 @@
 @keyframes shimmer {
   to {
     background-position-x: 0%;
-  }
-}
-
-@media (max-width: 1000px) {
-  #leagueInfoContainer {
-    margin-right: unset;
-    margin-bottom: 1rem;
-    width: 100%;
-  }
-
-  #rowsContainer {
-    flex-direction: row;
-    justify-content: space-between;
-    min-width: 90%;
-  }
-}
-
-@media (max-width: 800px) {
-  .infoRow {
-    /* width: fit-content; */
-  }
-  #rowsContainer {
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: unset;
   }
 }
 </style>

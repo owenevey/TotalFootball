@@ -1,32 +1,33 @@
 <template>
   <div id="gamesContainer">
     <div id="dateRow">
-      <div id="previousDay">
+      <div id="previousDay" @click="fetchPreviousDay()">
         <span class="material-symbols-outlined">chevron_left</span>
       </div>
       <h3 id="dateTitle">{{ currentDateString }}</h3>
-      <div id="nextDay">
+      <div id="nextDay" @click="fetchNextDay()">
         <span class="material-symbols-outlined">chevron_right</span>
       </div>
     </div>
     <div class="divider"></div>
-    <div id="gameItemsContainer">
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
-      <div class="fallbackGameItem shimmer"></div>
+    <div id="scrollContainer">
+      <div id="gameItemsContainer">
+        <div class="homeGameItemFallback shimmer"></div>
+        <div class="homeGameItemFallback shimmer"></div>
+        <div class="homeGameItemFallback shimmer"></div>
+        <div class="homeGameItemFallback shimmer"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  leagueID: String,
-});
-
 import { ref } from "vue";
-import { useRoute,  } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
+const router = useRouter();
 const route = useRoute();
+
 
 var currentDay = "";
 if (route.query.date) {
@@ -58,13 +59,47 @@ function getCurrentDayString() {
 
   return date.toLocaleString("en-US", { dateStyle: "full" }).slice(0, -6);
 }
+
+function getDifferentDate(dayOffset) {
+  var currentYear = currentDate.value.substring(0, 4);
+  var currentMonth = currentDate.value.substring(5, 7);
+  var currentDay = currentDate.value.substring(8);
+
+  let date = new Date(currentYear, currentMonth - 1, currentDay);
+  date.setDate(date.getDate() + dayOffset);
+
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
+
+  var formattedDate = year + "-" + month + "-" + day;
+  return formattedDate;
+}
+
+const fetchPreviousDay = () => {
+  router.push({
+    name: "league",
+    params: { id: route.params.id },
+    query: { date: getDifferentDate(-1) },
+  });
+};
+
+const fetchNextDay = () => {
+  router.push({
+    name: "league",
+    params: { id: route.params.id },
+    query: { date: getDifferentDate(+1) },
+  });
+};
 </script>
 
 <style scoped>
 #gamesContainer {
-  flex: 2.5;
+  flex: 1;
   background-color: #ffffff;
-  height: 20.4rem;
+  height: 100%;
+  width: 100%;
+  min-width: fit-content;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
   box-sizing: border-box;
@@ -87,6 +122,7 @@ function getCurrentDayString() {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .material-symbols-outlined {
@@ -105,46 +141,34 @@ function getCurrentDayString() {
 
 #dateTitle {
   font-weight: 500;
-  padding: 1.3rem;
+  white-space: nowrap;
   margin: 0;
 }
 
 .divider {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
   width: 100%;
   height: 2px;
 }
 
-#gameItemsContainer {
-  height: 16rem;
+#scrollContainer {
+  height: calc(100% - 66px);
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+#gameItemsContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin: 1rem;
+  gap: 0.5rem;
 }
 
-#gameItemsContainer > * {
-  margin-top: 1rem;
-  width: 95%
-}
-
-#noGamesContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10rem;
-  width: 100%;
-}
-
-#noGamesText {
-  font-weight: 400;
-}
-
-.fallbackGameItem {
+.homeGameItemFallback {
   height: 4rem;
-  width: 95%;
+  width: 100%;
   border-radius: 15px;
 }
 
@@ -161,9 +185,9 @@ function getCurrentDayString() {
   }
 }
 
-@media (max-width: 1100px) {
-  #gamesContainer {
-    width: 100%;
+@media (max-width: 420px) {
+  #gameItemsContainer {
+    margin: 1rem 0.5rem;
   }
 }
 </style>
