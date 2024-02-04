@@ -1,9 +1,9 @@
 <template>
   <div class="newsContainer">
-    <img :src="imageFile" />
+    <img class="newsItemImage" :src="imageFile" />
     <div class="textContainer">
-      <h3>{{ title }}</h3>
-      <p>3 hrs ago</p>
+      <h3 class="newsItemTitle">{{ title }}</h3>
+      <p class="newsItemTimestamp">3 hrs ago</p>
     </div>
   </div>
 </template>
@@ -17,8 +17,8 @@ const props = defineProps({
 import { ref, toRefs } from "vue";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 
-const imageFile = ref(null);
 const { imageName } = toRefs(props);
+const imageFile = ref(null);
 
 const fetchImage = async () => {
   const s3_client = new S3Client({
@@ -36,26 +36,28 @@ const fetchImage = async () => {
 
   const imageResponse = await s3_client.send(s3_command);
 
-  const readableStream = imageResponse.Body;
+  const convertToImage = async (data) => {
+    const readableStream = data.Body;
+    const buffer = [];
+    const reader = readableStream.getReader();
 
-  const buffer = [];
-  const reader = readableStream.getReader();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer.push(value);
+    }
 
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buffer.push(value);
-  }
+    const arrayBuffer = new Uint8Array(
+      buffer.reduce((acc, chunk) => [...acc, ...chunk], [])
+    ).buffer;
 
-  const arrayBuffer = new Uint8Array(
-    buffer.reduce((acc, chunk) => [...acc, ...chunk], [])
-  ).buffer;
+    const blob = new Blob([arrayBuffer], { type: data.ContentType });
+    const dataUrl = URL.createObjectURL(blob);
 
-  const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
+    return dataUrl;
+  };
 
-  const dataUrl = URL.createObjectURL(blob);
-
-  imageFile.value = dataUrl;
+  imageFile.value = await convertToImage(imageResponse);
 };
 
 await fetchImage();
@@ -63,41 +65,43 @@ await fetchImage();
 
 <style scoped>
 .newsContainer {
-  height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
+  align-items: flex-start;
   cursor: pointer;
-  box-sizing: border-box;
+  height: fit-content;
+  width: 100%;
 }
 
-.newsContainer:hover {
+.newsContainer:hover .newsItemTitle {
   text-decoration-line: underline;
 }
 
-.newsContainer:hover img {
+.newsContainer:hover .newsItemImage {
+  background-color: #ffffff;
   opacity: 0.5;
 }
 
 .textContainer {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 
-h3 {
+.newsItemTitle {
   font-weight: 400;
   margin: 0rem;
 }
 
-p {
+.newsItemTimestamp {
   color: gray;
   margin: 0rem;
   font-size: small;
 }
 
-img {
+.newsItemImage {
   object-fit: cover;
   width: 100%;
   height: 10rem;
+  border-radius: 15px;
 }
 </style>

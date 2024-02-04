@@ -1,11 +1,11 @@
 <template>
   <div id="gamesContainer">
     <div id="dateRow">
-      <div id="previousDay">
+      <div id="previousDay" @click="fetchPreviousDay()">
         <span class="material-symbols-outlined">chevron_left</span>
       </div>
       <h3 id="dateTitle">{{ currentDateString }}</h3>
-      <div id="nextDay">
+      <div id="nextDay" @click="fetchNextDay()">
         <span class="material-symbols-outlined">chevron_right</span>
       </div>
     </div>
@@ -17,8 +17,9 @@
         <div class="leagueFlagFallback shimmer"></div>
         <div class="leagueTitleFallback shimmer"></div>
       </div>
-      <div class="gameItemFallback shimmer"></div>
-      <div class="gameItemFallback shimmer"></div>
+      <div class="homeGameItemFallback shimmer"></div>
+      <div class="homeGameItemFallback shimmer"></div>
+      <div class="homeGameItemFallback shimmer"></div>
     </div>
 
     <div class="leagueContainer">
@@ -26,8 +27,8 @@
         <div class="leagueFlagFallback shimmer"></div>
         <div class="leagueTitleFallback shimmer"></div>
       </div>
-      <div class="gameItemFallback shimmer"></div>
-      <div class="gameItemFallback shimmer"></div>
+      <div class="homeGameItemFallback shimmer"></div>
+      <div class="homeGameItemFallback shimmer"></div>
     </div>
 
     <div class="leagueContainer">
@@ -35,17 +36,22 @@
         <div class="leagueFlagFallback shimmer"></div>
         <div class="leagueTitleFallback shimmer"></div>
       </div>
-      <div class="gameItemFallback shimmer"></div>
+      <div class="homeGameItemFallback shimmer"></div>
+      <div class="homeGameItemFallback shimmer"></div>
     </div>
-
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRoute } from "vue-router";
 
+import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
+
+const router = useRouter();
 const route = useRoute();
+
+const gameData = ref(null);
 
 var currentDay = "";
 if (route.query.date) {
@@ -77,6 +83,37 @@ function getCurrentDayString() {
 
   return date.toLocaleString("en-US", { dateStyle: "full" }).slice(0, -6);
 }
+
+function getDifferentDate(dayOffset) {
+  var currentYear = currentDate.value.substring(0, 4);
+  var currentMonth = currentDate.value.substring(5, 7);
+  var currentDay = currentDate.value.substring(8);
+
+  let date = new Date(currentYear, currentMonth - 1, currentDay);
+  date.setDate(date.getDate() + dayOffset);
+
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
+
+  var formattedDate = year + "-" + month + "-" + day;
+  return formattedDate;
+}
+
+const fetchPreviousDay = () => {
+  router.push({
+    name: "home",
+    query: { date: getDifferentDate(-1) },
+  });
+};
+
+const fetchNextDay = () => {
+  router.push({
+    name: "home",
+    query: { date: getDifferentDate(+1) },
+  });
+};
+
 </script>
 
 <style scoped>
@@ -126,7 +163,7 @@ function getCurrentDayString() {
 }
 
 .divider {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
   width: 100%;
   height: 2px;
 }
@@ -136,37 +173,46 @@ function getCurrentDayString() {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 1.5rem 1.5rem 2.5rem 1.5rem;
-  gap: 1rem;
+  margin: 1rem;
+  gap: 0.5rem;
 }
 
-.leagueTitleRow {
+.leagueTitleRow{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
   width: 100%;
-  margin: 0;
+  margin: 0.5rem;
 }
 
 .leagueFlagFallback {
-  margin-right: 1rem;
-  border-radius: 50%;
   width: 2rem;
   height: 2rem;
+  border-radius: 50%;
 }
 
 .leagueTitleFallback {
   height: 1.5rem;
-  width: 14rem;
+  width: 13rem;
   border-radius: 5px;
-  font-weight: 500;
   margin: 0;
 }
 
-.gameItemFallback {
-  height: 4rem;
-  width: 100%;
-  border-radius: 15px;
+.homeGameItemFallback {
+height: 4rem;
+width: 100%;
+border-radius: 15px;
+}
+
+@media (max-width: 420px) {
+  .leagueContainer {
+    margin: 1rem 0.5rem;
+  }
+
+  .leagueFlagFallback {
+    margin-left: 0.5rem;
+  }
 }
 
 .shimmer {
@@ -179,22 +225,6 @@ function getCurrentDayString() {
 @keyframes shimmer {
   to {
     background-position-x: 0%;
-  }
-}
-
-@media (max-width: 550px) {
-  .gameItemFallback {
-    height: 91px;
-  }
-}
-
-@media (max-width: 420px) {
-  .leagueContainer {
-    margin: 1.5rem 0.25rem 2.5rem 0.25rem;
-  }
-
-  .leagueFlagFallback {
-    margin-left: 0.5rem;
   }
 }
 </style>

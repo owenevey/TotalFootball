@@ -5,8 +5,7 @@
       <div id="articleBody">
         <h2 id="articleTitle">{{ articleTitle }}</h2>
         <p id="articleSubtext">
-          Note: every article was written by AI and rigged to include a Peter
-          Crouch last minute goal
+          Note: All articles are written by AI and may not be completely accurate
         </p>
         <div v-for="paragraph in articleBody">
           <p class="articleText">{{ paragraph.S }}</p>

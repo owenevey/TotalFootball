@@ -22,6 +22,12 @@
         </template>
       </Suspense>
     </div>
+    <Suspense>
+        <BottomNews />
+        <template #fallback>
+          <div></div>
+        </template>
+      </Suspense>
   </main>
   <BottomNav />
 </template>
@@ -36,6 +42,7 @@ import LeagueGamesFallback from "../components/League/LeagueGamesFallback.vue";
 import LeagueTable from "../components/League/LeagueTable.vue";
 import LeagueTableFallback from "../components/League/LeagueTableFallback.vue";
 import BottomNav from "../components/Navigation/BottomNav.vue";
+import BottomNews from "../components/BottomNews.vue";
 
 const route = useRoute();
 const router = useRouter();

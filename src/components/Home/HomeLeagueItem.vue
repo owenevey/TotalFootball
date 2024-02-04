@@ -2,11 +2,7 @@
   <div class="leagueItemContainer">
     <img
       class="leagueItemLogo"
-      :src="
-        '/leagues/' +
-        name.toLowerCase().replaceAll(' ', '_') +
-        '_logo.png'
-      "
+      :src="'/leagues/' + name.toLowerCase().replaceAll(' ', '_') + '_logo.png'"
     />
     <p class="leagueItemName">{{ name }}</p>
   </div>
@@ -27,6 +23,7 @@ defineProps({
   cursor: pointer;
   width: 100%;
   padding: 0 1rem;
+  gap: 1rem;
 }
 
 .leagueItemContainer:hover {
@@ -37,7 +34,6 @@ defineProps({
   object-fit: contain;
   width: 2rem;
   height: 2rem;
-  padding-right: 1rem;
 }
 
 .leagueItemName {

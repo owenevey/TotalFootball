@@ -9,8 +9,13 @@
           <HomeGamesFallback />
         </template>
       </Suspense>
-      
-      <HomeNews id="newsContainer" />
+
+      <Suspense>
+        <HomeNewsAsync id="newsContainer" />
+        <template #fallback>
+          <HomeNewsFallback id="newsContainer" />
+        </template>
+      </Suspense>
     </div>
   </main>
   <BottomNav />
@@ -22,7 +27,8 @@ import { useRoute, useRouter } from "vue-router";
 import HomeLeagues from "../components/Home/HomeLeagues.vue";
 import HomeGamesAsync from "../components/Home/HomeGamesAsync.vue";
 import HomeGamesFallback from "../components/Home/HomeGamesFallback.vue";
-import HomeNews from "../components/Home/HomeNews.vue";
+import HomeNewsAsync from "../components/Home/HomeNewsAsync.vue";
+import HomeNewsFallback from "../components/Home/HomeNewsFallback.vue";
 import BottomNav from "../components/Navigation/BottomNav.vue";
 
 const router = useRouter();
@@ -80,7 +86,7 @@ main {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   main {
     margin: 1rem 0;
   }

@@ -1,16 +1,9 @@
 <template>
-  <main>
-    <div id="newsContainer">
-      <h1 id="newsTitle">News</h1>
-      <NewsTopStory
-        class="topStory"
-        :title="articles[0].title"
-        :imageName="articles[0].imageName"
-        @click="selectArticle(articles[0])"
-      />
+  <div id="newsContainer">
+      <h3 id="newsTitle">News</h3>
       <div id="newsGridContainer">
         <NewsItem
-          v-for="article in articles.slice(1)"
+          v-for="article in articles.slice(0, 4)"
           class="gridItem"
           :title="article.title"
           :imageName="article.imageName"
@@ -18,14 +11,10 @@
         />
       </div>
     </div>
-  </main>
-  <BottomNav />
 </template>
 
 <script setup>
-import NewsTopStory from "../News/NewsTopStory.vue";
-import NewsItem from "./NewsItem.vue";
-import BottomNav from "../Navigation/BottomNav.vue";
+import NewsItem from "./News/NewsItem.vue";
 
 import { ref } from "vue";
 
@@ -74,10 +63,7 @@ const selectArticle = (article) => {
 }
 
 #newsContainer {
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 2px #f0f0f0 solid;
-  max-width: 80rem;
+  width: 98%;
   margin: auto;
   box-sizing: border-box;
   padding: 1.5rem;

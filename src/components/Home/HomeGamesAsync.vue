@@ -104,7 +104,6 @@ const fetchGames = async (date) => {
       `https://v3.football.api-sports.io/fixtures?season=2023&league=${id}&from=${date}&to=${date}`,
       { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
     );
-    console.log(name, result);
     if (result.data.response.length > 0) {
       fixtures[name] = result.data.response;
     }
@@ -183,7 +182,7 @@ await fetchGames(currentDate.value);
 }
 
 .divider {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
   width: 100%;
   height: 2px;
 }
@@ -193,7 +192,7 @@ await fetchGames(currentDate.value);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 1.5rem 1.5rem 2.5rem 1.5rem;
+  margin: 1rem;
   gap: 0.5rem;
 }
 
@@ -201,16 +200,16 @@ await fetchGames(currentDate.value);
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
   width: 100%;
-  margin: 0;
+  margin: 0.5rem;
 }
 
 .leagueFlag {
-  margin-right: 1rem;
-  border-radius: 50%;
-  object-fit: cover;
   width: 2rem;
   height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .leagueTitle {
@@ -232,7 +231,7 @@ await fetchGames(currentDate.value);
 
 @media (max-width: 420px) {
   .leagueContainer {
-    margin: 1.5rem 0.25rem 2.5rem 0.25rem;
+    margin: 1rem 0.5rem;
   }
 
   .leagueFlag {

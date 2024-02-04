@@ -22,6 +22,7 @@
         <GameEvents :game="game" :events="events" />
       </div>
     </div>
+    <BottomNews />
   </main>
 </template>
 
@@ -35,6 +36,7 @@ import GameMatchStats from "./GameMatchStats.vue";
 import GamePlayerStats from "./GamePlayerStats.vue";
 import GameEvents from "./GameEvents.vue";
 import GameHeader from "./GameHeader.vue";
+import BottomNews from "../BottomNews.vue";
 
 const route = useRoute();
 const game = ref(null);

@@ -38,7 +38,7 @@ defineProps({
   width: 100%;
   background-color: #ffffff;
   border-radius: 15px;
-  border: 2px solid #f3f3f3;
+  border: 2px solid #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +80,13 @@ defineProps({
   font-weight: 500;
 }
 
+.status {
+  font-size: small;
+  font-weight: 400;
+}
+
 .time {
+  font-size: small;
   white-space: unset;
 }
 
@@ -92,11 +98,6 @@ defineProps({
   gap: 1rem;
 }
 
-.status {
-  font-size: small;
-  font-weight: 400;
-}
-
 .teamLogo {
   object-fit: contain;
   width: 2rem;
@@ -104,60 +105,23 @@ defineProps({
 }
 
 @media (max-width: 550px) {
-
-  .homeTeamName,
-  .awayTeamName {
-    font-size: small;
-  }
-
-  .teamLogo {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.leftItem, .rightItem {
-  gap: 0.5rem;
-}
-
-.score, .time {
-  font-size: small;
-}
-
-.status {
-  font-size: x-small;
-  display: none;
-}
-
   .gameItemContainer {
     gap: 1rem;
   }
-}
 
-/* @media (max-width: 550px) {
-  .leftItem {
-    flex-direction: column-reverse;
-    gap: 0;
-    padding: 0.5rem 0;
-  }
-
+  .leftItem,
   .rightItem {
-    flex-direction: column;
-    gap: 0;
-    padding: 0.5rem 0;
+    gap: 0.5rem;
   }
-
+  
   .homeTeamName,
   .awayTeamName {
-    margin: 0.5rem 0 0 0;
-    text-align: center;
+    font-size: 0.9rem;
   }
 
-  .centerItem {
-    padding: 0 0.75rem;
+  .teamLogo {
+    width: 1.5rem;
+    height: 1.5rem;
   }
-
-  .gameItemContainer {
-    height: fit-content;
-  }
-} */
+}
 </style>
