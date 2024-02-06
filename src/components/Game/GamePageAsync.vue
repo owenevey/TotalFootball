@@ -4,14 +4,18 @@
     <div id="gameContainer">
       <div id="mainColumn">
         <GameScoreBoard :game="game" :events="events" />
+
         <GameLineups
           :game="game"
           :hasLineups="hasLineups"
           @selectPlayer="(playerID) => (selectedPlayer = playerID)"
         />
+
         <GameMatchStats :game="game" />
+
         <GameEvents id="bottomEvents" :game="game" :events="events" />
       </div>
+
       <div id="rightColumn">
         <GamePlayerStats
           id="playerContainer"
@@ -47,9 +51,10 @@ const events = ref(null);
 const getData = async () => {
   const result = await axios.get(
     `https://v3.football.api-sports.io/fixtures?id=${route.query.id}`,
-    { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
+    {
+      headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
+    }
   );
-  console.log("result", result);
   game.value = result.data.response[0];
 
   hasLineups.value = game.value.lineups[0]?.startXI !== undefined;
@@ -98,13 +103,7 @@ main {
   display: none;
 }
 
-@media (max-width: 800px) {
-  main {
-    margin: 1rem 0;
-  }
-}
-
-@media (max-width: 82rem) {
+@media (max-width: 1300px) {
   #gameContainer {
     grid-template-columns: auto;
   }
@@ -115,6 +114,12 @@ main {
 
   #bottomEvents {
     display: flex;
+  }
+}
+
+@media (max-width: 800px) {
+  main {
+    margin: 1rem 0;
   }
 }
 </style>

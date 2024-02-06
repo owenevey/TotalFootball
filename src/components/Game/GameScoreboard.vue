@@ -37,7 +37,9 @@
 
       <div id="awayTeamColumn">
         <img id="awayTeamLogo" :src="game.teams.away.logo" />
-        <h2 id="awayTeamName">{{ game.teams.away.name }}</h2>
+        <h2 id="awayTeamName">
+          {{ game.teams.away.name }}
+        </h2>
       </div>
     </div>
 
@@ -46,7 +48,7 @@
         <div v-for="event in events">
           <p
             v-if="event.team === 'home' && event.type === 'Goal'"
-            class="awayScoreboardGoal"
+            class="homeScoreboardGoal"
           >
             {{ event.player.split(" ").slice(-1)[0] }}
             {{ event.time + "'" }}
@@ -54,13 +56,15 @@
         </div>
       </div>
 
-        <span id="dividerBallIcon" class="material-symbols-outlined"> sports_soccer </span>
+      <span id="dividerBallIcon" class="material-symbols-outlined">
+        sports_soccer
+      </span>
 
       <div id="awayGoalsColumn">
         <div v-for="event in events">
           <p
             v-if="event.team === 'away' && event.type === 'Goal'"
-            class="homeScoreboardGoal"
+            class="awayScoreboardGoal"
           >
             {{ event.player.split(" ").slice(-1)[0] }}
             {{ event.time + "'" }}
@@ -103,7 +107,7 @@ const props = defineProps({
   events: Object,
 });
 
-import { ref, toRefs } from "vue";
+import { toRefs } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -130,6 +134,11 @@ function goBack() {
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+#backContainer,
+#emptyTopRight {
+  flex: 1;
 }
 
 #backButton {
@@ -177,11 +186,6 @@ function goBack() {
   text-align: center;
 }
 
-#backContainer,
-#emptyTopRight {
-  flex: 1;
-}
-
 #mainRow {
   display: flex;
   align-items: center;
@@ -210,6 +214,10 @@ function goBack() {
   object-fit: contain;
   width: 3rem;
   height: 3rem;
+}
+
+#homeTeamName {
+  text-align: right;
 }
 
 #awayTeamColumn {
@@ -276,9 +284,8 @@ function goBack() {
   font-size: small;
   color: gray;
   text-align: left;
-  margin: 0.5rem 0;
+  margin: 0.15rem 0;
 }
-
 
 #dividerBallIcon {
   margin-top: 0.6rem;
@@ -289,6 +296,7 @@ function goBack() {
 #bottomRow {
   display: flex;
   width: 80%;
+  gap: 2rem;
   justify-content: center;
 }
 
@@ -296,7 +304,6 @@ function goBack() {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 1rem;
   gap: 0.5rem;
 }
 
@@ -316,12 +323,16 @@ function goBack() {
 }
 
 .divider {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
   width: 100%;
   height: 2px;
 }
 
 @media (max-width: 900px) {
+  #mainRow {
+    align-items: flex-start;
+  }
+
   #homeTeamColumn {
     flex-direction: column-reverse;
     gap: 0.5rem;

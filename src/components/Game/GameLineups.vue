@@ -8,7 +8,9 @@
         </p>
         <h3 id="lineupsHomeTeamName">{{ game.teams.home.name }}</h3>
       </div>
+
       <h3 id="lineupsTitle">Lineups</h3>
+
       <div id="awayTeamTopRow" class="lineupsRowRight">
         <h3 id="lineupsAwayTeamName">{{ game.teams.away.name }}</h3>
         <p v-if="hasLineups" class="lineupsFormation">
@@ -35,6 +37,7 @@
           <img class="lineupsCoachImage" :src="game.lineups[1].coach.photo" />
         </div>
       </div>
+
       <div id="awayTeamBottomRow" class="lineupsRowRight">
         <h3 id="lineupsAwayTeamName">{{ game.teams.away.name }}</h3>
         <p v-if="hasLineups" class="lineupsFormation">
@@ -46,16 +49,19 @@
   </div>
   <div v-if="hasLineups" id="coachCardContainer">
     <h3 id="lineupsCoachTitle">Coach</h3>
+
     <div id="coachCardRow">
       <div class="coachCardColumn">
         <img class="lineupsCoachImage" :src="game.lineups[0].coach.photo" />
         <h3 class="lineupsCoachName">{{ game.lineups[0].coach.name }}</h3>
       </div>
+
       <div class="coachCardColumn">
         <img class="lineupsCoachImage" :src="game.lineups[1].coach.photo" />
         <h3 class="lineupsCoachName">{{ game.lineups[1].coach.name }}</h3>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -147,22 +153,19 @@ if (hasLineups.value) {
 .lineupsRowLeft {
   display: flex;
   flex: 1;
+  justify-content: flex-start;
   align-items: center;
   margin: 0rem 1rem;
-  justify-content: flex-start;
+  gap: 1rem;
 }
 
 .lineupsRowRight {
   display: flex;
   flex: 1;
+  justify-content: flex-end;
   align-items: center;
   margin: 0rem 1rem;
-  justify-content: flex-end;
-}
-
-.lineupsRowLeft > *,
-.lineupsRowRight > * {
-  margin: 0.5rem;
+  gap: 1rem;
 }
 
 #coachEdgeContainer {
@@ -179,12 +182,12 @@ if (hasLineups.value) {
 
 #lineupsHomeTeamName {
   font-weight: 400;
-  text-align: start;
+  text-align: left;
 }
 
 #lineupsAwayTeamName {
   font-weight: 400;
-  text-align: end;
+  text-align: right;
 }
 
 .lineupsCoachName {
@@ -227,7 +230,6 @@ if (hasLineups.value) {
   }
 
   #coachCardContainer {
-    margin-top: 1rem;
     background-color: #ffffff;
     border-radius: 15px;
     border: 2px #f0f0f0 solid;
@@ -242,10 +244,10 @@ if (hasLineups.value) {
   }
 
   .coachCardColumn {
-    display: flex;
     flex: 1;
+    display: flex;
     flex-direction: column;
-    justify-self: center;
+    justify-content: center;
     align-items: center;
     margin: 0 1rem 1rem 1rem;
   }
