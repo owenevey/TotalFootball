@@ -2,11 +2,12 @@
   <div id="newsContainer">
       <h3 id="newsTitle">News</h3>
       <div id="newsGridContainer">
-        <NewsItem
+        <NewsItemAsync
           v-for="article in articles.slice(0, 8)"
           class="gridItem"
           :title="article.title"
           :imageName="article.imageName"
+          :timestamp="article.timestamp"
           @click="selectArticle(article)"
         />
       </div>
@@ -14,7 +15,7 @@
 </template>
 
 <script setup>
-import NewsItem from "../News/NewsItem.vue";
+import NewsItemAsync from "../News/NewsItemAsync.vue";
 
 import { ref } from "vue";
 

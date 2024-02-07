@@ -10,11 +10,12 @@
       />
 
       <div id="newsGridContainer">
-        <NewsItem
+        <NewsItemAsync
           v-for="article in articles.slice(1)"
           class="gridItem"
           :title="article.title"
           :imageName="article.imageName"
+          :timestamp="article.timestamp"
           @click="selectArticle(article)"
         />
       </div>
@@ -24,7 +25,7 @@
 
 <script setup>
 import NewsTopStory from "../News/NewsTopStory.vue";
-import NewsItem from "./NewsItem.vue";
+import NewsItemAsync from "./NewsItemAsync.vue";
 
 import { ref } from "vue";
 

@@ -6,7 +6,7 @@
       <div id="articleBody">
         <h2 id="articleTitle">{{ articleTitle }}</h2>
         <p id="articleTimeStamp">
-          3 hours ago
+          {{ articleTimestamp }}
         </p>
         <p id="articleSubtext">
           Note: All articles are written by AI and may not be completely
@@ -32,6 +32,7 @@ const route = useRoute();
 const imageFile = ref(null);
 const articleTitle = ref("");
 const articleBody = ref("");
+const articleTimestamp = ref("");
 
 const fetchArticles = async () => {
   const client = new DynamoDBClient({
@@ -50,9 +51,9 @@ const fetchArticles = async () => {
   });
 
   const response = await client.send(command);
-  console.log(response.Item);
   articleTitle.value = response.Item.title.S;
   articleBody.value = response.Item.body.L;
+  articleTimestamp.value = response.Item.timestamp.S;
 };
 
 const fetchImage = async () => {
@@ -89,7 +90,6 @@ const fetchImage = async () => {
   const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
 
   const dataUrl = URL.createObjectURL(blob);
-  console.log(dataUrl);
 
   imageFile.value = dataUrl;
 };

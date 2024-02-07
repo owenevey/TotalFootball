@@ -76,7 +76,7 @@
     <div id="bottomRowDivider" class="divider"></div>
 
     <div id="bottomRow">
-      <div class="bottomInfoItem">
+      <div class="bottomInfoItem" v-if="game.fixture.date">
         <span class="material-symbols-outlined"> event </span>
         <p id="date">
           {{ new Date(game.fixture.date).toLocaleDateString("en-US") }}
@@ -88,12 +88,12 @@
         </p>
       </div>
 
-      <div class="bottomInfoItem">
+      <div class="bottomInfoItem" v-if="game.fixture.venue.name">
         <span class="material-symbols-outlined"> stadium </span>
         <p id="venue">{{ game.fixture.venue.name }}</p>
       </div>
 
-      <div class="bottomInfoItem">
+      <div class="bottomInfoItem" v-if="game.fixture.referee">
         <span class="material-symbols-outlined"> sports </span>
         <p id="referee">{{ game.fixture.referee }}</p>
       </div>

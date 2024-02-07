@@ -2,10 +2,11 @@
   <div id="newsContainer">
     <h3 id="newsTitle">News</h3>
     <div id="newsItemsContainer">
-      <NewsItem
+      <NewsItemAsync
           v-for="article in articles.slice(0, 4)"
           :title="article.title"
           :imageName="article.imageName"
+          :timestamp="article.timestamp"
           @click="selectArticle(article)"
         />
     </div>
@@ -13,7 +14,7 @@
 </template>
 
 <script setup>
-import NewsItem from "../News/NewsItem.vue";
+import NewsItemAsync from "../News/NewsItemAsync.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";

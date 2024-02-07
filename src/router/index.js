@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import NotFoundView from "../views/NotFoundView.vue"
-import AboutView from "../views/AboutView.vue"
+import NotFoundView from "../views/NotFoundView.vue";
+import AboutView from "../views/AboutView.vue";
 import HomeView from "../views/HomeView.vue";
 import GameView from "../views/GameView.vue";
 import LeagueView from "../views/LeagueView.vue";
@@ -59,6 +59,9 @@ const router = createRouter({
       component: AboutView,
     },
   ],
+  scrollBehavior() {
+    return { top: 0, left: 0 };
+  },
 });
 
 export default router;

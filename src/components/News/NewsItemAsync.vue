@@ -3,7 +3,7 @@
     <img class="newsItemImage" :src="imageFile" />
     <div class="textContainer">
       <h3 class="newsItemTitle">{{ title }}</h3>
-      <p class="newsItemTimestamp">3 hrs ago</p>
+      <p class="newsItemTimestamp">{{ timestamp }}</p>
     </div>
   </div>
 </template>
@@ -12,6 +12,7 @@
 const props = defineProps({
   title: String,
   imageName: String,
+  timestamp: String,
 });
 
 import { ref, toRefs } from "vue";

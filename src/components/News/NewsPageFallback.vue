@@ -10,10 +10,9 @@
           <p id="topStoryTimeStamp" class="shimmer"></p>
         </div>
       </div>
-      <NewsTopStory class="topStory" />
 
       <div id="newsGridContainer">
-        <NewsItemFallback v-for="i in 20" />
+        <NewsItemFallback v-for="i in 16" />
       </div>
     </div>
   </main>
