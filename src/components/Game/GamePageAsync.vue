@@ -1,32 +1,35 @@
 <template>
   <GameHeader :game="game" />
   <main>
-    <div id="gameContainer">
-      <div id="mainColumn">
-        <GameScoreBoard :game="game" :events="events" />
+    <div id="contentContainer">
+      <div id="gridContainer">
+        <div id="mainColumn">
+          <GameScoreBoard :game="game" :events="events" />
 
-        <GameLineups
-          :game="game"
-          :hasLineups="hasLineups"
-          @selectPlayer="(playerID) => (selectedPlayer = playerID)"
-        />
+          <GameLineups
+            :game="game"
+            :hasLineups="hasLineups"
+            @selectPlayer="(playerID) => (selectedPlayer = playerID)"
+          />
 
-        <GameMatchStats :game="game" />
+          <GameMatchStats :game="game" />
 
-        <GameEvents id="bottomEvents" :game="game" :events="events" />
+          <GameEvents id="bottomEvents" :game="game" :events="events" />
+        </div>
+
+        <div id="rightColumn">
+          <GamePlayerStats
+            id="playerContainer"
+            :game="game"
+            :selectedPlayer="selectedPlayer"
+            :hasLineups="hasLineups"
+          />
+          <GameEvents :game="game" :events="events" />
+        </div>
       </div>
 
-      <div id="rightColumn">
-        <GamePlayerStats
-          id="playerContainer"
-          :game="game"
-          :selectedPlayer="selectedPlayer"
-          :hasLineups="hasLineups"
-        />
-        <GameEvents :game="game" :events="events" />
-      </div>
+      <BottomNewsAsync />
     </div>
-    <BottomNews />
   </main>
 </template>
 
@@ -40,7 +43,7 @@ import GameMatchStats from "./GameMatchStats.vue";
 import GamePlayerStats from "./GamePlayerStats.vue";
 import GameEvents from "./GameEvents.vue";
 import GameHeader from "./GameHeader.vue";
-import BottomNews from "../BottomNews.vue";
+import BottomNewsAsync from "../Common/BottomNewsAsync.vue";
 
 const route = useRoute();
 const game = ref(null);
@@ -81,15 +84,25 @@ await getData();
 </script>
 
 <style scoped>
-#gameContainer {
-  display: grid;
-  grid-template-columns: 60rem 18rem;
-  column-gap: 1rem;
+#contentContainer {
   margin: auto;
   max-width: 79rem;
 }
 
+#gridContainer {
+  display: grid;
+  grid-template-columns: 60rem 18rem;
+  column-gap: 1rem;
+  width: 100%;
+}
+
 #mainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#rightColumn {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -104,7 +117,7 @@ main {
 }
 
 @media (max-width: 1300px) {
-  #gameContainer {
+  #gridContainer {
     grid-template-columns: auto;
   }
 

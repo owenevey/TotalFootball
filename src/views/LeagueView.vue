@@ -1,33 +1,35 @@
 <template>
   <main>
-    <div id="leagueContainer">
-      <div id="topContainer">
-        <Suspense>
-          <LeagueInfoCardAsync />
-          <template #fallback>
-            <LeagueInfoCardFallbackVue />
-          </template>
-        </Suspense>
+    <div id="contentContainer">
+      <div id="leagueContainer">
+        <div id="topContainer">
+          <Suspense>
+            <LeagueInfoCardAsync />
+            <template #fallback>
+              <LeagueInfoCardFallbackVue />
+            </template>
+          </Suspense>
+
+          <Suspense>
+            <LeagueGamesAsync />
+            <template #fallback>
+              <LeagueGamesFallback />
+            </template>
+          </Suspense>
+        </div>
 
         <Suspense>
-          <LeagueGamesAsync />
+          <LeagueTableAsync />
           <template #fallback>
-            <LeagueGamesFallback />
+            <LeagueTableFallback />
           </template>
         </Suspense>
       </div>
 
       <Suspense>
-        <LeagueTableAsync />
+        <BottomNewsAsync />
         <template #fallback>
-          <LeagueTableFallback />
-        </template>
-      </Suspense>
-
-      <Suspense>
-        <BottomNews />
-        <template #fallback>
-          <div></div>
+          <BottomNewsFallback />
         </template>
       </Suspense>
     </div>
@@ -44,8 +46,9 @@ import LeagueGamesAsync from "../components/League/LeagueGamesAsync.vue";
 import LeagueGamesFallback from "../components/League/LeagueGamesFallback.vue";
 import LeagueTableAsync from "../components/League/LeagueTableAsync.vue";
 import LeagueTableFallback from "../components/League/LeagueTableFallback.vue";
-import BottomNav from "../components/Navigation/BottomNav.vue";
-import BottomNews from "../components/BottomNews.vue";
+import BottomNav from "../components/Common/BottomNav.vue";
+import BottomNewsAsync from "../components/Common/BottomNewsAsync.vue";
+import BottomNewsFallback from "../components/Common/BottomNewsFallback.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -60,13 +63,17 @@ main {
   margin: 1rem;
 }
 
+#contentContainer {
+  max-width: 70rem;
+  margin: auto;
+}
+
 #leagueContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 70rem;
-  margin: auto;
+  width: 100%;
   gap: 1rem;
 }
 

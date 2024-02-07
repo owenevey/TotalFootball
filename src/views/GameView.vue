@@ -2,7 +2,7 @@
     <Suspense>
       <GamePageAsync />
       <template #fallback>
-        <GamePageFallback />
+        <LoadingScreen />
       </template>
     </Suspense>
     <BottomNav />
@@ -10,8 +10,8 @@
 
 <script setup>
 import GamePageAsync from "../components/Game/GamePageAsync.vue";
-import GamePageFallback from "../components/Game/GamePageFallback.vue";
-import BottomNav from "../components/Navigation/BottomNav.vue";
+import LoadingScreen from "../components/Common/LoadingScreen.vue";
+import BottomNav from "../components/Common/BottomNav.vue";
 </script>
 
 <style scoped>

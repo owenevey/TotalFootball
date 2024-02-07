@@ -8,6 +8,7 @@
         :imageName="articles[0].imageName"
         @click="selectArticle(articles[0])"
       />
+
       <div id="newsGridContainer">
         <NewsItem
           v-for="article in articles.slice(1)"
@@ -19,13 +20,11 @@
       </div>
     </div>
   </main>
-  <BottomNav />
 </template>
 
 <script setup>
 import NewsTopStory from "../News/NewsTopStory.vue";
 import NewsItem from "./NewsItem.vue";
-import BottomNav from "../Navigation/BottomNav.vue";
 
 import { ref } from "vue";
 
@@ -90,10 +89,6 @@ const selectArticle = (article) => {
   display: grid;
   gap: 1rem;
   grid-template-columns: auto auto auto auto;
-}
-
-.gridItem {
-  width: 100%;
 }
 
 main {

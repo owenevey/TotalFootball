@@ -2,35 +2,41 @@
   <div id="matchStatsContainer">
     <h3 id="matchStatsTitle">Match Stats</h3>
     <div class="divider"></div>
-    <div v-if="hasStats" class="statRow" v-for="(stat, _) of Object.entries(stats)">
-      <h4 class="statName">{{ stat[0] }}</h4>
-      <div class="statBar">
-        <p class="statNumber">{{ stat[1][0] }}</p>
-        <div class="leftBar">
-          <div
-            class="leftBarInside"
-            :style="{
-              width: (stat[1][0] / stat[1][2]) * 100 + '%',
-            }"
-          ></div>
+
+    <div id="statRowsContainer" v-if="hasStats">
+      <div class="statRow" v-for="(stat, _) of Object.entries(stats)">
+        <h4 class="statName">{{ stat[0] }}</h4>
+        <div class="statBar">
+          <p class="statNumber">{{ stat[1][0] }}</p>
+          <div class="leftBar">
+            <div
+              class="leftBarInside"
+              :style="{
+                width: (stat[1][0] / stat[1][2]) * 100 + '%',
+              }"
+            ></div>
+          </div>
+          <div class="spacer"></div>
+          <div class="rightBar">
+            <div
+              class="rightBarInside"
+              :style="{
+                width: (stat[1][1] / stat[1][2]) * 100 + '%',
+              }"
+            ></div>
+          </div>
+          <p class="statNumber">{{ stat[1][1] }}</p>
         </div>
-        <div class="spacer"></div>
-        <div class="rightBar">
-          <div
-            class="rightBarInside"
-            :style="{
-              width: (stat[1][1] / stat[1][2]) * 100 + '%',
-            }"
-          ></div>
-        </div>
-        <p class="statNumber">{{ stat[1][1] }}</p>
       </div>
     </div>
+
     <div v-else>
       <h4 id="noStatsText">No match stats yet</h4>
     </div>
   </div>
+
 </template>
+
 <script setup>
 const props = defineProps({
   game: Object,
@@ -96,7 +102,6 @@ if (hasStats.value) {
 
 <style scoped>
 #matchStatsContainer {
-  padding-bottom: 1rem;
   background-color: #ffffff;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
@@ -104,6 +109,11 @@ if (hasStats.value) {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+}
+
+#statRowsContainer {
+  width: 100%;
+  padding-bottom: 1.5rem;
 }
 
 #matchStatsTitle {
@@ -120,7 +130,7 @@ if (hasStats.value) {
 
 .statName {
   font-weight: 400;
-  margin: 1rem
+  margin: 1rem;
 }
 .statBar {
   display: flex;
@@ -129,7 +139,6 @@ if (hasStats.value) {
   align-items: center;
   width: 100%;
   height: 1rem;
-  margin-bottom: 1rem;
 }
 
 .leftBar {

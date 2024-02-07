@@ -1,7 +1,9 @@
 <template>
-  <div id="fallback">
-    <div class="loader"></div>
-  </div>
+  <main>
+    <div id="fallback">
+      <div class="loader"></div>
+    </div>
+  </main>
 </template>
 <script setup></script>
 <style scoped>
@@ -25,7 +27,11 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

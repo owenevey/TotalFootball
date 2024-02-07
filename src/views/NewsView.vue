@@ -2,7 +2,7 @@
   <Suspense>
     <NewsPageAsync />
     <template #fallback>
-      <div>loading!</div>
+      <NewsPageFallbackVue />
     </template>
   </Suspense>
   <BottomNav />
@@ -10,7 +10,8 @@
 
 <script setup>
 import NewsPageAsync from "../components/News/NewsPageAsync.vue";
-import BottomNav from "../components/Navigation/BottomNav.vue";
+import NewsPageFallbackVue from "../components/News/NewsPageFallback.vue";
+import BottomNav from "../components/Common/BottomNav.vue";
 </script>
 
 <style scoped></style>

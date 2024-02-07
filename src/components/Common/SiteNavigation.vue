@@ -5,6 +5,9 @@
         <span id="leftBrandName">Total</span>Football
       </h1>
       <div id="navLinks">
+        <RouterLink :to="{ name: 'home' }" style="text-decoration: none">
+          <p class="navLink games">Games</p>
+        </RouterLink>
         <RouterLink :to="{ name: 'news' }" style="text-decoration: none">
           <p class="navLink news">News</p>
         </RouterLink>
@@ -30,18 +33,24 @@ const goHome = () => {
 
 <style scoped>
 nav {
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
   padding: 0 30px;
-  margin-bottom: 0rem;
+  margin-bottom: 0;
   border-bottom: 2px #f0f0f0 solid;
+  z-index: 2;
 }
 
 #brandingName {
   font-size: xx-large;
-  margin: 1.33rem 0;
+  margin: 0;
   padding-right: 2px;
   font-style: italic;
   cursor: pointer;
@@ -65,17 +74,26 @@ nav {
   font-size: 1.2rem;
 }
 
-@media (max-width: 900px) {
+.navLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 950px) {
+  nav {
+    height: 4rem;
+  }
+
   #brandingName {
     font-size: x-large;
-    margin: 1rem 0;
+  }
+
+  .news,
+  .games {
+    display: none;
   }
 }
 
 @media (max-width: 550px) {
-  .news {
-    display: none;
-  }
   .about {
     padding: 15px;
     font-weight: 600;

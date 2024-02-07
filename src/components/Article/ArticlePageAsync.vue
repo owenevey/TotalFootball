@@ -2,10 +2,15 @@
   <main>
     <div id="articleContainer">
       <img id="articleImage" :src="imageFile" />
+
       <div id="articleBody">
         <h2 id="articleTitle">{{ articleTitle }}</h2>
+        <p id="articleTimeStamp">
+          3 hours ago
+        </p>
         <p id="articleSubtext">
-          Note: All articles are written by AI and may not be completely accurate
+          Note: All articles are written by AI and may not be completely
+          accurate
         </p>
         <div v-for="paragraph in articleBody">
           <p class="articleText">{{ paragraph.S }}</p>
@@ -17,7 +22,7 @@
 </template>
 
 <script setup>
-import BottomNav from "../Navigation/BottomNav.vue";
+import BottomNav from "../Common/BottomNav.vue";
 import { useRoute } from "vue-router";
 import { ref } from "vue";
 import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
@@ -64,7 +69,6 @@ const fetchImage = async () => {
     Key: `news/${route.params.img}.jpg`,
   });
 
-
   const imageResponse = await s3_client.send(s3_command);
 
   const readableStream = imageResponse.Body;
@@ -85,7 +89,7 @@ const fetchImage = async () => {
   const blob = new Blob([arrayBuffer], { type: imageResponse.ContentType });
 
   const dataUrl = URL.createObjectURL(blob);
-  console.log(dataUrl)
+  console.log(dataUrl);
 
   imageFile.value = dataUrl;
 };
@@ -97,7 +101,7 @@ await fetchArticles();
 
 <style scoped>
 main {
-  margin: 2rem;
+  margin: 1rem;
 }
 
 #articleContainer {
@@ -116,18 +120,24 @@ main {
 }
 
 #articleBody {
-  max-width: 48rem;
+  max-width: 54rem;
   margin-top: -10rem;
   position: relative;
   z-index: 1;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 3rem;
+  box-sizing: border-box;
 }
 
 #articleTitle {
   font-weight: 500;
-  margin-top: 0;
+  margin: 0;
+}
+
+#articleTimeStamp {
+  color: gray;
+  margin: 0;
 }
 
 #articleSubtext {
@@ -151,8 +161,9 @@ main {
   }
 
   #articleBody {
+    width: 100%;
     margin-top: 0rem;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: unset;
   }
 }

@@ -13,10 +13,12 @@
       </div>
     </div>
   </main>
+  <BottomNav />
 </template>
 
 <script setup>
-import { useRouter, RouterLink } from "vue-router";
+import { useRouter } from "vue-router";
+import BottomNav from "../components/Common/BottomNav.vue";
 
 const router = useRouter();
 

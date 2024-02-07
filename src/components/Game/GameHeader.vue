@@ -37,8 +37,8 @@ document.addEventListener("scroll", onScroll);
 
 function onScroll() {
   if (
-    document.body.scrollTop > 190 ||
-    document.documentElement.scrollTop > 190
+    document.body.scrollTop > 130 ||
+    document.documentElement.scrollTop > 130
   ) {
     document.getElementById("stickyHeader").style.top = "0";
   } else {
@@ -50,13 +50,12 @@ function onScroll() {
 #stickyHeader {
   height: 7rem;
   width: 100%;
-  background-color: white;
+  background-color: #ffffff;
   position: fixed;
   top: -8rem;
   transition: top 0.4s;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
-  z-index: 2;
-  justify-self: center;
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,6 +74,10 @@ function onScroll() {
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
+}
+
+#homeTeamName {
+  text-align: right;
 }
 
 #homeTeamName, #awayTeamName {

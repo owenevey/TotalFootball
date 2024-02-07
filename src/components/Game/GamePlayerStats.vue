@@ -12,10 +12,8 @@
         </h3>
       </div>
     </div>
+
     <div id="playerStatsContainer">
-      <div v-if="!hasData" id="noStatsContainer">
-        <h4 id="noStatsText">No player stats yet</h4>
-      </div>
       <div
         v-if="hasData"
         v-for="(stat, _) in Object.entries(stats[selectedPlayer].stats)"
@@ -26,6 +24,9 @@
           <p class="childStatName">{{ name }}</p>
           <p class="childStatNumber">{{ number ?? 0 }}</p>
         </div>
+      </div>
+      <div v-if="!hasData" id="noStatsContainer">
+        <h4 id="noStatsText">No player stats yet</h4>
       </div>
     </div>
   </div>
@@ -114,7 +115,6 @@ if (hasData.value) {
   align-items: center;
   overflow: hidden;
   box-sizing: border-box;
-  margin-bottom: 1rem;
 }
 
 #playerHeader {
@@ -131,6 +131,7 @@ if (hasData.value) {
   height: 100%;
   align-items: center;
   margin: 1rem;
+  gap: 1rem;
 }
 
 #playerRowText {
@@ -143,7 +144,6 @@ if (hasData.value) {
   object-fit: cover;
   height: 4rem;
   width: 4rem;
-  margin-right: 1rem;
 }
 
 #playerStatsContainer {

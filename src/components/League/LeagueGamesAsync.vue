@@ -91,7 +91,6 @@ const fetchGames = async (date) => {
     }
   );
   gameData.value = result.data.response;
-  console.log(result.data.response);
 };
 
 const fetchPreviousDay = () => {

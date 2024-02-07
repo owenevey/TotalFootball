@@ -29,7 +29,7 @@ import HomeGamesAsync from "../components/Home/HomeGamesAsync.vue";
 import HomeGamesFallback from "../components/Home/HomeGamesFallback.vue";
 import HomeNewsAsync from "../components/Home/HomeNewsAsync.vue";
 import HomeNewsFallback from "../components/Home/HomeNewsFallback.vue";
-import BottomNav from "../components/Navigation/BottomNav.vue";
+import BottomNav from "../components/Common/BottomNav.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -76,7 +76,7 @@ main {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
   #homeContainer {
     grid-template-columns: auto;
   }

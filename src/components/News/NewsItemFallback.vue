@@ -29,7 +29,7 @@
   
   .newsItemTitleFallback {
     height: 1.5rem;
-    width: 15rem;
+    width: 12rem;
     margin: 0rem;
     margin-bottom: 0.5rem;
     border-radius: 5px;
@@ -39,7 +39,7 @@
     height: 0.75rem;
     width: 5rem;
     margin: 0rem;
-    border-radius: 2px;
+    border-radius: 3px;
   }
   
   .newsItemImageFallback {

@@ -81,9 +81,9 @@ const { game } = toRefs(props);
 .eventsContainer {
   height: fit-content;
   width: 100%;
+  background-color: #ffffff;
   border-radius: 15px;
   border: 2px #f0f0f0 solid;
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,7 +118,7 @@ const { game } = toRefs(props);
 
 .eventRow {
   height: 4rem;
-  width: 90%;
+  width: 85%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,6 +130,7 @@ const { game } = toRefs(props);
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  gap: 1rem;
 }
 
 .awayEventRow {
@@ -137,11 +138,7 @@ const { game } = toRefs(props);
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-}
-
-.homeEventRow > *,
-.awayEventRow > * {
-  padding: 0.5rem;
+  gap: 1rem;
 }
 
 .eventText {
@@ -153,7 +150,6 @@ const { game } = toRefs(props);
   width: 0.75rem;
   padding: 0.1rem;
   border-radius: 2px;
-  margin: 0.5rem;
 }
 
 .yellowCard {
@@ -176,16 +172,24 @@ const { game } = toRefs(props);
 }
 
 .divider {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
   width: 100%;
   height: 2px;
 }
 
-/* @media (max-width: 1300px) {
+@media (max-width: 1300px) {
+
   .teamLogo {
-  object-fit: contain;
-  width: 2rem;
-  height: 2rem;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  #teamsRow {
+    height: 3rem;
+  }
+
+  #noEventsContainer {
+  height: unset;
 }
-} */
+}
 </style>

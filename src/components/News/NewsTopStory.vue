@@ -85,6 +85,8 @@ await fetchImage();
 
 .textContainer {
   padding: 2rem;
+  width: 60%;
+  text-align: left;
 }
 
 h1 {
@@ -99,7 +101,7 @@ p {
 
 img {
   object-fit: cover;
-  width: 50%;
+  width: 40%;
   height: 100%;
 }
 </style>

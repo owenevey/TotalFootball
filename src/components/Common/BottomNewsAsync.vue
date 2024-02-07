@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import NewsItem from "./News/NewsItem.vue";
+import NewsItem from "../News/NewsItem.vue";
 
 import { ref } from "vue";
 
@@ -63,6 +63,7 @@ const selectArticle = (article) => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 #newsTitle {
@@ -76,9 +77,6 @@ const selectArticle = (article) => {
   grid-template-columns: auto auto auto auto;
 }
 
-.gridItem {
-  width: 100%;
-}
 
 @media (max-width: 1150px) {
   #newsGridContainer {
