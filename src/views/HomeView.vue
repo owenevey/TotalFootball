@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="homeContainer">
-      <HomeLeagues id="leaguesContainer" :leagues="leagues" />
+      <HomeLeagues id="leaguesContainer" />
 
       <Suspense>
         <HomeGamesAsync :leagues="leagues" />
@@ -51,6 +51,11 @@ const leagues = {
   "Major League Soccer": 253,
   "Liga MX": 262,
   "Pro League": 307,
+  "FA Cup": 45,
+  "Copa del Rey": 143,
+  "DFB Pokal": 81,
+  "Coppa Italia": 137,
+  "Coupe de France": 66,
 };
 </script>
 

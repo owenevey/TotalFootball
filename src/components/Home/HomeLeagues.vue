@@ -8,9 +8,6 @@
 </template>
 
 <script setup>
-defineProps({
-  leagues: Object
-})
 
 import { useRouter } from "vue-router";
 import HomeLeagueItem from "./HomeLeagueItem.vue";
@@ -22,6 +19,21 @@ const selectLeague = (id) => {
     name: "league",
     params: { id: id },
   });
+};
+
+const leagues = {
+  "Premier League": 39,
+  "La Liga": 140,
+  Bundesliga: 78,
+  "Serie A": 135,
+  "Ligue 1": 61,
+  "UEFA Champions League": 2,
+  "UEFA Europa League": 3,
+  Eredivisie: 88,
+  "Primeira Liga": 94,
+  "Major League Soccer": 253,
+  "Liga MX": 262,
+  "Pro League": 307,
 };
 </script>
 

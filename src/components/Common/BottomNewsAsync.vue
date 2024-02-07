@@ -3,7 +3,7 @@
       <h3 id="newsTitle">News</h3>
       <div id="newsGridContainer">
         <NewsItem
-          v-for="article in articles.slice(0, 4)"
+          v-for="article in articles.slice(0, 8)"
           class="gridItem"
           :title="article.title"
           :imageName="article.imageName"
