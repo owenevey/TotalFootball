@@ -2,7 +2,7 @@
   <div class="gameItemContainer">
     <div class="leftItem">
       <p class="homeTeamName">{{ game.teams.home.name }}</p>
-      <img class="teamLogo" loading="eager" :src="game.teams.home.logo" />
+      <img class="teamLogo" :src="game.teams.home.logo" />
     </div>
 
     <div class="centerItem" v-if="game.fixture.status.short !== 'NS'">
@@ -12,22 +12,26 @@
     <div class="centerItem" v-else>
       <p class="time">
         {{
-          new Date(game.fixture.date).toLocaleTimeString("en-US", {
-            timeStyle: "short",
-          }).slice(0, -3)
+          new Date(game.fixture.date)
+            .toLocaleTimeString("en-US", {
+              timeStyle: "short",
+            })
+            .slice(0, -3)
         }}
       </p>
       <p class="timeAMPM">
         {{
-          new Date(game.fixture.date).toLocaleTimeString("en-US", {
-            timeStyle: "short",
-          }).slice(-2)
+          new Date(game.fixture.date)
+            .toLocaleTimeString("en-US", {
+              timeStyle: "short",
+            })
+            .slice(-2)
         }}
       </p>
     </div>
 
     <div class="rightItem">
-      <img class="teamLogo" loading="lazy" :src="game.teams.away.logo" />
+      <img class="teamLogo" :src="game.teams.away.logo" />
       <p class="awayTeamName">{{ game.teams.away.name }}</p>
     </div>
   </div>
@@ -88,7 +92,8 @@ defineProps({
   font-weight: 500;
 }
 
-.status, .timeAMPM {
+.status,
+.timeAMPM {
   font-size: small;
   font-weight: 400;
 }
@@ -116,7 +121,7 @@ defineProps({
   .rightItem {
     gap: 0.5rem;
   }
-  
+
   .homeTeamName,
   .awayTeamName {
     font-size: 0.9rem;
