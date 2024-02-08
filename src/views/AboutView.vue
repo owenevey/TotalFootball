@@ -25,7 +25,7 @@
             outside.
           </p>
           <p>
-            The design for this website was heavily inspired from one of my
+            The design for this website was heavily inspired by one of my
             favorite websites,
             <a href="https://www.fotmob.com">Fotmob</a>.
           </p>
