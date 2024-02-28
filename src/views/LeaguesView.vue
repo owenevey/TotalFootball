@@ -73,4 +73,10 @@ main {
   align-items: flex-start;
   overflow: hidden;
 }
+
+@media (max-width: 800px) {
+  main {
+    margin: 1rem 0.5rem;
+  }
+}
 </style>

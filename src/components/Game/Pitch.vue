@@ -260,7 +260,7 @@ defineProps({
 
   .pitchColumn {
     width: 100%;
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
   .halfLine {

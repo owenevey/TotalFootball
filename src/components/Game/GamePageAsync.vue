@@ -132,7 +132,7 @@ main {
 
 @media (max-width: 800px) {
   main {
-    margin: 1rem 0;
+    margin: 1rem 0.5rem;
   }
 }
 </style>
