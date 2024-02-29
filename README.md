@@ -1,29 +1,7 @@
-# sports-webapp
+# TotalFootball
 
-This template should help get you started developing with Vue 3 in Vite.
+This web app displays real time soccer matches, stats, and news.
 
-## Recommended IDE Setup
+It is a Vue app using pure HTML, CSS, and Javascript. There is an AWS backend that uses S3 and DynamoDB to store data. Soccer data is fetched from [API-Football](https://www.api-football.com).
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+Due to using private API keys, this project is unable to run by others as the data will not load.
