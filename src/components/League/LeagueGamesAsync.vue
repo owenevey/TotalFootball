@@ -26,10 +26,13 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["passApiError"]);
+
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import HomeGameItem from "../Home/HomeGameItem.vue";
 import axios from "axios";
+import exampleGamesList from "../../exampleData/exampleGamesList.json";
 
 const router = useRouter();
 const route = useRoute();
@@ -90,7 +93,13 @@ const fetchGames = async (date) => {
       headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
     }
   );
-  gameData.value = result.data.response;
+
+  if (result.data.errors.rateLimit || result.data.errors.requests) {
+    emit("passApiError");
+    gameData.value = exampleGamesList["Premier League"];
+  } else {
+    gameData.value = result.data.response;
+  }
 };
 
 const fetchPreviousDay = () => {

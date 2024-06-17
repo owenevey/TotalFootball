@@ -1,23 +1,29 @@
 <template>
-  <main>
-    <div id="homeContainer">
-      <HomeLeagues id="leaguesContainer" />
+  <div id="slidingDiv">
+    <header id="apiHeader">API limit exceeded, example data shown</header>
+    <main>
+      <div id="homeContainer">
+        <HomeLeagues id="leaguesContainer" />
 
-      <Suspense>
-        <HomeGamesAsync :leagues="leagues" />
-        <template #fallback>
-          <HomeGamesFallback />
-        </template>
-      </Suspense>
+        <Suspense>
+          <HomeGamesAsync
+            :leagues="leagues"
+            @passApiError="showApiLimitHeader"
+          />
+          <template #fallback>
+            <HomeGamesFallback />
+          </template>
+        </Suspense>
 
-      <Suspense>
-        <HomeNewsAsync id="newsContainer" />
-        <template #fallback>
-          <HomeNewsFallback id="newsContainer" />
-        </template>
-      </Suspense>
-    </div>
-  </main>
+        <Suspense>
+          <HomeNewsAsync id="newsContainer" />
+          <template #fallback>
+            <HomeNewsFallback id="newsContainer" />
+          </template>
+        </Suspense>
+      </div>
+    </main>
+  </div>
   <BottomNav />
 </template>
 
@@ -38,15 +44,19 @@ watch(route, (newValue, oldValue) => {
   router.go();
 });
 
+function showApiLimitHeader() {
+  document.getElementById("slidingDiv").style.marginTop = "-1rem";
+}
+
 const leagues = {
   "Premier League": 39,
   "La Liga": 140,
-  "Bundesliga": 78,
+  Bundesliga: 78,
   "Serie A": 135,
   "Ligue 1": 61,
   "UEFA Champions League": 2,
   "UEFA Europa League": 3,
-  "Eredivisie": 88,
+  Eredivisie: 88,
   "Primeira Liga": 94,
   "Major League Soccer": 253,
   "Liga MX": 262,
@@ -60,6 +70,23 @@ const leagues = {
 </script>
 
 <style scoped>
+#apiHeader {
+  height: 3rem;
+  width: 100%;
+  background-color: #ffca53;
+  color: #7a5200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#slidingDiv {
+  margin-top: -4rem;
+  transition: 1s;
+}
+
 main {
   margin: 1rem;
 }

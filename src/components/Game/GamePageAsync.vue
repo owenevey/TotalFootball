@@ -34,6 +34,8 @@
 </template>
 
 <script setup>
+const emit = defineEmits(['passApiError'])
+
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
@@ -44,6 +46,7 @@ import GamePlayerStats from "./GamePlayerStats.vue";
 import GameEvents from "./GameEvents.vue";
 import GameHeader from "./GameHeader.vue";
 import BottomNewsAsync from "../Common/BottomNewsAsync.vue";
+import exampleGame from "../../exampleData/exampleGame.json";
 
 const route = useRoute();
 const game = ref(null);
@@ -58,7 +61,13 @@ const getData = async () => {
       headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
     }
   );
-  game.value = result.data.response[0];
+
+  if (result.data.errors.rateLimit || result.data.errors.requests) {
+    emit("passApiError")
+    game.value = exampleGame;
+  } else {
+    game.value = result.data.response[0];
+  }
 
   hasLineups.value = game.value.lineups[0]?.startXI !== undefined;
   if (hasLineups.value) {

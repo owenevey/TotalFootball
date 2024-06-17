@@ -38,10 +38,13 @@ const props = defineProps({
   leagues: Object,
 });
 
+const emit = defineEmits(['passApiError'])
+
 import { ref, toRefs } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import HomeGameItem from "./HomeGameItem.vue";
 import axios from "axios";
+import exampleGamesList from "../../exampleData/exampleGamesList.json";
 
 const { leagues } = toRefs(props);
 
@@ -98,16 +101,25 @@ function getDifferentDate(dayOffset) {
 }
 
 const fetchGames = async (date) => {
-  const fixtures = {};
+  let fixtures = {};
   for (const [name, id] of Object.entries(leagues.value)) {
     const result = await axios.get(
       `https://v3.football.api-sports.io/fixtures?season=2023&league=${id}&from=${date}&to=${date}`,
-      { headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY } }
+      {
+        headers: {
+          "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY,
+        },
+      }
     );
     if (result.data.response.length > 0) {
       fixtures[name] = result.data.response;
+    } else if (result.data.errors.rateLimit || result.data.errors.requests) {
+      emit("passApiError")
+      fixtures = exampleGamesList;
+      break;
     }
   }
+
   gameData.value = fixtures;
 };
 
@@ -161,7 +173,6 @@ await fetchGames(currentDate.value);
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  
 }
 
 .material-symbols-outlined {

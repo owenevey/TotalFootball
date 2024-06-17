@@ -26,10 +26,13 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["passApiError"]);
+
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import LeagueTableRow from "./LeagueTableRow.vue";
+import exampleLeagueTable from "../../exampleData/exampleLeagueTable.json";
 
 const route = useRoute();
 
@@ -42,7 +45,13 @@ const fetchData = async (id) => {
       headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
     }
   );
-  leagueStandings.value = result.data.response[0].league.standings;
+
+  if (result.data.errors.rateLimit || result.data.errors.requests) {
+    emit("passApiError");
+    leagueStandings.value = exampleLeagueTable;
+  } else {
+    leagueStandings.value = result.data.response[0].league.standings;
+  }
 };
 
 await fetchData(route.params.id);

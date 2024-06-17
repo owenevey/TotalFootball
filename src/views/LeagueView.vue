@@ -1,39 +1,42 @@
 <template>
-  <main>
-    <div id="contentContainer">
-      <div id="leagueContainer">
-        <div id="topContainer">
-          <Suspense>
-            <LeagueInfoCardAsync />
-            <template #fallback>
-              <LeagueInfoCardFallbackVue />
-            </template>
-          </Suspense>
+  <div id="slidingDiv">
+    <header id="apiHeader">API limit exceeded, example data shown</header>
+    <main>
+      <div id="contentContainer">
+        <div id="leagueContainer">
+          <div id="topContainer">
+            <Suspense>
+              <LeagueInfoCardAsync @passApiError="showApiLimitHeader" />
+              <template #fallback>
+                <LeagueInfoCardFallbackVue />
+              </template>
+            </Suspense>
+
+            <Suspense>
+              <LeagueGamesAsync @passApiError="showApiLimitHeader" />
+              <template #fallback>
+                <LeagueGamesFallback />
+              </template>
+            </Suspense>
+          </div>
 
           <Suspense>
-            <LeagueGamesAsync />
+            <LeagueTableAsync @passApiError="showApiLimitHeader" />
             <template #fallback>
-              <LeagueGamesFallback />
+              <LeagueTableFallback />
             </template>
           </Suspense>
         </div>
 
         <Suspense>
-          <LeagueTableAsync />
+          <BottomNewsAsync />
           <template #fallback>
-            <LeagueTableFallback />
+            <BottomNewsFallback />
           </template>
         </Suspense>
       </div>
-
-      <Suspense>
-        <BottomNewsAsync />
-        <template #fallback>
-          <BottomNewsFallback />
-        </template>
-      </Suspense>
-    </div>
-  </main>
+    </main>
+  </div>
   <BottomNav />
 </template>
 
@@ -56,9 +59,30 @@ const router = useRouter();
 watch(route, (newValue, oldValue) => {
   router.go();
 });
+
+function showApiLimitHeader() {
+  document.getElementById("slidingDiv").style.marginTop = "-1rem";
+}
 </script>
 
 <style scoped>
+#apiHeader {
+  height: 3rem;
+  width: 100%;
+  background-color: #ffca53;
+  color: #7a5200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#slidingDiv {
+  margin-top: -4rem;
+  transition: 1s;
+}
+
 main {
   margin: 1rem;
 }

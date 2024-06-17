@@ -1,7 +1,7 @@
 <template>
   <div id="leagueInfoContainer">
     <div class="infoRow">
-        <img class="leagueImage" :src="leagueData.logo" />
+      <img class="leagueImage" :src="leagueData.logo" />
       <div>
         <h4 class="secondaryText">League</h4>
         <h2 class="primaryText">{{ leagueData.name }}</h2>
@@ -9,8 +9,8 @@
     </div>
 
     <div class="infoRow">
-        <img v-if="leagueData.flag" class="flagImage" :src="leagueData.flag" />
-        <span v-else class="sizeImage material-symbols-outlined"> public </span>
+      <img v-if="leagueData.flag" class="flagImage" :src="leagueData.flag" />
+      <span v-else class="sizeImage material-symbols-outlined"> public </span>
       <div>
         <h4 class="secondaryText">Country</h4>
         <h2 class="primaryText">{{ leagueData.country }}</h2>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="infoRow">
-        <span class="sizeImage material-symbols-outlined"> groups </span>
+      <span class="sizeImage material-symbols-outlined"> groups </span>
       <div>
         <h4 class="secondaryText">Size</h4>
         <h2 class="primaryText">
@@ -30,9 +30,12 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["passApiError"]);
+
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
+import exampleLeagueInfo from "../../exampleData/exampleLeagueInfo.json";
 
 const leagueData = ref(null);
 
@@ -45,7 +48,13 @@ const fetchData = async (id) => {
       headers: { "x-apisports-key": import.meta.env.VITE_APP_FOOTBALL_API_KEY },
     }
   );
-  leagueData.value = result.data.response[0].league;
+
+  if (result.data.errors.rateLimit || result.data.errors.requests) {
+    emit("passApiError");
+    leagueData.value = exampleLeagueInfo;
+  } else {
+    leagueData.value = result.data.response[0].league;
+  }
 };
 
 await fetchData(route.params.id);
