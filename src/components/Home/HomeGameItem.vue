@@ -2,7 +2,7 @@
   <div class="gameItemContainer">
     <div class="leftItem">
       <p class="homeTeamName">{{ game.teams.home.name }}</p>
-      <img class="teamLogo" :src="game.teams.home.logo" />
+      <img class="teamLogo" :src="game.teams.home.logo" loading="lazy"/>
     </div>
 
     <div class="centerItem" v-if="game.fixture.status.short !== 'NS'">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="rightItem">
-      <img class="teamLogo" :src="game.teams.away.logo" />
+      <img class="teamLogo" :src="game.teams.away.logo" loading="lazy"/>
       <p class="awayTeamName">{{ game.teams.away.name }}</p>
     </div>
   </div>
