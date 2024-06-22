@@ -95,7 +95,7 @@ await getData();
 <style scoped>
 #contentContainer {
   margin: auto;
-  max-width: 79rem;
+  max-width: 80rem;
 }
 
 #gridContainer {
