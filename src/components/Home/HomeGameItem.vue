@@ -2,7 +2,7 @@
   <div class="gameItemContainer">
     <div class="leftItem">
       <p class="homeTeamName">{{ game.teams.home.name }}</p>
-      <img class="teamLogo" :src="game.teams.home.logo"/>
+      <v-lazy-image class="teamLogo" :src="game.teams.home.logo"/>
     </div>
 
     <div class="centerItem" v-if="game.fixture.status.short !== 'NS'">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="rightItem">
-      <img class="teamLogo" :src="game.teams.away.logo"/>
+      <v-lazy-image class="teamLogo" :src="game.teams.away.logo"/>
       <p class="awayTeamName">{{ game.teams.away.name }}</p>
     </div>
   </div>
@@ -41,6 +41,8 @@
 defineProps({
   game: Object,
 });
+
+import VLazyImage from "v-lazy-image";
 </script>
 
 <style scoped>

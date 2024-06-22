@@ -2,7 +2,7 @@
   <div class="tableRow">
     <div class="teamInfo">
       <p class="rank">{{ team.rank }}</p>
-      <img class="logo" :src="team.team.logo" />
+      <v-lazy-image class="logo" :src="team.team.logo" />
       <p class="teamName">{{ team.team.name }}</p>
     </div>
     <div class="stats">
@@ -37,6 +37,8 @@
 defineProps({
   team: Object,
 });
+
+import VLazyImage from "v-lazy-image";
 </script>
 
 <style scoped>
