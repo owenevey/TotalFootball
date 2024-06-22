@@ -35,13 +35,13 @@
                 "home": {
                     "id": 45,
                     "name": "Everton",
-                    "logo": "https://media.api-sports.io/football/teams/45.png",
+                    "logo": "/teams/everton.png",
                     "winner": null
                 },
                 "away": {
                     "id": 47,
                     "name": "Tottenham",
-                    "logo": "https://media.api-sports.io/football/teams/47.png",
+                    "logo": "/teams/tottenham.png",
                     "winner": null
                 }
             },
@@ -103,13 +103,13 @@
                 "home": {
                     "id": 51,
                     "name": "Brighton",
-                    "logo": "https://media.api-sports.io/football/teams/51.png",
+                    "logo": "/teams/brighton.png",
                     "winner": true
                 },
                 "away": {
                     "id": 52,
                     "name": "Crystal Palace",
-                    "logo": "https://media.api-sports.io/football/teams/52.png",
+                    "logo": "/teams/crystal_palace.png",
                     "winner": false
                 }
             },
@@ -171,13 +171,13 @@
                 "home": {
                     "id": 44,
                     "name": "Burnley",
-                    "logo": "https://media.api-sports.io/football/teams/44.png",
+                    "logo": "/teams/burnley.png",
                     "winner": null
                 },
                 "away": {
                     "id": 36,
                     "name": "Fulham",
-                    "logo": "https://media.api-sports.io/football/teams/36.png",
+                    "logo": "/teams/fulham.png",
                     "winner": null
                 }
             },
@@ -239,13 +239,13 @@
                 "home": {
                     "id": 34,
                     "name": "Newcastle",
-                    "logo": "https://media.api-sports.io/football/teams/34.png",
+                    "logo": "/teams/newcastle.png",
                     "winner": null
                 },
                 "away": {
                     "id": 1359,
                     "name": "Luton",
-                    "logo": "https://media.api-sports.io/football/teams/1359.png",
+                    "logo": "/teams/luton.png",
                     "winner": null
                 }
             },
@@ -307,13 +307,13 @@
                 "home": {
                     "id": 62,
                     "name": "Sheffield Utd",
-                    "logo": "https://media.api-sports.io/football/teams/62.png",
+                    "logo": "/teams/sheffield.png",
                     "winner": false
                 },
                 "away": {
                     "id": 66,
                     "name": "Aston Villa",
-                    "logo": "https://media.api-sports.io/football/teams/66.png",
+                    "logo": "/teams/aston_villa.png",
                     "winner": true
                 }
             },
@@ -377,13 +377,13 @@
                 "home": {
                     "id": 532,
                     "name": "Valencia",
-                    "logo": "https://media.api-sports.io/football/teams/532.png",
+                    "logo": "/teams/valencia.png",
                     "winner": true
                 },
                 "away": {
                     "id": 723,
                     "name": "Almeria",
-                    "logo": "https://media.api-sports.io/football/teams/723.png",
+                    "logo": "/teams/almeria.png",
                     "winner": false
                 }
             },
@@ -445,13 +445,13 @@
                 "home": {
                     "id": 715,
                     "name": "Granada CF",
-                    "logo": "https://media.api-sports.io/football/teams/715.png",
+                    "logo": "/teams/granada.png",
                     "winner": null
                 },
                 "away": {
                     "id": 534,
                     "name": "Las Palmas",
-                    "logo": "https://media.api-sports.io/football/teams/534.png",
+                    "logo": "/teams/las_palmas.png",
                     "winner": null
                 }
             },
@@ -513,13 +513,13 @@
                 "home": {
                     "id": 542,
                     "name": "Alaves",
-                    "logo": "https://media.api-sports.io/football/teams/542.png",
+                    "logo": "/teams/alaves.png",
                     "winner": false
                 },
                 "away": {
                     "id": 529,
                     "name": "Barcelona",
-                    "logo": "https://media.api-sports.io/football/teams/529.png",
+                    "logo": "/teams/barcelona.png",
                     "winner": true
                 }
             },
@@ -581,13 +581,13 @@
                 "home": {
                     "id": 547,
                     "name": "Girona",
-                    "logo": "https://media.api-sports.io/football/teams/547.png",
+                    "logo": "/teams/girona.png",
                     "winner": null
                 },
                 "away": {
                     "id": 548,
                     "name": "Real Sociedad",
-                    "logo": "https://media.api-sports.io/football/teams/548.png",
+                    "logo": "/teams/real_sociedad.png",
                     "winner": null
                 }
             },
@@ -651,13 +651,13 @@
                 "home": {
                     "id": 157,
                     "name": "Bayern Munich",
-                    "logo": "https://media.api-sports.io/football/teams/157.png",
+                    "logo": "/teams/bayern_munich.png",
                     "winner": true
                 },
                 "away": {
                     "id": 163,
                     "name": "Borussia Monchengladbach",
-                    "logo": "https://media.api-sports.io/football/teams/163.png",
+                    "logo": "/teams/borussia_monchengladbach.png",
                     "winner": false
                 }
             },
@@ -719,13 +719,13 @@
                 "home": {
                     "id": 160,
                     "name": "SC Freiburg",
-                    "logo": "https://media.api-sports.io/football/teams/160.png",
+                    "logo": "/teams/freiburg.png",
                     "winner": false
                 },
                 "away": {
                     "id": 172,
                     "name": "VfB Stuttgart",
-                    "logo": "https://media.api-sports.io/football/teams/172.png",
+                    "logo": "/teams/stuttgart.png",
                     "winner": true
                 }
             },
@@ -787,13 +787,13 @@
                 "home": {
                     "id": 164,
                     "name": "FSV Mainz 05",
-                    "logo": "https://media.api-sports.io/football/teams/164.png",
+                    "logo": "/teams/mainz.png",
                     "winner": false
                 },
                 "away": {
                     "id": 162,
                     "name": "Werder Bremen",
-                    "logo": "https://media.api-sports.io/football/teams/162.png",
+                    "logo": "/teams/werder_bremen.png",
                     "winner": true
                 }
             },
@@ -855,13 +855,13 @@
                 "home": {
                     "id": 176,
                     "name": "Vfl Bochum",
-                    "logo": "https://media.api-sports.io/football/teams/176.png",
+                    "logo": "/teams/bochum.png",
                     "winner": null
                 },
                 "away": {
                     "id": 170,
                     "name": "FC Augsburg",
-                    "logo": "https://media.api-sports.io/football/teams/170.png",
+                    "logo": "/teams/augsburg.png",
                     "winner": null
                 }
             },
@@ -923,13 +923,13 @@
                 "home": {
                     "id": 181,
                     "name": "SV Darmstadt 98",
-                    "logo": "https://media.api-sports.io/football/teams/181.png",
+                    "logo": "/teams/darmstadt.png",
                     "winner": false
                 },
                 "away": {
                     "id": 168,
                     "name": "Bayer Leverkusen",
-                    "logo": "https://media.api-sports.io/football/teams/168.png",
+                    "logo": "/teams/leverkusen.png",
                     "winner": true
                 }
             },
@@ -991,13 +991,13 @@
                 "home": {
                     "id": 192,
                     "name": "1.FC Köln",
-                    "logo": "https://media.api-sports.io/football/teams/192.png",
+                    "logo": "/teams/koln.png",
                     "winner": true
                 },
                 "away": {
                     "id": 169,
                     "name": "Eintracht Frankfurt",
-                    "logo": "https://media.api-sports.io/football/teams/169.png",
+                    "logo": "/teams/frankfurt.png",
                     "winner": false
                 }
             },
@@ -1061,13 +1061,13 @@
                 "home": {
                     "id": 511,
                     "name": "Empoli",
-                    "logo": "https://media.api-sports.io/football/teams/511.png",
+                    "logo": "/teams/empoli.png",
                     "winner": null
                 },
                 "away": {
                     "id": 495,
                     "name": "Genoa",
-                    "logo": "https://media.api-sports.io/football/teams/495.png",
+                    "logo": "/teams/genoa.png",
                     "winner": null
                 }
             },
@@ -1129,13 +1129,13 @@
                 "home": {
                     "id": 494,
                     "name": "Udinese",
-                    "logo": "https://media.api-sports.io/football/teams/494.png",
+                    "logo": "/teams/udinese.png",
                     "winner": null
                 },
                 "away": {
                     "id": 1579,
                     "name": "Monza",
-                    "logo": "https://media.api-sports.io/football/teams/1579.png",
+                    "logo": "/teams/monza.png",
                     "winner": null
                 }
             },
@@ -1197,13 +1197,13 @@
                 "home": {
                     "id": 512,
                     "name": "Frosinone",
-                    "logo": "https://media.api-sports.io/football/teams/512.png",
+                    "logo": "/teams/frosinone.png",
                     "winner": false
                 },
                 "away": {
                     "id": 489,
                     "name": "AC Milan",
-                    "logo": "https://media.api-sports.io/football/teams/489.png",
+                    "logo": "/teams/ac_milan.png",
                     "winner": true
                 }
             },
@@ -1265,13 +1265,13 @@
                 "home": {
                     "id": 500,
                     "name": "Bologna",
-                    "logo": "https://media.api-sports.io/football/teams/500.png",
+                    "logo": "/teams/bologna.png",
                     "winner": true
                 },
                 "away": {
                     "id": 488,
                     "name": "Sassuolo",
-                    "logo": "https://media.api-sports.io/football/teams/488.png",
+                    "logo": "/teams/sassuolo.png",
                     "winner": false
                 }
             },
@@ -1335,13 +1335,13 @@
                 "home": {
                     "id": 94,
                     "name": "Rennes",
-                    "logo": "https://media.api-sports.io/football/teams/94.png",
+                    "logo": "/teams/rennes.png",
                     "winner": true
                 },
                 "away": {
                     "id": 82,
                     "name": "Montpellier",
-                    "logo": "https://media.api-sports.io/football/teams/82.png",
+                    "logo": "/teams/montpellier.png",
                     "winner": false
                 }
             },
@@ -1403,13 +1403,13 @@
                 "home": {
                     "id": 83,
                     "name": "Nantes",
-                    "logo": "https://media.api-sports.io/football/teams/83.png",
+                    "logo": "/teams/nantes.png",
                     "winner": false
                 },
                 "away": {
                     "id": 116,
                     "name": "Lens",
-                    "logo": "https://media.api-sports.io/football/teams/116.png",
+                    "logo": "/teams/lens.png",
                     "winner": true
                 }
             },
@@ -1473,13 +1473,13 @@
                 "home": {
                     "id": 415,
                     "name": "Twente",
-                    "logo": "https://media.api-sports.io/football/teams/415.png",
+                    "logo": "/teams/twente.png",
                     "winner": true
                 },
                 "away": {
                     "id": 417,
                     "name": "Waalwijk",
-                    "logo": "https://media.api-sports.io/football/teams/417.png",
+                    "logo": "/teams/waalwijk.png",
                     "winner": false
                 }
             },
@@ -1541,13 +1541,13 @@
                 "home": {
                     "id": 205,
                     "name": "Fortuna Sittard",
-                    "logo": "https://media.api-sports.io/football/teams/205.png",
+                    "logo": "/teams/sittard.png",
                     "winner": null
                 },
                 "away": {
                     "id": 210,
                     "name": "Heerenveen",
-                    "logo": "https://media.api-sports.io/football/teams/210.png",
+                    "logo": "/teams/heerenveen.png",
                     "winner": null
                 }
             },
@@ -1609,13 +1609,13 @@
                 "home": {
                     "id": 194,
                     "name": "Ajax",
-                    "logo": "https://media.api-sports.io/football/teams/194.png",
+                    "logo": "/teams/ajax.png",
                     "winner": null
                 },
                 "away": {
                     "id": 197,
                     "name": "PSV Eindhoven",
-                    "logo": "https://media.api-sports.io/football/teams/197.png",
+                    "logo": "/teams/psv.png",
                     "winner": null
                 }
             },
@@ -1677,13 +1677,13 @@
                 "home": {
                     "id": 413,
                     "name": "NEC Nijmegen",
-                    "logo": "https://media.api-sports.io/football/teams/413.png",
+                    "logo": "/teams/nijmegen.png",
                     "winner": true
                 },
                 "away": {
                     "id": 206,
                     "name": "Heracles",
-                    "logo": "https://media.api-sports.io/football/teams/206.png",
+                    "logo": "/teams/heracles.png",
                     "winner": false
                 }
             },
@@ -1747,13 +1747,13 @@
                 "home": {
                     "id": 216,
                     "name": "Portimonense",
-                    "logo": "https://media.api-sports.io/football/teams/216.png",
+                    "logo": "/teams/portimonense.png",
                     "winner": false
                 },
                 "away": {
                     "id": 240,
                     "name": "Arouca",
-                    "logo": "https://media.api-sports.io/football/teams/240.png",
+                    "logo": "/teams/arouca.png",
                     "winner": true
                 }
             },
@@ -1815,13 +1815,13 @@
                 "home": {
                     "id": 212,
                     "name": "FC Porto",
-                    "logo": "https://media.api-sports.io/football/teams/212.png",
+                    "logo": "/teams/porto.png",
                     "winner": null
                 },
                 "away": {
                     "id": 226,
                     "name": "Rio Ave",
-                    "logo": "https://media.api-sports.io/football/teams/226.png",
+                    "logo": "/teams/rio_ave.png",
                     "winner": null
                 }
             },
@@ -1885,13 +1885,13 @@
                 "home": {
                     "id": 2290,
                     "name": "Club Queretaro",
-                    "logo": "https://media.api-sports.io/football/teams/2290.png",
+                    "logo": "/teams/queretaro.png",
                     "winner": false
                 },
                 "away": {
                     "id": 2295,
                     "name": "Cruz Azul",
-                    "logo": "https://media.api-sports.io/football/teams/2295.png",
+                    "logo": "/teams/cruz_azul.png",
                     "winner": true
                 }
             },
@@ -1953,13 +1953,13 @@
                 "home": {
                     "id": 2291,
                     "name": "Puebla",
-                    "logo": "https://media.api-sports.io/football/teams/2291.png",
+                    "logo": "/teams/puebla.png",
                     "winner": true
                 },
                 "away": {
                     "id": 14002,
                     "name": "Mazatlán",
-                    "logo": "https://media.api-sports.io/football/teams/14002.png",
+                    "logo": "/teams/mazatlan.png",
                     "winner": false
                 }
             },
@@ -2021,13 +2021,13 @@
                 "home": {
                     "id": 2281,
                     "name": "Toluca",
-                    "logo": "https://media.api-sports.io/football/teams/2281.png",
+                    "logo": "/teams/toluca.png",
                     "winner": true
                 },
                 "away": {
                     "id": 2289,
                     "name": "Leon",
-                    "logo": "https://media.api-sports.io/football/teams/2289.png",
+                    "logo": "/teams/leon.png",
                     "winner": false
                 }
             },
