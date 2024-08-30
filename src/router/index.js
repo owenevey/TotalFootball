@@ -13,48 +13,44 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/totalfootball/home",
-    },
-    {
-      path: "/totalfootball",
-      redirect: "/totalfootball/home",
+      redirect: "/home",
     },
     {
       path: "/:pathMatch(.*)*",
       component: NotFoundView,
     },
     {
-      path: "/totalfootball/home",
+      path: "/home",
       name: "home",
       component: HomeView,
     },
     {
-      path: "/totalfootball/game/",
+      path: "/game",
       name: "game",
       component: GameView,
     },
     {
-      path: "/totalfootball/league/:id",
+      path: "/league/:id",
       name: "league",
       component: LeagueView,
     },
     {
-      path: "/totalfootball/leagues",
+      path: "/leagues",
       name: "leagues",
       component: LeaguesView,
     },
     {
-      path: "/totalfootball/news",
+      path: "/news",
       name: "news",
       component: NewsView,
     },
     {
-      path: "/totalfootball/news/article/:id/:img",
+      path: "/news/article/:id/:img",
       name: "article",
       component: ArticleView,
     },
     {
-      path: "/totalfootball/about",
+      path: "/about",
       name: "about",
       component: AboutView,
     },
