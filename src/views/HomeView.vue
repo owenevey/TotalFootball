@@ -46,6 +46,8 @@ watch(route, (newValue, oldValue) => {
 
 function showApiLimitHeader() {
   document.getElementById("slidingDiv").style.marginTop = "-1rem";
+  document.getElementById("apiHeader").style.background = "#ffca53";
+  document.getElementById("apiHeader").style.color = "#7a5200";
 }
 
 const leagues = {
@@ -73,8 +75,8 @@ const leagues = {
 #apiHeader {
   height: 3rem;
   width: 100%;
-  background-color: #ffca53;
-  color: #7a5200;
+  background-color: #fafafa;
+  color: #fafafa;
   display: flex;
   justify-content: center;
   align-items: center;

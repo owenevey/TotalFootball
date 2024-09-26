@@ -20,6 +20,8 @@ import BottomNav from "../components/Common/BottomNav.vue";
 
 function showApiLimitHeader() {
   document.getElementById("slidingDiv").style.marginTop = "-1rem";
+  document.getElementById("apiHeader").style.background = "#ffca53";
+  document.getElementById("apiHeader").style.color = "#7a5200";
 }
 </script>
 
