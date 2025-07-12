@@ -1,7 +1,33 @@
-# TotalFootball
+# TotalFootball - Soccer Scores & News
+[![Visit Site](https://img.shields.io/badge/Visit_Site-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)](totalfootball.owenevey.com)
 
-This web app displays real time soccer matches, stats, and news. [Click here to visit](https://totalfootball.owenevey.com).
+A centralized platform offering live soccer scores, in-depth match reports, and top news stories from across the globe.
 
-It is a Vue app using pure HTML, CSS, and Javascript. There is an AWS backend that uses S3 and DynamoDB to store data. Soccer data is fetched from [API-Football](https://www.api-football.com).
+![websitePreview](https://raw.githubusercontent.com/owenevey/owenevey/refs/heads/main/assets/totalFootballPreview.jpg)
 
-Due to using private API keys, this project is unable to run by others as the data will not load.
+---
+
+## ⭐️ Key Features
+
+- Browse live scores, upcoming matches, and past results.
+- View in-depth match details, including comprehensive statistics, lineups, and key event timelines for every game.
+- Track standings from the top leagues in the world.
+- Access soccer news, transfer rumors, and match analysis.
+
+---
+
+## ⚙️ Backend APIs and Services
+
+TotalFootball integrates with:
+
+| API/Service       | Description                                                                                             |
+| :---------------- | :------------------------------------------------------------------------------------------------------ |
+| API Football      | Provides game and league data                                                                           |
+| AWS S3            | Stores application images and assets                                                                   |
+| AWS Amplify       | Hosts web application                                                                                   |
+
+
+---
+
+## 🏛️ Architecture Diagram
+![AppPreview](https://raw.githubusercontent.com/owenevey/owenevey/refs/heads/main/assets/concertlyArch.png)
