@@ -1,5 +1,5 @@
 # TotalFootball - Soccer Scores & News
-[![Visit Site](https://img.shields.io/badge/Visit_Site-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)](totalfootball.owenevey.com)
+[![Visit Site](https://img.shields.io/badge/Visit_Site-00935c?style=for-the-badge&logo=vuedotjs&logoColor=white)](https://www.totalfootball.owenevey.com)
 
 A centralized platform offering live soccer scores, in-depth match reports, and top news stories from across the globe.
 
@@ -23,7 +23,8 @@ TotalFootball integrates with:
 | API/Service       | Description                                                                                             |
 | :---------------- | :------------------------------------------------------------------------------------------------------ |
 | API Football      | Provides game and league data                                                                           |
-| AWS S3            | Stores application images and assets                                                                   |
+| AWS S3            | Stores application images and assets                                                                    |
+| AWS DynamoDB      | Stores news article information                                                                         |
 | AWS Amplify       | Hosts web application                                                                                   |
 
 
